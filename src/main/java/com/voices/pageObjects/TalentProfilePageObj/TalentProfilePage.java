@@ -342,6 +342,101 @@ public class TalentProfilePage {
     @FindBy(xpath = "(//span[@class='current-time'])[1]")
     private WebElement demoPlayCurrentTime;
 
+    @FindBy(xpath = "//h1[normalize-space()='Manage Packages']")
+    private WebElement managePackageHeader;
+    @FindBy(xpath = "//a[normalize-space()='Create a Package']")
+    private WebElement createPackageButton;
+    @FindBy(xpath = "//a[normalize-space()='Draft']")
+    private WebElement draftTab;
+    @FindBy(xpath = "//nav[@id='main-tab-nav']//a[normalize-space()='Pending Review']")
+    private WebElement pendingReviewTab;
+    @FindBy(xpath = "//nav[@id='main-tab-nav']//a[normalize-space()='Approved']")
+    private WebElement approvedTab;
+
+    @FindBy(xpath = "(//p[@class='project-title h4'])[1]")
+    private WebElement firstPackageName;
+    @FindBy(xpath = "(//p[@class='project-id'])[1]")
+    private WebElement firstPackageId;
+    @FindBy(xpath = "(//span[@class='tag'])[1]")
+    private WebElement firstPackageCategory;
+    @FindBy(xpath = "(//span[contains(@class,'status status')])[1]")
+    private WebElement firstPackageStatus;
+    @FindBy(xpath = "(//a[contains(@class,'project-action-btn btn btn-circular btn-default edit-project-btn')])[1]")
+    private WebElement firstPackageEditButton;
+    @FindBy(xpath = "(//a[contains(@class,'project-action-btn btn btn-circular btn-default delete-project-btn')])[1]")
+    private WebElement firstPackageDeleteButton;
+    @FindBy(xpath = "(//a[contains(@class,'project-action-btn btn btn-circular btn-default enable-disable-btn')])[1]")
+    private WebElement firstPackageActiveInactiveButton;
+    @FindBy(xpath = "(//a[contains(@class,'project-action-btn btn btn-circular btn-default duplicate-project')])[1]")
+    private WebElement firstPackageDuplicateButton;
+    @FindBy(xpath = "//p[@id='projects-count']")
+    private WebElement packagePagination;
+    @FindBy(xpath = "//button[@id='delete-project-list-submit-btn']")
+    private WebElement packageDeleteButton;
+    @FindBy(xpath = "//button[@title='Clear Search']")
+    private WebElement clearSearchFieldButton;
+    @FindBy(xpath = "//input[@id='action_bar_search_keyword']")
+    private WebElement searchFiledTextBox;
+    @FindBy(xpath = "(//button[@title='Submit Search'])[2]")
+    private WebElement submitSearchField;
+
+    @FindBy(xpath = "//h2[@id='project-title']")
+    private WebElement packageHeader;
+    @FindBy(xpath = "//h2[@id='portfolio-title']")
+    private WebElement demosHeader;
+    @FindBy(xpath = "//span[@class='d-flex align-items-center']/h1")
+    private WebElement profileNameHeader;
+    @FindBy(xpath = "//a[normalize-space()='Portfolio']")
+    private WebElement portfolioTab;
+    @FindBy(xpath = "//a[normalize-space()='About Talent']")
+    private WebElement aboutTalentTab;
+    @FindBy(xpath = "//div[@class='circle-avatar-container']/img")
+    private WebElement profileAvtarPhoto;
+    @FindBy(xpath = "//p[@class='public-address-and-timezone']")
+    private WebElement profileLocation;
+    @FindBy(xpath = "//div[@class='single-star-rating']")
+    private WebElement profileStarRating;
+    @FindBy(xpath = "//div[@class='stars-text']/span[1]")
+    private WebElement profileRatingReview;
+    @FindBy(xpath = "//a[@id='reviews-link']")
+    private WebElement profileReviewsLink;
+    @FindBy(xpath = "//button[@class='Profile-share']")
+    private WebElement profileShareIcon;
+
+    @FindBy(xpath = "//h3[normalize-space()='Share Talent Profile']")
+    private WebElement shareTalentProfileHeader;
+    @FindBy(xpath = "//button[normalize-space()='Copy']")
+    private WebElement shareTalentProfileCopyButton;
+    @FindBy(xpath = "//footer[@class='ShareModal-footer']//button[@type='button'][normalize-space()='Close']")
+    private WebElement shareTalentProfileCloseButton;
+
+    @FindBy(xpath = "//h3[normalize-space()='Language']")
+    private WebElement vocalCharLanguageHeader;
+    @FindBy(xpath = "//h3[normalize-space()='Voice Ages']")
+    private WebElement vocalCharAgeHeader;
+    @FindBy(xpath = "//h3[normalize-space()='Categories']")
+    private WebElement vocalCharCategoriesHeader;
+    @FindBy(xpath = "(//div[@id='profile-projects']//a[@class='profile-project-title'])[1]")
+    private WebElement firstPackageUnderPortfolio;
+    @FindBy(xpath = "//div[@class='package-title-section']/h1")
+    private WebElement packageNameOnPackagePage;
+
+    @FindBy(xpath = "(//div[@id='profile-portfolio']//a[@class='talent-demo-title'])[1]")
+    private WebElement firstDemosUnderPortfolio;
+    @FindBy(xpath = "//div[@id='demo-details-heading']/h1")
+    private WebElement demosNameOnDemosPage;
+
+    @FindBy(xpath = "//h2[contains(normalize-space(),'Reviews')]")
+    private WebElement profileReviewHeader;
+    @FindBy(xpath = "//div[@class='aggregated-star-rating']")
+    private WebElement reviewStarRating;
+    @FindBy(xpath = "//div[@class='profile-reviewer']//p")
+    private WebElement profileReviewerName;
+    @FindBy(xpath = "//span[@class='text-grey2 text-xs']")
+    private WebElement profileReviewerReviewTime;
+    @FindBy(xpath = "//div[@class='margin-top-smallest margin-bottom-small']")
+    private WebElement profileReviewerReviewText;
+
     public void verifyMeIconOption() {
         BaseClass.mouseOverOnElement(TalentProfilePage.driver, meIconLink);
         Assert.assertEquals("Validate Edit Profile link present", true, BaseClass.isElementPresent(TalentProfilePage.driver, editProfileLink));
@@ -699,16 +794,7 @@ public class TalentProfilePage {
 
     }
 
-    @FindBy(xpath = "//h1[normalize-space()='Manage Packages']")
-    private WebElement managePackageHeader;
-    @FindBy(xpath = "//a[normalize-space()='Create a Package']")
-    private WebElement createPackageButton;
-    @FindBy(xpath = "//a[normalize-space()='Draft']")
-    private WebElement draftTab;
-    @FindBy(xpath = "//nav[@id='main-tab-nav']//a[normalize-space()='Pending Review']")
-    private WebElement pendingReviewTab;
-    @FindBy(xpath = "//nav[@id='main-tab-nav']//a[normalize-space()='Approved']")
-    private WebElement approvedTab;
+
 
     public void userAbleToNavigateToManagePackagePage() {
         BaseClass.mouseOverOnElement(TalentProfilePage.driver, meIconLink);
@@ -723,32 +809,7 @@ public class TalentProfilePage {
 
     }
 
-    @FindBy(xpath = "(//p[@class='project-title h4'])[1]")
-    private WebElement firstPackageName;
-    @FindBy(xpath = "(//p[@class='project-id'])[1]")
-    private WebElement firstPackageId;
-    @FindBy(xpath = "(//span[@class='tag'])[1]")
-    private WebElement firstPackageCategory;
-    @FindBy(xpath = "(//span[contains(@class,'status status')])[1]")
-    private WebElement firstPackageStatus;
-    @FindBy(xpath = "(//a[contains(@class,'project-action-btn btn btn-circular btn-default edit-project-btn')])[1]")
-    private WebElement firstPackageEditButton;
-    @FindBy(xpath = "(//a[contains(@class,'project-action-btn btn btn-circular btn-default delete-project-btn')])[1]")
-    private WebElement firstPackageDeleteButton;
-    @FindBy(xpath = "(//a[contains(@class,'project-action-btn btn btn-circular btn-default enable-disable-btn')])[1]")
-    private WebElement firstPackageActiveInactiveButton;
-    @FindBy(xpath = "(//a[contains(@class,'project-action-btn btn btn-circular btn-default duplicate-project')])[1]")
-    private WebElement firstPackageDuplicateButton;
-    @FindBy(xpath = "//p[@id='projects-count']")
-    private WebElement packagePagination;
-    @FindBy(xpath = "//button[@id='delete-project-list-submit-btn']")
-    private WebElement packageDeleteButton;
-    @FindBy(xpath = "//button[@title='Clear Search']")
-    private WebElement clearSearchFieldButton;
-    @FindBy(xpath = "//input[@id='action_bar_search_keyword']")
-    private WebElement searchFiledTextBox;
-    @FindBy(xpath = "(//button[@title='Submit Search'])[2]")
-    private WebElement submitSearchField;
+
 
     public void verifyDraftTab() {
         Assert.assertEquals("Validate navigate to Draft tab", "Draft", draftTab.getText().trim());
@@ -1169,28 +1230,7 @@ public class TalentProfilePage {
 
     }
 
-    @FindBy(xpath = "//h2[@id='project-title']")
-    private WebElement packageHeader;
-    @FindBy(xpath = "//h2[@id='portfolio-title']")
-    private WebElement demosHeader;
-    @FindBy(xpath = "//span[@class='d-flex align-items-center']/h1")
-    private WebElement profileNameHeader;
-    @FindBy(xpath = "//a[normalize-space()='Portfolio']")
-    private WebElement portfolioTab;
-    @FindBy(xpath = "//a[normalize-space()='About Talent']")
-    private WebElement aboutTalentTab;
-    @FindBy(xpath = "//div[@class='circle-avatar-container']/img")
-    private WebElement profileAvtarPhoto;
-    @FindBy(xpath = "//p[@class='public-address-and-timezone']")
-    private WebElement profileLocation;
-    @FindBy(xpath = "//div[@class='single-star-rating']")
-    private WebElement profileStarRating;
-    @FindBy(xpath = "//div[@class='stars-text']/span[1]")
-    private WebElement profileRatingReview;
-    @FindBy(xpath = "//a[@id='reviews-link']")
-    private WebElement profileReviewsLink;
-    @FindBy(xpath = "//button[@class='Profile-share']")
-    private WebElement profileShareIcon;
+
 
 
     public void verifyNavigationToPublicProfilePage() {
@@ -1221,12 +1261,7 @@ public class TalentProfilePage {
 
     }
 
-    @FindBy(xpath = "//h3[normalize-space()='Share Talent Profile']")
-    private WebElement shareTalentProfileHeader;
-    @FindBy(xpath = "//button[normalize-space()='Copy']")
-    private WebElement shareTalentProfileCopyButton;
-    @FindBy(xpath = "//footer[@class='ShareModal-footer']//button[@type='button'][normalize-space()='Close']")
-    private WebElement shareTalentProfileCloseButton;
+
 
     public void verifyShareButton() {
         Assert.assertTrue("Validate Profile Share Icon Present", BaseClass.isElementPresent(TalentProfilePage.driver, profileShareIcon));
@@ -1247,16 +1282,7 @@ public class TalentProfilePage {
 
     }
 
-    @FindBy(xpath = "//h3[normalize-space()='Language']")
-    private WebElement vocalCharLanguageHeader;
-    @FindBy(xpath = "//h3[normalize-space()='Voice Ages']")
-    private WebElement vocalCharAgeHeader;
-    @FindBy(xpath = "//h3[normalize-space()='Categories']")
-    private WebElement vocalCharCategoriesHeader;
-    @FindBy(xpath = "(//div[@id='profile-projects']//a[@class='profile-project-title'])[1]")
-    private WebElement firstPackageUnderPortfolio;
-    @FindBy(xpath = "//div[@class='package-title-section']/h1")
-    private WebElement packageNameOnPackagePage;
+
 
     public void verifyAboutTalentTab() {
         aboutTalentTab.click();
@@ -1283,10 +1309,7 @@ public class TalentProfilePage {
         BaseClass.staticWaitForVisibility(4000);
     }
 
-    @FindBy(xpath = "(//div[@id='profile-portfolio']//a[@class='talent-demo-title'])[1]")
-    private WebElement firstDemosUnderPortfolio;
-    @FindBy(xpath = "//div[@id='demo-details-heading']/h1")
-    private WebElement demosNameOnDemosPage;
+
 
     public void verifyDemos() {
         portfolioTab.click();
@@ -1302,16 +1325,7 @@ public class TalentProfilePage {
 
     }
 
-    @FindBy(xpath = "//h2[contains(normalize-space(),'Reviews')]")
-    private WebElement profileReviewHeader;
-    @FindBy(xpath = "//div[@class='aggregated-star-rating']")
-    private WebElement reviewStarRating;
-    @FindBy(xpath = "//div[@class='profile-reviewer']//p")
-    private WebElement profileReviewerName;
-    @FindBy(xpath = "//span[@class='text-grey2 text-xs']")
-    private WebElement profileReviewerReviewTime;
-    @FindBy(xpath = "//div[@class='margin-top-smallest margin-bottom-small']")
-    private WebElement profileReviewerReviewText;
+
 
     public void verifyReviewsContainer() {
         BaseClass.waitForVisibility(profileReviewHeader, 30, TalentProfilePage.driver);

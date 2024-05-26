@@ -196,6 +196,51 @@ public class MarketPlacePage {
     @FindBy(xpath = "(//button[normalize-space()='Submit'])[1]")
     private WebElement editSubmitButton;
 
+    @FindBy(xpath = "//li[@class='nav-main-dropdown-list-item']//a[@class='nav-main-dropdown-link'][normalize-space()='Log Out']")
+    private WebElement logoutLink;
+    @FindBy(xpath = "//button[@id='order_total_card_button']")
+    private WebElement continueButton;
+    @FindBy(xpath = "//button[@id='submit-addons-btn']")
+    private WebElement addOnsContinueButton;
+    @FindBy(xpath = "//button[@id='submit-button']")
+    private WebElement confirmAndPayButton;
+    @FindBy(xpath = "//input[@id='file-uploader-input']")
+    private WebElement attachFilesForTalent;
+    @FindBy(xpath = "//textarea[@id='talent_instructions']")
+    private WebElement instructionsForTalentTextArea;
+    @FindBy(xpath = "//button[@id='submit-button']")
+    private WebElement sentToTalentButton;
+    @FindBy(xpath = "//div[@class='alert-body-title']")
+    private WebElement talentSuccessMessage;
+    @FindBy(xpath = "//div[@class='alert-body-content']/p")
+    private WebElement talentSuccessContent;
+    @FindBy(xpath = "//label[@for='preview-order-1']//span[@class='preview-order-tier'][normalize-space()='Essential']")
+    private WebElement essentialTab;
+
+    @FindBy(xpath = "//a[@id='Jobs']")
+    private WebElement jobIcon;
+    @FindBy(xpath = "//a[normalize-space()='Awarded']")
+    private WebElement awardedLink;
+    @FindBy(xpath = "//a[@class='btn btn-lg btn-primary hidden-xs']")
+    private WebElement viewJobAgreementButton;
+    @FindBy(xpath = "//button[normalize-space()='Accept Job Agreement']")
+    private WebElement acceptJobAgreement;
+    @FindBy(xpath = "//span[@class='text-grey1 text-md']")
+    private WebElement jobIdStringElement;
+    @FindBy(xpath = "//strong[normalize-space()='Thank You']")
+    private WebElement thankYouText;
+    @FindBy(xpath = "//a[@id='decline-modal-trigger']")
+    private WebElement declinedJobAgreement;
+    @FindBy(xpath = "//textarea[@id='decline-reason']")
+    private WebElement declinedReasonTextBox;
+
+    @FindBy(xpath = "//button[normalize-space()='Nevermind']")
+    private WebElement neverMindButton;
+    @FindBy(xpath = "//button[@id='decline-btn']")
+    private WebElement declinedJobAgreementButton;
+    @FindBy(xpath = "//strong[normalize-space()='Job Agreement Declined']")
+    private WebElement jobAgreementDeclinedMessage;
+
 
     public void validateUserNavigateToManagePackagesPage() {
         MarketPlacePage.driver.navigate().to("https://www.voices.systems/talent/account");
@@ -598,26 +643,8 @@ public class MarketPlacePage {
 
     }
 
-    @FindBy(xpath = "//li[@class='nav-main-dropdown-list-item']//a[@class='nav-main-dropdown-link'][normalize-space()='Log Out']")
-    private WebElement logoutLink;
-    @FindBy(xpath = "//button[@id='order_total_card_button']")
-    private WebElement continueButton;
-    @FindBy(xpath = "//button[@id='submit-addons-btn']")
-    private WebElement addOnsContinueButton;
-    @FindBy(xpath = "//button[@id='submit-button']")
-    private WebElement confirmAndPayButton;
-    @FindBy(xpath = "//input[@id='file-uploader-input']")
-    private WebElement attachFilesForTalent;
-    @FindBy(xpath = "//textarea[@id='talent_instructions']")
-    private WebElement instructionsForTalentTextArea;
-    @FindBy(xpath = "//button[@id='submit-button']")
-    private WebElement sentToTalentButton;
-    @FindBy(xpath = "//div[@class='alert-body-title']")
-    private WebElement talentSuccessMessage;
-    @FindBy(xpath = "//div[@class='alert-body-content']/p")
-    private WebElement talentSuccessContent;
-    @FindBy(xpath = "//label[@for='preview-order-1']//span[@class='preview-order-tier'][normalize-space()='Essential']")
-    private WebElement essentialTab;
+
+
 
     public void userPurchasePackageFromTalentUser(String packageName) {
         MarketPlacePage.driver.get("https://www.voices.systems/profile/qa-autotestpremium");
@@ -647,22 +674,7 @@ public class MarketPlacePage {
         Assert.assertEquals("Validate Talent Purchase Success Content", expectedContent, talentSuccessContent.getText().trim());
     }
 
-    @FindBy(xpath = "//a[@id='Jobs']")
-    private WebElement jobIcon;
-    @FindBy(xpath = "//a[normalize-space()='Awarded']")
-    private WebElement awardedLink;
-    @FindBy(xpath = "//a[@class='btn btn-lg btn-primary hidden-xs']")
-    private WebElement viewJobAgreementButton;
-    @FindBy(xpath = "//button[normalize-space()='Accept Job Agreement']")
-    private WebElement acceptJobAgreement;
-    @FindBy(xpath = "//span[@class='text-grey1 text-md']")
-    private WebElement jobIdStringElement;
-    @FindBy(xpath = "//strong[normalize-space()='Thank You']")
-    private WebElement thankYouText;
-    @FindBy(xpath = "//a[@id='decline-modal-trigger']")
-    private WebElement declinedJobAgreement;
-    @FindBy(xpath = "//textarea[@id='decline-reason']")
-    private WebElement declinedReasonTextBox;
+
 
     public void viewAndAcceptAwardedJob(String packageName) {
         BaseClass.waitForVisibility(jobIcon, 30, MarketPlacePage.driver);
@@ -733,12 +745,6 @@ public class MarketPlacePage {
 
     }
 
-    @FindBy(xpath = "//button[normalize-space()='Nevermind']")
-    private WebElement neverMindButton;
-    @FindBy(xpath = "//button[@id='decline-btn']")
-    private WebElement declinedJobAgreementButton;
-    @FindBy(xpath = "//strong[normalize-space()='Job Agreement Declined']")
-    private WebElement jobAgreementDeclinedMessage;
 
 
 }
