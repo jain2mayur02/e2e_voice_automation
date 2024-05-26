@@ -64,6 +64,55 @@ public class ConfigFileReader {
         if(password != null) return password;
         else throw new RuntimeException("password not specified in the Configuration.properties file.");
     }
+    public String getApproveUserName() {
+        String userName = properties.getProperty("ApproveUsername");
+        if(userName != null) return userName;
+        else throw new RuntimeException("userName not specified in the Configuration.properties file.");
+    }
+    public String getApprovePassword() {
+        String password = properties.getProperty("ApprovePassword");
+        if(password != null) return password;
+        else throw new RuntimeException("password not specified in the Configuration.properties file.");
+    }
+
+    public String getSauceTunnelName() {
+        String userName = properties.getProperty("sauceTunnel");
+        if(userName != null) return userName;
+        else throw new RuntimeException("sauceTunnel not specified in the Configuration.properties file.");
+    }
+
+    public String getSauceUserName() {
+        String userName = properties.getProperty("sauceLabUserName");
+        if(userName != null) return userName;
+        else throw new RuntimeException("sauceLabUserName not specified in the Configuration.properties file.");
+    }
+
+    public String getSauceAccessKey() {
+        String userName = properties.getProperty("sauceLabAccessKey");
+        if(userName != null) return userName;
+        else throw new RuntimeException("sauceLabAccessKey not specified in the Configuration.properties file.");
+    }
+
+    public String getPrimeUserName() {
+        String userName = properties.getProperty("PremiumUserName");
+        if(userName != null) return userName;
+        else throw new RuntimeException("userName not specified in the Configuration.properties file.");
+    }
+    public String getPrimePassword() {
+        String password = properties.getProperty("PremiumUserPassword");
+        if(password != null) return password;
+        else throw new RuntimeException("password not specified in the Configuration.properties file.");
+    }
+    public String getPrimeAccountUserName() {
+        String userName = properties.getProperty("PremiumAccountUserName");
+        if(userName != null) return userName;
+        else throw new RuntimeException("userName not specified in the Configuration.properties file.");
+    }
+    public String getPrimeAccountPassword() {
+        String password = properties.getProperty("PremiumAccountPassword");
+        if(password != null) return password;
+        else throw new RuntimeException("password not specified in the Configuration.properties file.");
+    }
     public String getTalentGuestUserName() {
         String userName = properties.getProperty("TalentGuestName");
         if(userName != null) return userName;

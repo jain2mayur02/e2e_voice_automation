@@ -8,6 +8,8 @@ import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
+import java.net.MalformedURLException;
+
 
 public class Hooks {
 
@@ -23,7 +25,7 @@ public class Hooks {
     }
 
     @AfterStep
-    public void addScreenshot(Scenario scenario) {
+    public void addScreenshot(Scenario scenario) throws MalformedURLException {
         if (scenario.isFailed()) {
             final byte[] screenshot = ((TakesScreenshot) testContext.getDriverManager().getDriverForLaunch()).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", "image");
