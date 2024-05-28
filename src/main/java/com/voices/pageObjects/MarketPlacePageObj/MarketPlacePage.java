@@ -1,17 +1,27 @@
 package com.voices.pageObjects.MarketPlacePageObj;
 
 import com.voices.baseClass.BaseClass;
+import com.voices.enums.EnvironmentType;
 import com.voices.managers.ReaderManager;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.LocalFileDetector;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.File;
+
 public class MarketPlacePage {
     private static WebDriver driver;
+
+    public static String environmentValue =  ReaderManager.getInstance().getConfigReader().getenvironmentValue();
+
+
     String jpgDemoFile = System.getProperty("user.dir") + "\\src\\test\\resources\\testData\\AutomationTestJPEG.jpg";
     String mp3DemoFile = System.getProperty("user.dir") + "\\src\\test\\resources\\testData\\AutomationTestMP3File.mp3";
 
@@ -241,6 +251,10 @@ public class MarketPlacePage {
     @FindBy(xpath = "//strong[normalize-space()='Job Agreement Declined']")
     private WebElement jobAgreementDeclinedMessage;
 
+    @FindBy(xpath = "//*[@id='project_examples-custom_upload_project_examples']/parent::div")
+    private WebElement uploadDemoButton;
+
+
 
     public void validateUserNavigateToManagePackagesPage() {
         MarketPlacePage.driver.navigate().to("https://www.voices.systems/talent/account");
@@ -300,13 +314,13 @@ public class MarketPlacePage {
         accentSearchBox.sendKeys(accent);
         MarketPlacePage.driver.findElement(By.xpath("//div[text()='" + accent + "']")).click();
 
-        WebElement genderElement = MarketPlacePage.driver.findElement(By.xpath("//label[normalize-space()='" + gender + "']/parent::div"));
+      /*  WebElement genderElement = MarketPlacePage.driver.findElement(By.xpath("//label[normalize-space()='" + gender + "']/parent::div"));
         if (BaseClass.isElementPresent(MarketPlacePage.driver, genderElement)) {
             BaseClass.scrollToElement(MarketPlacePage.driver, genderElement);
             BaseClass.waitForVisibility(genderElement, 30, MarketPlacePage.driver);
             genderElement.click();
         }
-
+*/
         WebElement ageElement = MarketPlacePage.driver.findElement(By.xpath("//label[normalize-space()='" + age + "']/parent::div"));
         BaseClass.scrollToElement(MarketPlacePage.driver, ageElement);
         BaseClass.waitForVisibility(ageElement, 30, MarketPlacePage.driver);
@@ -379,21 +393,39 @@ public class MarketPlacePage {
         BaseClass.waitForVisibility(mediaText, 30, MarketPlacePage.driver);
         Assert.assertEquals("Validate Media text", "Media", mediaText.getText().trim());
         Assert.assertEquals("Validate Upload Demos text", "Upload Demos", uploadDemoText.getText().trim());
-        jpgInput.sendKeys(jpgDemoFile);
-        BaseClass.staticWaitForVisibility(5000);
-        BaseClass.scrollUpToBottomOfPage(MarketPlacePage.driver);
-        uploadDemoButton.click();
-        BaseClass.staticWaitForVisibility(5000);
-        mp3Input.sendKeys(mp3DemoFile);
-        BaseClass.staticWaitForVisibility(5000);
-        mp3TextBox.sendKeys("Automation Demo");
-        saveAndNextButton.click();
-        BaseClass.staticWaitForVisibility(5000);
+
+        if(environmentValue.equals("remote")) {
+            ((RemoteWebDriver) driver).setFileDetector(new LocalFileDetector());
+            File jpgDemoFile = new File("src/test/resources/testData/AutomationTestJPEG.jpg");
+            File mp3DemoFile = new File("src/test/resources/testData/AutomationTestMP3File.mp3");
+            jpgInput.sendKeys(jpgDemoFile.getAbsolutePath());
+            //jpgInput.sendKeys(jpgDemoFile);
+            BaseClass.staticWaitForVisibility(5000);
+            BaseClass.scrollUpToBottomOfPage(MarketPlacePage.driver);
+            uploadDemoButton.click();
+            BaseClass.staticWaitForVisibility(8000);
+            mp3Input.sendKeys(mp3DemoFile.getAbsolutePath());
+            BaseClass.staticWaitForVisibility(8000);
+            mp3TextBox.sendKeys("Automation Demo");
+            saveAndNextButton.click();
+            BaseClass.staticWaitForVisibility(5000);
+        }else{
+
+            jpgInput.sendKeys(jpgDemoFile);
+            BaseClass.staticWaitForVisibility(5000);
+            BaseClass.scrollUpToBottomOfPage(MarketPlacePage.driver);
+            uploadDemoButton.click();
+            BaseClass.staticWaitForVisibility(8000);
+            mp3Input.sendKeys(mp3DemoFile);
+            BaseClass.staticWaitForVisibility(8000);
+            mp3TextBox.sendKeys("Automation Demo");
+            saveAndNextButton.click();
+            BaseClass.staticWaitForVisibility(5000);
+
+        }
 
     }
 
-    @FindBy(xpath = "//*[@id='project_examples-custom_upload_project_examples']/parent::div")
-    private WebElement uploadDemoButton;
 
     public void PackageRequirementsStep() {
         BaseClass.waitForVisibility(buildYourReqFormText, 30, MarketPlacePage.driver);
@@ -404,6 +436,7 @@ public class MarketPlacePage {
         Assert.assertEquals("Validate Required text", "Required", requiredText.getText().trim());
         questionInputBox.sendKeys("Testing Question Field");
         questionAddButton.click();
+        BaseClass.staticWaitForVisibility(3000);
         Assert.assertTrue("Validate Sample Question text", sampleQuestionText.getText().trim().contains("Testing Question Field"));
         Assert.assertTrue("Validate Question Edit button present", BaseClass.isElementPresent(MarketPlacePage.driver, questionEditButton));
         Assert.assertTrue("Validate Question Delete button present", BaseClass.isElementPresent(MarketPlacePage.driver, questionDeleteButton));

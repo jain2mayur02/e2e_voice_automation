@@ -118,6 +118,13 @@ public class ConfigFileReader {
         if(userName != null) return userName;
         else throw new RuntimeException("userName not specified in the Configuration.properties file.");
     }
+
+    public String getenvironmentValue() {
+        String environment = properties.getProperty("environment");
+        if(environment != null) return environment;
+        else throw new RuntimeException("environment not specified in the Configuration.properties file.");
+    }
+
     public String getTalentGuestPassword() {
         String password = properties.getProperty("TalentGuestPassword");
         if(password != null) return password;

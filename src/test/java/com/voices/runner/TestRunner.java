@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
         glue = {
                 "com/voices/stepDefinition",
         },
-        tags = "@ClientProfile",
+        tags = "@testrun",
         plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
         monochrome = true,
         publish = true
