@@ -23,6 +23,7 @@ public class DriverManager {
     private static DriverType driverType;
     private static EnvironmentType environmentType;
 
+    
     public static  String USERNAME = ReaderManager.getInstance().getConfigReader().getSauceUserName();
     public static  String ACCESSKEY = ReaderManager.getInstance().getConfigReader().getSauceAccessKey();
     public static String sauceTunnel =  ReaderManager.getInstance().getConfigReader().getSauceTunnelName();
@@ -89,10 +90,10 @@ public class DriverManager {
                 sauceOptions.put("accessKey", ACCESSKEY);
                 sauceOptions.put("build", "selenium-build-DEXMW");
                 sauceOptions.put("name", "Automation_Exectution_Voices");
-                sauceOptions.put("tunnelIdentifier",sauceTunnel);
                 sauceOptions.put("screenResolution", "1680x1050");
-                // sauceOptions.put("headless", true ); // Enable headless mode
+              //  sauceOptions.put("tunnelIdentifier", sauceTunnel);
                 browserOptions.setCapability("sauce:options", sauceOptions);
+                // sauceOptions.put("headless", true ); // Enable headless mode
                 driver = new RemoteWebDriver(url, browserOptions);
                 break;
             case FIREFOX:

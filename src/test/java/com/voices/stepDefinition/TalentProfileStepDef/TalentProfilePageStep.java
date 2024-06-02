@@ -378,12 +378,12 @@ public class TalentProfilePageStep {
 
     @Then("Verify Invite To Job and Message Talent buttons")
     public void verify_invite_to_job_and_message_talent_buttons() {
-
+        talentProfilePage.verifyInviteToJobAndMessageTalentButtons();
     }
 
     @Then("Verify Past Clients section and Profile Metadata Section")
     public void verify_past_clients_section_and_profile_metadata_section() {
-
+        talentProfilePage.verifyPastClientsSectionAndProfileMetadataSection();
     }
 
 

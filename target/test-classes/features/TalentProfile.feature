@@ -68,6 +68,7 @@ Feature: Validate Talent Profile Functionality
     Then Verify Search Functionality of Approved tab record
 
 
+
   Scenario: Validate Edit Profile
     When User login with prime user credentials
     Then Verify Talent user is able to navigate to Edit Profile Page

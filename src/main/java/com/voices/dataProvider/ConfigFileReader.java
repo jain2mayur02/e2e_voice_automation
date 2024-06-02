@@ -125,6 +125,8 @@ public class ConfigFileReader {
         else throw new RuntimeException("environment not specified in the Configuration.properties file.");
     }
 
+
+
     public String getTalentGuestPassword() {
         String password = properties.getProperty("TalentGuestPassword");
         if(password != null) return password;

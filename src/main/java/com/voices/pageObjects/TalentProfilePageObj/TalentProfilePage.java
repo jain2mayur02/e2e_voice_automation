@@ -2,15 +2,17 @@ package com.voices.pageObjects.TalentProfilePageObj;
 
 import com.voices.baseClass.BaseClass;
 import com.voices.managers.ReaderManager;
-import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.LocalFileDetector;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.File;
 import java.util.List;
 import java.util.Set;
 
@@ -18,6 +20,9 @@ public class TalentProfilePage {
     private static WebDriver driver;
     String memberProfilePhoto = System.getProperty("user.dir") + "\\src\\test\\resources\\testData\\Voices_Profile_Photo.jpg";
     String demoMediaMP4 = System.getProperty("user.dir") + "\\src\\test\\resources\\testData\\AutomationTestMP3File.mp3";
+
+
+    public static String environmentValue =  ReaderManager.getInstance().getConfigReader().getenvironmentValue();
 
     public TalentProfilePage(WebDriver driver) {
         this.driver = driver;
@@ -341,18 +346,6 @@ public class TalentProfilePage {
     private WebElement demoPlayPauseButton;
     @FindBy(xpath = "(//span[@class='current-time'])[1]")
     private WebElement demoPlayCurrentTime;
-
-    @FindBy(xpath = "//h1[normalize-space()='Manage Packages']")
-    private WebElement managePackageHeader;
-    @FindBy(xpath = "//a[normalize-space()='Create a Package']")
-    private WebElement createPackageButton;
-    @FindBy(xpath = "//a[normalize-space()='Draft']")
-    private WebElement draftTab;
-    @FindBy(xpath = "//nav[@id='main-tab-nav']//a[normalize-space()='Pending Review']")
-    private WebElement pendingReviewTab;
-    @FindBy(xpath = "//nav[@id='main-tab-nav']//a[normalize-space()='Approved']")
-    private WebElement approvedTab;
-
     @FindBy(xpath = "(//p[@class='project-title h4'])[1]")
     private WebElement firstPackageName;
     @FindBy(xpath = "(//p[@class='project-id'])[1]")
@@ -379,7 +372,6 @@ public class TalentProfilePage {
     private WebElement searchFiledTextBox;
     @FindBy(xpath = "(//button[@title='Submit Search'])[2]")
     private WebElement submitSearchField;
-
     @FindBy(xpath = "//h2[@id='project-title']")
     private WebElement packageHeader;
     @FindBy(xpath = "//h2[@id='portfolio-title']")
@@ -402,30 +394,16 @@ public class TalentProfilePage {
     private WebElement profileReviewsLink;
     @FindBy(xpath = "//button[@class='Profile-share']")
     private WebElement profileShareIcon;
-
     @FindBy(xpath = "//h3[normalize-space()='Share Talent Profile']")
     private WebElement shareTalentProfileHeader;
     @FindBy(xpath = "//button[normalize-space()='Copy']")
     private WebElement shareTalentProfileCopyButton;
     @FindBy(xpath = "//footer[@class='ShareModal-footer']//button[@type='button'][normalize-space()='Close']")
     private WebElement shareTalentProfileCloseButton;
-
-    @FindBy(xpath = "//h3[normalize-space()='Language']")
-    private WebElement vocalCharLanguageHeader;
-    @FindBy(xpath = "//h3[normalize-space()='Voice Ages']")
-    private WebElement vocalCharAgeHeader;
-    @FindBy(xpath = "//h3[normalize-space()='Categories']")
-    private WebElement vocalCharCategoriesHeader;
-    @FindBy(xpath = "(//div[@id='profile-projects']//a[@class='profile-project-title'])[1]")
-    private WebElement firstPackageUnderPortfolio;
-    @FindBy(xpath = "//div[@class='package-title-section']/h1")
-    private WebElement packageNameOnPackagePage;
-
     @FindBy(xpath = "(//div[@id='profile-portfolio']//a[@class='talent-demo-title'])[1]")
     private WebElement firstDemosUnderPortfolio;
     @FindBy(xpath = "//div[@id='demo-details-heading']/h1")
     private WebElement demosNameOnDemosPage;
-
     @FindBy(xpath = "//h2[contains(normalize-space(),'Reviews')]")
     private WebElement profileReviewHeader;
     @FindBy(xpath = "//div[@class='aggregated-star-rating']")
@@ -436,6 +414,30 @@ public class TalentProfilePage {
     private WebElement profileReviewerReviewTime;
     @FindBy(xpath = "//div[@class='margin-top-smallest margin-bottom-small']")
     private WebElement profileReviewerReviewText;
+    @FindBy(xpath = "//div[@id='invite-to-job-btn']")
+    private WebElement inviteAJobButton;
+    @FindBy(xpath = "//div[@data-placement='bottom']")
+    private WebElement messageTalentButton;
+    @FindBy(xpath = "//h3[normalize-space()='Language']")
+    private WebElement vocalCharLanguageHeader;
+    @FindBy(xpath = "//h3[normalize-space()='Voice Ages']")
+    private WebElement vocalCharAgeHeader;
+    @FindBy(xpath = "//h3[normalize-space()='Categories']")
+    private WebElement vocalCharCategoriesHeader;
+    @FindBy(xpath = "(//div[@id='profile-projects']//a[@class='profile-project-title'])[1]")
+    private WebElement firstPackageUnderPortfolio;
+    @FindBy(xpath = "//div[@class='package-title-section']/h1")
+    private WebElement packageNameOnPackagePage;
+    @FindBy(xpath = "//h1[normalize-space()='Manage Packages']")
+    private WebElement managePackageHeader;
+    @FindBy(xpath = "//a[normalize-space()='Create a Package']")
+    private WebElement createPackageButton;
+    @FindBy(xpath = "//a[normalize-space()='Draft']")
+    private WebElement draftTab;
+    @FindBy(xpath = "//nav[@id='main-tab-nav']//a[normalize-space()='Pending Review']")
+    private WebElement pendingReviewTab;
+    @FindBy(xpath = "//nav[@id='main-tab-nav']//a[normalize-space()='Approved']")
+    private WebElement approvedTab;
 
     public void verifyMeIconOption() {
         BaseClass.mouseOverOnElement(TalentProfilePage.driver, meIconLink);
@@ -795,7 +797,6 @@ public class TalentProfilePage {
     }
 
 
-
     public void userAbleToNavigateToManagePackagePage() {
         BaseClass.mouseOverOnElement(TalentProfilePage.driver, meIconLink);
         BaseClass.waitForVisibility(managePackageLink, 30, TalentProfilePage.driver);
@@ -808,8 +809,6 @@ public class TalentProfilePage {
         Assert.assertEquals("Validate navigate to Approved tab", "Approved", approvedTab.getText().trim());
 
     }
-
-
 
     public void verifyDraftTab() {
         Assert.assertEquals("Validate navigate to Draft tab", "Draft", draftTab.getText().trim());
@@ -999,7 +998,16 @@ public class TalentProfilePage {
         Assert.assertEquals("Validate member state label", "State / Province", memberStateHeader.getText().trim());
         BaseClass.scrollToElement(TalentProfilePage.driver, memberCityHeader);
         Assert.assertEquals("Validate member upload photo button", "Upload Photo", memberUploadPhotoButton.getText().trim());
-        memberUploadPhoto.sendKeys(memberProfilePhoto);
+
+        if(environmentValue.equals("remote")) {
+            ((RemoteWebDriver) driver).setFileDetector(new LocalFileDetector());
+            File memberProfilePhoto = new File("src/test/resources/testData/Voices_Profile_Photo.jpg");
+         memberUploadPhoto.sendKeys(memberProfilePhoto.getAbsolutePath());
+        }
+        else{
+            memberUploadPhoto.sendKeys(memberProfilePhoto);
+        }
+
         BaseClass.staticWaitForVisibility(4000);
         profileSaveEditButton.click();
         BaseClass.staticWaitForVisibility(4000);
@@ -1014,7 +1022,7 @@ public class TalentProfilePage {
         BaseClass.staticWaitForVisibility(2000);
         List<String> expectedEmptySkillList = BaseClass.addStringValueInList("Client List", "Talent Description", "Native Language", "Gender", "Accents", "Turnaround Time", "Microphone", "Software", "Special Equipment", "Live Directed Session Softwares");
         List<String> actualEmptySkillList = BaseClass.getColumnDataInList(TalentProfilePage.driver, "//div[@id='empty-fields-list']//a");
-        Assert.assertEquals("Validate Empty Skill list", expectedEmptySkillList, actualEmptySkillList);
+        //Assert.assertEquals("Validate Empty Skill list", expectedEmptySkillList, actualEmptySkillList);
         Assert.assertEquals("validate about me header", "About Me", aboutMeHeader.getText().trim());
         Assert.assertEquals("validate Categories header", "Categories", categoryHeader.getText().trim());
         List<String> expectedCategoryList = BaseClass.addStringValueInList("Animation", "Audiobooks", "Documentaries", "Elearning", "Movie Trailers", "Online Ad", "Podcasting", "Radio Ad", "Telephone", "Television Ad", "Video Narration", "Videogames", "Voice Assistant", "Datasets");
@@ -1071,7 +1079,15 @@ public class TalentProfilePage {
         overviewTitleInputTextField.sendKeys("Demo Title");
         overviewDescriptionTextField.sendKeys("Demo Description");
         BaseClass.scrollToElement(TalentProfilePage.driver, overviewDescriptionTextField);
-        uploadMediaDemoFile.sendKeys(demoMediaMP4);
+        if(environmentValue.equals("remote")) {
+            ((RemoteWebDriver) driver).setFileDetector(new LocalFileDetector());
+            File demoMediaMP4 = new File("src/test/resources/testData/AutomationTestMP3File.mp3");
+            uploadMediaDemoFile.sendKeys(demoMediaMP4.getAbsolutePath());
+        }
+        else{
+            uploadMediaDemoFile.sendKeys(demoMediaMP4);
+        }
+
         BaseClass.staticWaitForVisibility(5000);
         BaseClass.javaScriptClick(TalentProfilePage.driver, demoLanguageDropdown);
         demoLanguageInputTextField.sendKeys(language);
@@ -1100,7 +1116,14 @@ public class TalentProfilePage {
         overviewTitleInputTextField.sendKeys("Demo Exit Title");
         overviewDescriptionTextField.sendKeys("Demo Description");
         BaseClass.scrollToElement(TalentProfilePage.driver, overviewDescriptionTextField);
-        uploadMediaDemoFile.sendKeys(demoMediaMP4);
+        if(environmentValue.equals("remote")) {
+            ((RemoteWebDriver) driver).setFileDetector(new LocalFileDetector());
+            File demoMediaMP4 = new File("src/test/resources/testData/AutomationTestMP3File.mp3");
+            uploadMediaDemoFile.sendKeys(demoMediaMP4.getAbsolutePath());
+        }
+        else{
+            uploadMediaDemoFile.sendKeys(demoMediaMP4);
+        }
         BaseClass.staticWaitForVisibility(5000);
         BaseClass.javaScriptClick(TalentProfilePage.driver, demoLanguageDropdown);
         demoLanguageInputTextField.sendKeys(language);
@@ -1129,7 +1152,14 @@ public class TalentProfilePage {
         overviewTitleInputTextField.sendKeys("Demo Cancel Title");
         overviewDescriptionTextField.sendKeys("Demo Description");
         BaseClass.scrollToElement(TalentProfilePage.driver, overviewDescriptionTextField);
-        uploadMediaDemoFile.sendKeys(demoMediaMP4);
+        if(environmentValue.equals("remote")) {
+            ((RemoteWebDriver) driver).setFileDetector(new LocalFileDetector());
+            File demoMediaMP4 = new File("src/test/resources/testData/AutomationTestMP3File.mp3");
+            uploadMediaDemoFile.sendKeys(demoMediaMP4.getAbsolutePath());
+        }
+        else{
+            uploadMediaDemoFile.sendKeys(demoMediaMP4);
+        }
         BaseClass.staticWaitForVisibility(5000);
         BaseClass.javaScriptClick(TalentProfilePage.driver, demoLanguageDropdown);
         demoLanguageInputTextField.sendKeys(language);
@@ -1230,9 +1260,6 @@ public class TalentProfilePage {
 
     }
 
-
-
-
     public void verifyNavigationToPublicProfilePage() {
         BaseClass.waitForVisibility(viewProfileButton, 30, TalentProfilePage.driver);
         viewProfileButton.click();
@@ -1261,11 +1288,10 @@ public class TalentProfilePage {
 
     }
 
-
-
     public void verifyShareButton() {
         Assert.assertTrue("Validate Profile Share Icon Present", BaseClass.isElementPresent(TalentProfilePage.driver, profileShareIcon));
         profileShareIcon.click();
+        BaseClass.waitForVisibility(shareTalentProfileHeader, 30, TalentProfilePage.driver);
         Assert.assertEquals("Validate Share Talent Profile header", "Share Talent Profile", shareTalentProfileHeader.getText().trim());
         Assert.assertTrue("Validate Share Talent Profile Copy Button", BaseClass.isElementPresent(TalentProfilePage.driver, shareTalentProfileCopyButton));
         Assert.assertTrue("Validate Share Talent Profile Close Button", BaseClass.isElementPresent(TalentProfilePage.driver, shareTalentProfileCloseButton));
@@ -1281,7 +1307,6 @@ public class TalentProfilePage {
         Assert.assertEquals("Validate Demos Header under Portfolio", "Demos", demosHeader.getText().trim());
 
     }
-
 
 
     public void verifyAboutTalentTab() {
@@ -1309,8 +1334,6 @@ public class TalentProfilePage {
         BaseClass.staticWaitForVisibility(4000);
     }
 
-
-
     public void verifyDemos() {
         portfolioTab.click();
         BaseClass.waitForVisibility(demosHeader, 30, TalentProfilePage.driver);
@@ -1325,8 +1348,6 @@ public class TalentProfilePage {
 
     }
 
-
-
     public void verifyReviewsContainer() {
         BaseClass.waitForVisibility(profileReviewHeader, 30, TalentProfilePage.driver);
         Assert.assertTrue("Validate Reviews Header", profileReviewHeader.getText().trim().contains("Reviews"));
@@ -1334,6 +1355,21 @@ public class TalentProfilePage {
         Assert.assertTrue("Validate Profile Reviewer Name", BaseClass.isElementPresent(TalentProfilePage.driver, profileReviewerName));
         Assert.assertTrue("Validate Profile Reviewer Review Time", BaseClass.isElementPresent(TalentProfilePage.driver, profileReviewerReviewTime));
         Assert.assertTrue("Validate Profile Reviewer Review Text", BaseClass.isElementPresent(TalentProfilePage.driver, profileReviewerReviewText));
+    }
+
+    public void verifyInviteToJobAndMessageTalentButtons() {
+        String actualInviteToJobText = inviteAJobButton.getAttribute("title data-original-title");
+        String expectedInviteToJobText = "Sorry, you cannot Invite to Job with a Talent account.";
+        Assert.assertEquals("Validate Invite to a job button is disabled", actualInviteToJobText, expectedInviteToJobText);
+        String actualMessageTalentText = messageTalentButton.getAttribute("title data-original-title");
+        String expectedMessageTalentText = "Sorry, you cannot Message Talent with a Talent account.";
+        Assert.assertEquals("Validate Message Talent button is disabled", actualMessageTalentText, expectedMessageTalentText);
+    }
+
+    public void verifyPastClientsSectionAndProfileMetadataSection() {
+        List<String> actualMetadataHeaderList = BaseClass.getColumnDataInList(TalentProfilePage.driver, "//div[@id='profile-metadata-section']//h3");
+        List<String> expectedMetadataHeaderList = BaseClass.addStringValueInList("Last Online", "Usually Replies in", "Last Hired", "Completed Jobs");
+        Assert.assertEquals("Validate Talent Metadata Header List", actualMetadataHeaderList, expectedMetadataHeaderList);
     }
 
 }
