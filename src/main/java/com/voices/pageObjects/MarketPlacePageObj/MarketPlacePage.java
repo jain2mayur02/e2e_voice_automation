@@ -399,7 +399,6 @@ public class MarketPlacePage {
             File jpgDemoFile = new File("src/test/resources/testData/AutomationTestJPEG.jpg");
             File mp3DemoFile = new File("src/test/resources/testData/AutomationTestMP3File.mp3");
             jpgInput.sendKeys(jpgDemoFile.getAbsolutePath());
-            //jpgInput.sendKeys(jpgDemoFile);
             BaseClass.staticWaitForVisibility(5000);
             BaseClass.scrollUpToBottomOfPage(MarketPlacePage.driver);
             uploadDemoButton.click();
@@ -695,7 +694,13 @@ public class MarketPlacePage {
         BaseClass.scrollToElement(MarketPlacePage.driver, confirmAndPayButton);
         confirmAndPayButton.click();
         BaseClass.staticWaitForVisibility(4000);
-        attachFilesForTalent.sendKeys(jpgDemoFile);
+        if(environmentValue.equals("remote")) {
+            ((RemoteWebDriver) driver).setFileDetector(new LocalFileDetector());
+            File jpgDemoFile = new File("src/test/resources/testData/AutomationTestJPEG.jpg");
+         attachFilesForTalent.sendKeys(jpgDemoFile.getAbsolutePath());
+        }else {
+            attachFilesForTalent.sendKeys(jpgDemoFile);
+        }
         BaseClass.staticWaitForVisibility(5000);
         instructionsForTalentTextArea.sendKeys("Instructions for Talent Demo");
         BaseClass.staticWaitForVisibility(3000);

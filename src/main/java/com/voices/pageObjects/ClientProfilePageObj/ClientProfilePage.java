@@ -11,8 +11,6 @@ import java.util.List;
 
 public class ClientProfilePage {
     private static WebDriver driver;
-    String memberProfilePhoto = System.getProperty("user.dir") + "\\src\\test\\resources\\testData\\Voices_Profile_Photo.jpg";
-    String demoMediaMP4 = System.getProperty("user.dir") + "\\src\\test\\resources\\testData\\AutomationTestMP3File.mp3";
 
     public ClientProfilePage(WebDriver driver) {
         this.driver = driver;
