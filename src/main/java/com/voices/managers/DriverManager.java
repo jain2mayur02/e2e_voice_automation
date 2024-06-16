@@ -105,7 +105,7 @@ public class DriverManager {
                 sauceFireFoxOptions.put("accessKey", ACCESSKEY);
                 sauceFireFoxOptions.put("build", "selenium-build-DEXMW");
                 sauceFireFoxOptions.put("name", "Automation_Exectution_Voices");
-                sauceFireFoxOptions.put("tunnelIdentifier",sauceTunnel);
+              //  sauceFireFoxOptions.put("tunnelIdentifier",sauceTunnel);
                 sauceFireFoxOptions.put("screenResolution", "1680x1050");
                 // sauceOptions.put("sauce:options", "{ \"headless\": true }"); // Enable headless mode
                 firefoxbrowserOptions.setCapability("sauce:options", sauceFireFoxOptions);
@@ -119,7 +119,7 @@ public class DriverManager {
                 sauceEdgeOptions.put("accessKey", ACCESSKEY);
                 sauceEdgeOptions.put("build", "selenium-build-DEXMW");
                 sauceEdgeOptions.put("name", "Automation_Exectution_Voices");
-                sauceEdgeOptions.put("tunnelIdentifier",sauceTunnel);
+               // sauceEdgeOptions.put("tunnelIdentifier",sauceTunnel);
                 sauceEdgeOptions.put("screenResolution", "1680x1050");
                 EdgebrowserOptions.setCapability("sauce:options", sauceEdgeOptions);
                 driver = new RemoteWebDriver(url, EdgebrowserOptions);

@@ -134,7 +134,8 @@ public class SearchPage {
     private WebElement roleDropdown;
     @FindBy(xpath = "//div[@data-category='role_ids']//input[@placeholder='Search...']")
     private WebElement roleSearchField;
-    @FindBy(xpath = "//label[@for='search-type-projects']")
+    //    @FindBy(xpath = "//label[@for='search-type-projects']")
+    @FindBy(xpath = "//div[@id='search-type-accordion-container']//div[2]")
     private WebElement packageTab;
     @FindBy(xpath = "//ul[@id='SearchFilter-chips']/li[1]/span[1]")
     private WebElement firstFilterText;
@@ -639,7 +640,6 @@ public class SearchPage {
     }
 
 
-
     public void validateVoicesDeliveryTimeSearchForNonSignUser(String... deliveryTimeList) {
         for (String deliveryTime : deliveryTimeList) {
             SearchPage.driver.get("https://www.voices.systems/");
@@ -1013,14 +1013,14 @@ public class SearchPage {
 
         /**
          * Future used code
-        BaseClass.staticWaitForVisibility(3000);
-        BaseClass.waitForVisibility(stateDropdown, 30, SearchPage.driver);
-        stateDropdown.click();
-        WebElement stateElement = SearchPage.driver.findElement(By.xpath("//div[text()='" + state + "']"));
-        BaseClass.waitForVisibility(stateElement, 30, SearchPage.driver);
-        BaseClass.javaScriptClick(SearchPage.driver, stateElement);
-        BaseClass.staticWaitForVisibility(3000);
-        cityTextField.sendKeys(city);
+         BaseClass.staticWaitForVisibility(3000);
+         BaseClass.waitForVisibility(stateDropdown, 30, SearchPage.driver);
+         stateDropdown.click();
+         WebElement stateElement = SearchPage.driver.findElement(By.xpath("//div[text()='" + state + "']"));
+         BaseClass.waitForVisibility(stateElement, 30, SearchPage.driver);
+         BaseClass.javaScriptClick(SearchPage.driver, stateElement);
+         BaseClass.staticWaitForVisibility(3000);
+         cityTextField.sendKeys(city);
          **/
 
         BaseClass.waitForVisibility(locationApplyFilterButton, 30, SearchPage.driver);
@@ -1143,17 +1143,15 @@ public class SearchPage {
             SearchPage.driver.get("https://www.voices.systems/");
             BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
             searchIcon.click();
-            if (tabName.equalsIgnoreCase("Talent")) {
-                BaseClass.waitForVisibility(talentTab, 30, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-
-                BaseClass.staticWaitForVisibility(3000);
-            }
-            if (!BaseClass.isElementPresent(SearchPage.driver, categoryDropdown)) {
+            BaseClass.staticWaitForVisibility(5000);
+            if (tabName.equalsIgnoreCase("Packages")) {
+                BaseClass.waitForVisibility(packageTab, 60, SearchPage.driver);
                 packageTab.click();
-                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(3000);
+                BaseClass.staticWaitForVisibility(5000);
+                if (!BaseClass.isElementPresent(SearchPage.driver, packageTabStatus)) {
+                    packageTab.click();
+                    BaseClass.staticWaitForVisibility(5000);
+                }
             }
             BaseClass.waitForVisibility(categoryDropdown, 30, SearchPage.driver);
             categoryDropdown.click();
@@ -1181,17 +1179,15 @@ public class SearchPage {
             SearchPage.driver.get("https://www.voices.systems/");
             BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
             searchIcon.click();
-            if (tabName.equalsIgnoreCase("Talent")) {
-                BaseClass.waitForVisibility(talentTab, 30, SearchPage.driver);
-
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(5000);
-            }
-            if (!BaseClass.isElementPresent(SearchPage.driver, languageDropdown)) {
+            BaseClass.staticWaitForVisibility(5000);
+            if (tabName.equalsIgnoreCase("Packages")) {
+                BaseClass.waitForVisibility(packageTab, 60, SearchPage.driver);
                 packageTab.click();
-                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(3000);
+                BaseClass.staticWaitForVisibility(5000);
+                if (!BaseClass.isElementPresent(SearchPage.driver, packageTabStatus)) {
+                    packageTab.click();
+                    BaseClass.staticWaitForVisibility(5000);
+                }
             }
             BaseClass.waitForVisibility(languageDropdown, 30, SearchPage.driver);
 
@@ -1218,16 +1214,15 @@ public class SearchPage {
             SearchPage.driver.get("https://www.voices.systems/");
             BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
             searchIcon.click();
-            if (tabName.equalsIgnoreCase("Talent")) {
-                BaseClass.waitForVisibility(talentTab, 30, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(3000);
-            }
-            if (!BaseClass.isElementPresent(SearchPage.driver, accentDropdown)) {
+            BaseClass.staticWaitForVisibility(5000);
+            if (tabName.equalsIgnoreCase("Packages")) {
+                BaseClass.waitForVisibility(packageTab, 60, SearchPage.driver);
                 packageTab.click();
-                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(3000);
+                BaseClass.staticWaitForVisibility(5000);
+                if (!BaseClass.isElementPresent(SearchPage.driver, packageTabStatus)) {
+                    packageTab.click();
+                    BaseClass.staticWaitForVisibility(5000);
+                }
             }
             BaseClass.staticWaitForVisibility(5000);
             accentDropdown.click();
@@ -1256,16 +1251,15 @@ public class SearchPage {
             SearchPage.driver.get("https://www.voices.systems/");
             BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
             searchIcon.click();
-            if (tabName.equalsIgnoreCase("Talent")) {
-                BaseClass.waitForVisibility(talentTab, 30, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(3000);
-            }
-            if (!BaseClass.isElementPresent(SearchPage.driver, genderDropdown)) {
+            BaseClass.staticWaitForVisibility(5000);
+            if (tabName.equalsIgnoreCase("Packages")) {
+                BaseClass.waitForVisibility(packageTab, 60, SearchPage.driver);
                 packageTab.click();
-                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(3000);
+                BaseClass.staticWaitForVisibility(5000);
+                if (!BaseClass.isElementPresent(SearchPage.driver, packageTabStatus)) {
+                    packageTab.click();
+                    BaseClass.staticWaitForVisibility(5000);
+                }
             }
             BaseClass.waitForVisibility(genderDropdown, 30, SearchPage.driver);
             BaseClass.javaScriptClick(SearchPage.driver, genderDropdown);
@@ -1291,16 +1285,15 @@ public class SearchPage {
             SearchPage.driver.get("https://www.voices.systems/");
             BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
             searchIcon.click();
-            if (tabName.equalsIgnoreCase("Talent")) {
-                BaseClass.waitForVisibility(talentTab, 30, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(5000);
-            }
-            if (!BaseClass.isElementPresent(SearchPage.driver, ageDropdown)) {
+            BaseClass.staticWaitForVisibility(5000);
+            if (tabName.equalsIgnoreCase("Packages")) {
+                BaseClass.waitForVisibility(packageTab, 60, SearchPage.driver);
                 packageTab.click();
-                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(3000);
+                BaseClass.staticWaitForVisibility(5000);
+                if (!BaseClass.isElementPresent(SearchPage.driver, packageTabStatus)) {
+                    packageTab.click();
+                    BaseClass.staticWaitForVisibility(5000);
+                }
             }
             BaseClass.waitForVisibility(ageDropdown, 30, SearchPage.driver);
             BaseClass.javaScriptClick(SearchPage.driver, ageDropdown);
@@ -1325,11 +1318,13 @@ public class SearchPage {
         SearchPage.driver.get("https://www.voices.systems/");
         BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
         searchIcon.click();
-        if (!BaseClass.isElementPresent(SearchPage.driver, priceDropdown)) {
+        BaseClass.staticWaitForVisibility(5000);
+            BaseClass.waitForVisibility(packageTab, 60, SearchPage.driver);
             packageTab.click();
-            BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-            BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-            BaseClass.staticWaitForVisibility(3000);
+            BaseClass.staticWaitForVisibility(5000);
+            if (!BaseClass.isElementPresent(SearchPage.driver, packageTabStatus)) {
+                packageTab.click();
+                BaseClass.staticWaitForVisibility(5000);
         }
         BaseClass.waitForVisibility(priceDropdown, 30, SearchPage.driver);
         BaseClass.javaScriptClick(SearchPage.driver, priceDropdown);
@@ -1352,11 +1347,13 @@ public class SearchPage {
             SearchPage.driver.get("https://www.voices.systems/");
             BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
             searchIcon.click();
-            if (!BaseClass.isElementPresent(SearchPage.driver, deliveryTimeDropdown)) {
+            BaseClass.staticWaitForVisibility(5000);
+                BaseClass.waitForVisibility(packageTab, 60, SearchPage.driver);
                 packageTab.click();
-                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(3000);
+                BaseClass.staticWaitForVisibility(5000);
+                if (!BaseClass.isElementPresent(SearchPage.driver, packageTabStatus)) {
+                    packageTab.click();
+                    BaseClass.staticWaitForVisibility(5000);
             }
             BaseClass.waitForVisibility(deliveryTimeDropdown, 30, SearchPage.driver);
             BaseClass.javaScriptClick(SearchPage.driver, deliveryTimeDropdown);
@@ -1381,19 +1378,18 @@ public class SearchPage {
             SearchPage.driver.get("https://www.voices.systems/");
             BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
             searchIcon.click();
-            if (tabName.equalsIgnoreCase("Talent")) {
-                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
+            BaseClass.staticWaitForVisibility(5000);
+            if (tabName.equalsIgnoreCase("Packages")) {
+                BaseClass.waitForVisibility(packageTab, 60, SearchPage.driver);
+                packageTab.click();
                 BaseClass.staticWaitForVisibility(5000);
+                if (!BaseClass.isElementPresent(SearchPage.driver, packageTabStatus)) {
+                    packageTab.click();
+                    BaseClass.staticWaitForVisibility(5000);
+                }
             }
             BaseClass.staticWaitForVisibility(3000);
             showMoreLink.click();
-            if (!BaseClass.isElementPresent(SearchPage.driver, talentTierDropdown)) {
-                packageTab.click();
-                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(3000);
-            }
             BaseClass.waitForVisibility(talentTierDropdown, 30, SearchPage.driver);
             BaseClass.javaScriptClick(SearchPage.driver, talentTierDropdown);
             WebElement talentTierElement = SearchPage.driver.findElement(By.xpath("//label[normalize-space()='" + talentTier + "']"));
@@ -1412,24 +1408,28 @@ public class SearchPage {
         }
     }
 
+    @FindBy(xpath = "//input[@id='search-type-talent'][@checked='true']")
+    private WebElement talentTabStatus;
+    @FindBy(xpath = "//input[@id='search-type-projects'][@checked='true']")
+    private WebElement packageTabStatus;
+
     public void validateVoicesOnlineStatusPlayDemoForNonSignUser(String tabName, String... onlineStatusList) {
         for (String onlineStatus : onlineStatusList) {
             SearchPage.driver.get("https://www.voices.systems/");
             BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
             searchIcon.click();
-            if (tabName.equalsIgnoreCase("Talent")) {
-                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
+            BaseClass.staticWaitForVisibility(5000);
+            if (tabName.equalsIgnoreCase("Packages")) {
+                BaseClass.waitForVisibility(packageTab, 60, SearchPage.driver);
+                packageTab.click();
                 BaseClass.staticWaitForVisibility(5000);
+                if (!BaseClass.isElementPresent(SearchPage.driver, packageTabStatus)) {
+                    packageTab.click();
+                    BaseClass.staticWaitForVisibility(5000);
+                }
             }
             BaseClass.waitForVisibility(showMoreLink, 30, SearchPage.driver);
             showMoreLink.click();
-            if (!BaseClass.isElementPresent(SearchPage.driver, onlineStatusDropdown)) {
-                packageTab.click();
-                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(3000);
-            }
             BaseClass.waitForVisibility(onlineStatusDropdown, 30, SearchPage.driver);
             BaseClass.javaScriptClick(SearchPage.driver, onlineStatusDropdown);
             WebElement onlineStatusElement = SearchPage.driver.findElement(By.xpath("//label[normalize-space()='" + onlineStatus + "']"));
@@ -1452,19 +1452,18 @@ public class SearchPage {
         SearchPage.driver.get("https://www.voices.systems/");
         BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
         searchIcon.click();
-        if (tabName.equalsIgnoreCase("Talent")) {
-            BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-            BaseClass.javaScriptClick(SearchPage.driver, talentTab);
+        BaseClass.staticWaitForVisibility(5000);
+        if (tabName.equalsIgnoreCase("Packages")) {
+            BaseClass.waitForVisibility(packageTab, 60, SearchPage.driver);
+            packageTab.click();
             BaseClass.staticWaitForVisibility(5000);
+            if (!BaseClass.isElementPresent(SearchPage.driver, packageTabStatus)) {
+                packageTab.click();
+                BaseClass.staticWaitForVisibility(5000);
+            }
         }
         BaseClass.waitForVisibility(showMoreLink, 30, SearchPage.driver);
         showMoreLink.click();
-        if (!BaseClass.isElementPresent(SearchPage.driver, locationDropdown)) {
-            packageTab.click();
-            BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-            BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-            BaseClass.staticWaitForVisibility(3000);
-        }
         BaseClass.waitForVisibility(locationDropdown, 30, SearchPage.driver);
         BaseClass.javaScriptClick(SearchPage.driver, locationDropdown);
         BaseClass.waitForVisibility(countryDropdown, 30, SearchPage.driver);
@@ -1476,14 +1475,14 @@ public class SearchPage {
 
         /***
          * Future used code
-        BaseClass.staticWaitForVisibility(3000);
-        BaseClass.waitForVisibility(stateDropdown, 30, SearchPage.driver);
-        stateDropdown.click();
-        WebElement stateElement = SearchPage.driver.findElement(By.xpath("//div[text()='" + state + "']"));
-        BaseClass.waitForVisibility(stateElement, 30, SearchPage.driver);
-        BaseClass.javaScriptClick(SearchPage.driver, stateElement);
-        BaseClass.staticWaitForVisibility(3000);
-        cityTextField.sendKeys(city);
+         BaseClass.staticWaitForVisibility(3000);
+         BaseClass.waitForVisibility(stateDropdown, 30, SearchPage.driver);
+         stateDropdown.click();
+         WebElement stateElement = SearchPage.driver.findElement(By.xpath("//div[text()='" + state + "']"));
+         BaseClass.waitForVisibility(stateElement, 30, SearchPage.driver);
+         BaseClass.javaScriptClick(SearchPage.driver, stateElement);
+         BaseClass.staticWaitForVisibility(3000);
+         cityTextField.sendKeys(city);
          **/
 
         BaseClass.waitForVisibility(locationApplyFilterButton, 30, SearchPage.driver);
@@ -1615,16 +1614,15 @@ public class SearchPage {
             SearchPage.driver.get("https://www.voices.systems/");
             BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
             searchIcon.click();
-            if (tabName.equalsIgnoreCase("Talent")) {
-                BaseClass.waitForVisibility(talentTab, 30, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(3000);
-            }
-            if (!BaseClass.isElementPresent(SearchPage.driver, categoryDropdown)) {
+            BaseClass.staticWaitForVisibility(5000);
+            if (tabName.equalsIgnoreCase("Packages")) {
+                BaseClass.waitForVisibility(packageTab, 60, SearchPage.driver);
                 packageTab.click();
-                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(3000);
+                BaseClass.staticWaitForVisibility(5000);
+                if (!BaseClass.isElementPresent(SearchPage.driver, packageTabStatus)) {
+                    packageTab.click();
+                    BaseClass.staticWaitForVisibility(5000);
+                }
             }
             BaseClass.waitForVisibility(categoryDropdown, 30, SearchPage.driver);
             categoryDropdown.click();
@@ -1647,16 +1645,15 @@ public class SearchPage {
             SearchPage.driver.get("https://www.voices.systems/");
             BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
             searchIcon.click();
-            if (tabName.equalsIgnoreCase("Talent")) {
-                BaseClass.waitForVisibility(talentTab, 30, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(5000);
-            }
-            if (!BaseClass.isElementPresent(SearchPage.driver, languageDropdown)) {
+            BaseClass.staticWaitForVisibility(5000);
+            if (tabName.equalsIgnoreCase("Packages")) {
+                BaseClass.waitForVisibility(packageTab, 60, SearchPage.driver);
                 packageTab.click();
-                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(3000);
+                BaseClass.staticWaitForVisibility(5000);
+                if (!BaseClass.isElementPresent(SearchPage.driver, packageTabStatus)) {
+                    packageTab.click();
+                    BaseClass.staticWaitForVisibility(5000);
+                }
             }
             BaseClass.waitForVisibility(languageDropdown, 30, SearchPage.driver);
             BaseClass.javaScriptClick(SearchPage.driver, languageDropdown);
@@ -1680,16 +1677,15 @@ public class SearchPage {
             SearchPage.driver.get("https://www.voices.systems/");
             BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
             searchIcon.click();
-            if (tabName.equalsIgnoreCase("Talent")) {
-                BaseClass.waitForVisibility(talentTab, 30, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(3000);
-            }
-            if (!BaseClass.isElementPresent(SearchPage.driver, accentDropdown)) {
+            BaseClass.staticWaitForVisibility(5000);
+            if (tabName.equalsIgnoreCase("Packages")) {
+                BaseClass.waitForVisibility(packageTab, 60, SearchPage.driver);
                 packageTab.click();
-                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(3000);
+                BaseClass.staticWaitForVisibility(5000);
+                if (!BaseClass.isElementPresent(SearchPage.driver, packageTabStatus)) {
+                    packageTab.click();
+                    BaseClass.staticWaitForVisibility(5000);
+                }
             }
             BaseClass.staticWaitForVisibility(5000);
             accentDropdown.click();
@@ -1713,16 +1709,15 @@ public class SearchPage {
             SearchPage.driver.get("https://www.voices.systems/");
             BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
             searchIcon.click();
-            if (tabName.equalsIgnoreCase("Talent")) {
-                BaseClass.waitForVisibility(talentTab, 30, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(3000);
-            }
-            if (!BaseClass.isElementPresent(SearchPage.driver, genderDropdown)) {
+            BaseClass.staticWaitForVisibility(5000);
+            if (tabName.equalsIgnoreCase("Packages")) {
+                BaseClass.waitForVisibility(packageTab, 60, SearchPage.driver);
                 packageTab.click();
-                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(3000);
+                BaseClass.staticWaitForVisibility(5000);
+                if (!BaseClass.isElementPresent(SearchPage.driver, packageTabStatus)) {
+                    packageTab.click();
+                    BaseClass.staticWaitForVisibility(5000);
+                }
             }
             BaseClass.waitForVisibility(genderDropdown, 30, SearchPage.driver);
             BaseClass.javaScriptClick(SearchPage.driver, genderDropdown);
@@ -1743,16 +1738,15 @@ public class SearchPage {
             SearchPage.driver.get("https://www.voices.systems/");
             BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
             searchIcon.click();
-            if (tabName.equalsIgnoreCase("Talent")) {
-                BaseClass.waitForVisibility(talentTab, 30, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(5000);
-            }
-            if (!BaseClass.isElementPresent(SearchPage.driver, ageDropdown)) {
+            BaseClass.staticWaitForVisibility(5000);
+            if (tabName.equalsIgnoreCase("Packages")) {
+                BaseClass.waitForVisibility(packageTab, 60, SearchPage.driver);
                 packageTab.click();
-                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(3000);
+                BaseClass.staticWaitForVisibility(5000);
+                if (!BaseClass.isElementPresent(SearchPage.driver, packageTabStatus)) {
+                    packageTab.click();
+                    BaseClass.staticWaitForVisibility(5000);
+                }
             }
             BaseClass.waitForVisibility(ageDropdown, 30, SearchPage.driver);
             BaseClass.javaScriptClick(SearchPage.driver, ageDropdown);
@@ -1773,11 +1767,13 @@ public class SearchPage {
         SearchPage.driver.get("https://www.voices.systems/");
         BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
         searchIcon.click();
-        if (!BaseClass.isElementPresent(SearchPage.driver, priceDropdown)) {
+        BaseClass.staticWaitForVisibility(5000);
+            BaseClass.waitForVisibility(packageTab, 60, SearchPage.driver);
             packageTab.click();
-            BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-            BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-            BaseClass.staticWaitForVisibility(3000);
+            BaseClass.staticWaitForVisibility(5000);
+            if (!BaseClass.isElementPresent(SearchPage.driver, packageTabStatus)) {
+                packageTab.click();
+                BaseClass.staticWaitForVisibility(5000);
         }
         BaseClass.waitForVisibility(priceDropdown, 30, SearchPage.driver);
         BaseClass.javaScriptClick(SearchPage.driver, priceDropdown);
@@ -1802,11 +1798,13 @@ public class SearchPage {
             SearchPage.driver.get("https://www.voices.systems/");
             BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
             searchIcon.click();
-            if (!BaseClass.isElementPresent(SearchPage.driver, deliveryTimeDropdown)) {
+            BaseClass.staticWaitForVisibility(5000);
+                BaseClass.waitForVisibility(packageTab, 60, SearchPage.driver);
                 packageTab.click();
-                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(3000);
+                BaseClass.staticWaitForVisibility(5000);
+                if (!BaseClass.isElementPresent(SearchPage.driver, packageTabStatus)) {
+                    packageTab.click();
+                    BaseClass.staticWaitForVisibility(5000);
             }
             BaseClass.waitForVisibility(deliveryTimeDropdown, 30, SearchPage.driver);
             BaseClass.javaScriptClick(SearchPage.driver, deliveryTimeDropdown);
@@ -1827,19 +1825,17 @@ public class SearchPage {
             SearchPage.driver.get("https://www.voices.systems/");
             BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
             searchIcon.click();
-            if (tabName.equalsIgnoreCase("Talent")) {
-                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(5000);
-            }
-            BaseClass.staticWaitForVisibility(3000);
-            showMoreLink.click();
-            if (!BaseClass.isElementPresent(SearchPage.driver, talentTierDropdown)) {
+            BaseClass.staticWaitForVisibility(5000);
+            if (tabName.equalsIgnoreCase("Packages")) {
+                BaseClass.waitForVisibility(packageTab, 60, SearchPage.driver);
                 packageTab.click();
-                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(3000);
+                BaseClass.staticWaitForVisibility(5000);
+                if (!BaseClass.isElementPresent(SearchPage.driver, packageTabStatus)) {
+                    packageTab.click();
+                    BaseClass.staticWaitForVisibility(5000);
+                }
             }
+            showMoreLink.click();
             BaseClass.waitForVisibility(talentTierDropdown, 30, SearchPage.driver);
             BaseClass.javaScriptClick(SearchPage.driver, talentTierDropdown);
             WebElement talentTierElement = SearchPage.driver.findElement(By.xpath("//label[normalize-space()='" + talentTier + "']"));
@@ -1859,19 +1855,17 @@ public class SearchPage {
             SearchPage.driver.get("https://www.voices.systems/");
             BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
             searchIcon.click();
-            if (tabName.equalsIgnoreCase("Talent")) {
-                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(5000);
-            }
-            BaseClass.waitForVisibility(showMoreLink, 30, SearchPage.driver);
-            showMoreLink.click();
-            if (!BaseClass.isElementPresent(SearchPage.driver, onlineStatusDropdown)) {
+            BaseClass.staticWaitForVisibility(5000);
+            if (tabName.equalsIgnoreCase("Packages")) {
+                BaseClass.waitForVisibility(packageTab, 60, SearchPage.driver);
                 packageTab.click();
-                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(3000);
+                BaseClass.staticWaitForVisibility(5000);
+                if (!BaseClass.isElementPresent(SearchPage.driver, packageTabStatus)) {
+                    packageTab.click();
+                    BaseClass.staticWaitForVisibility(5000);
+                }
             }
+            showMoreLink.click();
             BaseClass.waitForVisibility(onlineStatusDropdown, 30, SearchPage.driver);
             BaseClass.javaScriptClick(SearchPage.driver, onlineStatusDropdown);
             WebElement onlineStatusElement = SearchPage.driver.findElement(By.xpath("//label[normalize-space()='" + onlineStatus + "']"));
@@ -1890,19 +1884,17 @@ public class SearchPage {
         SearchPage.driver.get("https://www.voices.systems/");
         BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
         searchIcon.click();
-        if (tabName.equalsIgnoreCase("Talent")) {
-            BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-            BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-            BaseClass.staticWaitForVisibility(5000);
-        }
-        BaseClass.waitForVisibility(showMoreLink, 30, SearchPage.driver);
-        BaseClass.javaScriptClick(SearchPage.driver, showMoreLink);
-        if (!BaseClass.isElementPresent(SearchPage.driver, locationDropdown)) {
+        BaseClass.staticWaitForVisibility(5000);
+        if (tabName.equalsIgnoreCase("Packages")) {
+            BaseClass.waitForVisibility(packageTab, 60, SearchPage.driver);
             packageTab.click();
-            BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-            BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-            BaseClass.staticWaitForVisibility(3000);
+            BaseClass.staticWaitForVisibility(5000);
+            if (!BaseClass.isElementPresent(SearchPage.driver, packageTabStatus)) {
+                packageTab.click();
+                BaseClass.staticWaitForVisibility(5000);
+            }
         }
+        BaseClass.javaScriptClick(SearchPage.driver, showMoreLink);
         BaseClass.waitForVisibility(locationDropdown, 30, SearchPage.driver);
         BaseClass.javaScriptClick(SearchPage.driver, locationDropdown);
         BaseClass.waitForVisibility(countryDropdown, 30, SearchPage.driver);
@@ -1914,14 +1906,14 @@ public class SearchPage {
 
         /***
          * Future used code
-        BaseClass.staticWaitForVisibility(3000);
-        BaseClass.waitForVisibility(stateDropdown, 30, SearchPage.driver);
-        stateDropdown.click();
-        WebElement stateElement = SearchPage.driver.findElement(By.xpath("//div[text()='" + state + "']"));
-        BaseClass.waitForVisibility(stateElement, 30, SearchPage.driver);
-        BaseClass.javaScriptClick(SearchPage.driver, stateElement);
-        BaseClass.staticWaitForVisibility(3000);
-        cityTextField.sendKeys(city);
+         BaseClass.staticWaitForVisibility(3000);
+         BaseClass.waitForVisibility(stateDropdown, 30, SearchPage.driver);
+         stateDropdown.click();
+         WebElement stateElement = SearchPage.driver.findElement(By.xpath("//div[text()='" + state + "']"));
+         BaseClass.waitForVisibility(stateElement, 30, SearchPage.driver);
+         BaseClass.javaScriptClick(SearchPage.driver, stateElement);
+         BaseClass.staticWaitForVisibility(3000);
+         cityTextField.sendKeys(city);
          ***/
 
         BaseClass.waitForVisibility(locationApplyFilterButton, 30, SearchPage.driver);
@@ -2278,7 +2270,6 @@ public class SearchPage {
         BaseClass.staticWaitForVisibility(2000);
         addListIcon.click();
     }
-
 
 
     public void validateAddedFavoriteCountForPackageTab(String listName) {

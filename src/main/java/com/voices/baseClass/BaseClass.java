@@ -98,9 +98,9 @@ public class BaseClass {
 
     }
 
-    public static List<String> addStringValueInList(String... stringValue){
+    public static List<String> addStringValueInList(String... stringValue) {
         List<String> outputList = new ArrayList<>();
-        for(String value : stringValue){
+        for (String value : stringValue) {
             outputList.add(value);
         }
         return outputList;
@@ -320,7 +320,7 @@ public class BaseClass {
         java.util.List<String> columnData = new ArrayList<String>();
         java.util.List<WebElement> columnDataWebElement = driverClass.findElements(By.xpath(xpath));
         for (WebElement element : columnDataWebElement) {
-            columnData.add(element.getText());
+            columnData.add(element.getText().trim());
         }
         return columnData;
     }
@@ -332,6 +332,7 @@ public class BaseClass {
         }
         return outputList;
     }
+
     public static List<String> removeAnyWord(List<String> inputList, String word) {
         List<String> outputList = new ArrayList<String>();
         for (String input : inputList) {
@@ -339,8 +340,6 @@ public class BaseClass {
         }
         return outputList;
     }
-
-
 
 
     public static Set<String> getDataFromRentRollImportExcelByTenantNameInSet(String excelFile, String sheetName, String tenantName, int tenantCol, int colNo, int startRowNo) throws IOException {
@@ -647,6 +646,24 @@ public class BaseClass {
         return true;
     }
 
+    public static List<String> sortDateStringAscendingOrder(List<String> inputDateList) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");
+        List<Date> dates = new ArrayList<>();
+        for (String dateString : inputDateList) {
+            try {
+                Date date = dateFormat.parse(dateString);
+                dates.add(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        Collections.sort(dates);
+        List<String> sortedDateStrings = new ArrayList<>();
+        for (Date date : dates) {
+            sortedDateStrings.add(dateFormat.format(date));
+        }
+        return sortedDateStrings;
+    }
 
 
 }

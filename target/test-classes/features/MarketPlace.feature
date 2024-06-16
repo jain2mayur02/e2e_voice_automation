@@ -1,8 +1,9 @@
-@MarketPlace
+@MarketPlace @Debug
 Feature: Verify the manage packages market place flow
 
   Background: Open Main URL
     Given User Open Home Page
+
 
   Scenario Outline: Verify the create package in market place
     And User login with prime user credentials
@@ -53,7 +54,6 @@ Feature: Verify the manage packages market place flow
       | Package Title                 | Edit Package Title                |
       | AutomationDemoPackageApproved | EditAutomationDemoPackageApproved |
 
-  @testrun
   Scenario Outline: Verify Talent user is able to delete an Approved Package
     And User login with prime user credentials
     Then Verify Talent user is able to navigate to Manage Packages page
@@ -72,6 +72,7 @@ Feature: Verify the manage packages market place flow
       | Package Title               |
       | AutomationDemoPackageDelete |
 
+  @NeedCheck
   Scenario Outline: Verify Talent user is able to view and Accept Awarded Job
     And User login with prime user credentials
     Then Verify Talent user is able to navigate to Manage Packages page
@@ -95,6 +96,7 @@ Feature: Verify the manage packages market place flow
       | Package Title                |
       | AutomationPackageAcceptAward |
 
+  @NeedCheck
   Scenario Outline: Verify Talent user is able to view and Decline Awarded Job
     And User login with prime user credentials
     Then Verify Talent user is able to navigate to Manage Packages page

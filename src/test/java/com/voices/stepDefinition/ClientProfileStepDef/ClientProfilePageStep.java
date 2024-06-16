@@ -165,5 +165,175 @@ public class ClientProfilePageStep {
         clientProfilePage.verifyInviteAllToJobCTAFunctionality();
     }
 
+    @Then("Verify Client user is able to navigate to Manage Licences page")
+    public void verify_client_user_is_able_to_navigate_to_manage_licences_page() {
+        clientProfilePage.verifyClientUserIsAbleToNavigateToManageLicencesPage();
+    }
+
+    @Then("Verify All Licenses Tab")
+    public void verify_all_licenses_tab() {
+        clientProfilePage.verifyAllLicensesTab();
+    }
+
+    @Then("Verify each record in All Licenses Tab")
+    public void verify_each_record_in_all_licenses_tab() {
+        clientProfilePage.verifyEachRecordInAllLicensesTab();
+    }
+
+    @Then("Verify Search Functionality in All Licenses Tab")
+    public void verify_search_functionality_in_all_licenses_tab() {
+        clientProfilePage.verifySearchFunctionalityInAllLicensesTab();
+    }
+
+    @Then("Verify Show filter Functionality in All Licenses Tab")
+    public void verify_show_filter_functionality_in_all_licenses_tab() {
+        clientProfilePage.verifyShowFilterFunctionalityInAllLicensesTab();
+    }
+
+    @Then("Verify Sort Functionality in All Licenses Tab")
+    public void verify_sort_functionality_in_all_licenses_tab() {
+        clientProfilePage.verifySortFunctionalityInAllLicenses_tab();
+    }
+
+    @Then("Verify View button Functionality in All Licenses Tab")
+    public void verify_view_button_functionality_in_all_licenses_tab() {
+        clientProfilePage.verifyViewButtonFunctionalityInAllLicensesTab();
+    }
+
+    @Then("Verify Get Renewal Quote button Functionality in All Licenses Tab")
+    public void verify_get_renewal_quote_button_functionality_in_all_licenses_tab() {
+        clientProfilePage.verifyGetRenewalQuoteButtonFunctionalityInAllLicensesTab();
+    }
+
+    @Then("Verify Quotes Requested Tab")
+    public void verify_quotes_requested_tab() {
+        clientProfilePage.verifyQuotesRequestedTab();
+    }
+
+    @Then("Verify each record in Quotes Requested Tab")
+    public void verify_each_record_in_quotes_requested_tab() {
+        clientProfilePage.verifyEachRecordInQuotesRequestedTab();
+    }
+
+    @Then("Verify Search Functionality in Quotes Requested Tab")
+    public void verify_search_functionality_in_quotes_requested_tab() {
+
+    }
+
+    @Then("Verify Show filter Functionality in Quotes Requested Tab")
+    public void verify_show_filter_functionality_in_quotes_requested_tab() {
+
+    }
+
+    @Then("Verify Sort Functionality in Quotes Requested Tab")
+    public void verify_sort_functionality_in_quotes_requested_tab() {
+
+    }
+
+    @Then("Verify Edit Request button Functionality in Quotes Requested Tab")
+    public void verify_edit_request_button_functionality_in_quotes_requested_tab() {
+        clientProfilePage.verifyEditRequestButtonFunctionalityInQuotesRequestedTab();
+    }
+
+    @Then("Verify Cancel Request button Functionality in Quotes Requested Tab")
+    public void verify_cancel_request_button_functionality_in_quotes_requested_tab() {
+        clientProfilePage.verifyCancelRequestButtonFunctionalityInQuotesRequestedTab();
+    }
+
+    @Then("Verify Client user is able to navigate to Reviews Page")
+    public void verify_client_user_is_able_to_navigate_to_reviews_page() {
+        clientProfilePage.verifyClientUserIsAbleToNavigateToReviewsPage();
+    }
+
+    @Then("Verify Pending Reviews section for client")
+    public void verify_pending_reviews_section_for_client() {
+        clientProfilePage.verifyPendingReviewsSectionForClient();
+    }
+
+    @Then("Verify My Reviews section")
+    public void verify_my_reviews_section() {
+        clientProfilePage.verifyMyReviewsSection();
+    }
+
+    @Then("Verify Leave a Review CTA functionality for client")
+    public void verify_leave_a_review_cta_functionality_for_client() {
+        clientProfilePage.verifyLeaveReviewCTAFunctionalityForClient();
+    }
+
+    @Then("Verify Client user is able to navigate to Billing History page")
+    public void verify_client_user_is_able_to_navigate_to_billing_history_page() {
+        clientProfilePage.verifyClientUserIsAbleToNavigateToBillingHistoryPage();
+    }
+
+    @Then("Verify Billing History list")
+    public void verify_billing_history_list() {
+        clientProfilePage.verifyBillingHistoryList();
+    }
+
+    @Then("Verify Each record")
+    public void verify_each_record() {
+        clientProfilePage.verifyEachRecord();
+    }
+
+    @Then("Verify Transaction Details of Unpaid bill")
+    public void verify_transaction_details_of_unpaid_bill() {
+
+    }
+
+    @Then("Verify Transaction Details of Paid bill")
+    public void verify_transaction_details_of_paid_bill() {
+        clientProfilePage.verifyTransactionDetailsOfPaidBill();
+    }
+
+    @Then("Verify Date Sort Up and Sort Down functionality")
+    public void verify_date_sort_up_and_sort_down_functionality() {
+        clientProfilePage.verifyDateSortUpAndSortDownFunctionality();
+    }
+
+    @Then("Verify Amount Sort Up and Sort Down functionality")
+    public void verify_amount_sort_up_and_sort_down_functionality() {
+        clientProfilePage.verifyAmountSortUpAndSortDownFunctionality();
+    }
+
+    @Then("Verify Search functionality for billing history")
+    public void verify_search_functionality_for_billing_history() {
+        clientProfilePage.verifySearchFunctionalityForBillingHistory();
+    }
+
+    @Then("Verify Download CSV Functionality")
+    public void verify_download_csv_functionality() {
+        clientProfilePage.verifyDownloadCsvFunctionality();
+    }
+
+    @Then("Verify Show filter Functionality for billing history")
+    public void verify_show_filter_functionality_for_billing_history() {
+        clientProfilePage.verifyShowFilterFunctionalityForBillingHistory();
+    }
+
+    @Then("Verify Date filter Functionality")
+    public void verify_date_filter_functionality() {
+        clientProfilePage.verifyDateFilterFunctionality();
+    }
+
+    @Then("Verify Pay Now button Functionality")
+    public void verify_pay_now_button_functionality() {
+
+    }
+
+    @Then("Verify Add Optional button Functionality")
+    public void verify_add_optional_button_functionality() {
+
+    }
+
+    @Then("Verify Back button functionality")
+    public void verify_back_button_functionality() {
+
+    }
+
+    @Then("Verify Pagination")
+    public void verify_pagination() {
+        clientProfilePage.verifyPagination();
+    }
+
 
 }

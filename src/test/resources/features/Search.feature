@@ -4,6 +4,7 @@ Feature: Validate search functionality
   Background: Open Main URL
     Given User Open Home Page
 
+
   Scenario: Validate search for packages tab for Non Sign User
     And User validate category packages search function for Non Sign User
       | Tab Name | Category 01 | Category 02   | Category 03 | Category 04 |

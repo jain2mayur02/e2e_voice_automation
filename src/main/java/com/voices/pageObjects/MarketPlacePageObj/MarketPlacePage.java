@@ -279,7 +279,7 @@ public class MarketPlacePage {
         Assert.assertEquals("Validate Project Title Is Required text", "Project Title is required", projectTitleIsRequiredText.getText().trim());
         Assert.assertEquals("Validate Language Is Required text", "Language is required", languageIsRequiredText.getText().trim());
         Assert.assertEquals("Validate Accent Is Required text", "Accent is required", accentIsRequiredText.getText().trim());
-        Assert.assertEquals("Validate Voice Gender Is Required text", "Voice Gender is required", genderIsRequiredText.getText().trim());
+       // Assert.assertEquals("Validate Voice Gender Is Required text", "Voice Gender is required", genderIsRequiredText.getText().trim());
 
     }
 

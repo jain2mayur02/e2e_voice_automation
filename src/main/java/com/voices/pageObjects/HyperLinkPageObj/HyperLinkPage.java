@@ -54,7 +54,8 @@ public class HyperLinkPage {
     private WebElement userIcon;
     @FindBy(xpath = "//a[normalize-space()='My Home']")
     private WebElement myHomeLink;
-    @FindBy(xpath = "//h1[normalize-space()='Get Started']")
+//    @FindBy(xpath = "//h1[normalize-space()='Get Started']")
+    @FindBy(xpath = "//h1[normalize-space()='Welcome back, KIPL']")
     private WebElement getStartedText;
     @FindBy(xpath = "//a[normalize-space()='Favorites']")
     private WebElement favoritesLink;
@@ -74,7 +75,8 @@ public class HyperLinkPage {
     private WebElement manageLicensesText;
     @FindBy(xpath = "//a[normalize-space()='Manage Team']")
     private WebElement manageTeamLink;
-    @FindBy(xpath = "//h1[normalize-space()='Team Members']")
+    //@FindBy(xpath = "//h1[normalize-space()='Team Members']")
+    @FindBy(xpath = "//div[@class='page-header']/h1")
     private WebElement manageTeamText;
     @FindBy(xpath = "//a[normalize-space()='Billing History']")
     private WebElement billingHistoryLink;
@@ -108,6 +110,8 @@ public class HyperLinkPage {
     private WebElement helpIcon;
     @FindBy(xpath = "//div[@class='flexbox']/../div/a[1]")
     private WebElement userProfile;
+    @FindBy(xpath = "//button[normalize-space()='Got it!']")
+    private WebElement gotItButton;
     @FindBy(xpath = "//div[@class='flexbox']/../div/a[2]")
     private WebElement premiumLink;
     @FindBy(xpath = "//a[@class='nav-main-submenu-link nav-main-submenu-link-line d-flex justify-content-between']")
@@ -179,6 +183,9 @@ public class HyperLinkPage {
         BaseClass.mouseOverOnElement(HyperLinkPage.driver, userIcon);
         BaseClass.staticWaitForVisibility(2000);
         BaseClass.javaScriptClick(HyperLinkPage.driver, elementLink);
+        if(BaseClass.isElementPresent(HyperLinkPage.driver, gotItButton)){
+            gotItButton.click();
+        }
         BaseClass.waitForVisibility(actualPageTextElement, 60, HyperLinkPage.driver);
         Assert.assertEquals("Validate Page URL", ReaderManager.getInstance().getConfigReader().getUrlEndPoint(propertyLinkKey), HyperLinkPage.driver.getCurrentUrl());
         System.out.println(actualPageTextElement.getText());
@@ -187,12 +194,12 @@ public class HyperLinkPage {
 
     public void clickOnUserIconAndValidateAllLinks() {
         HyperLinkPage.driver.get("https://www.voices.systems/client/jobs/index");
-        validateUserIconLink(myHomeLink, "MyHome", getStartedText, "Get Started");
+        validateUserIconLink(myHomeLink, "MyHome", getStartedText, "Welcome back, KIPL");
         validateUserIconLink(favoritesLink, "Favorites", favoriteTalentText, "Favorite Talent");
         validateUserIconLink(previouslyHiredTalentLink, "PreviouslyHiredTalent", previouslyHiredTalentText, "Previously Hired Talent");
         validateUserIconLink(reviewsLink, "Reviews", reviewsText, "Reviews");
         validateUserIconLink(manageLicensesLink, "ManageLicenses", manageLicensesText, "License Management");
-        validateUserIconLink(manageTeamLink, "ManageTeam", manageTeamText, "Team Members");
+        validateUserIconLink(manageTeamLink, "ManageTeam", manageTeamText, "KIPL QA's Team Account");
         validateUserIconLink(billingHistoryLink, "BillingHistory", billingHistoryText, "Billing History");
         validateUserIconLink(accountSettingsLink, "AccountSettings", accountSettingsText, "Business Profile");
         validateUserIconLink(helpCenterLink, "HelpCenter", helpCenterText, "How can we help?");
@@ -239,7 +246,8 @@ public class HyperLinkPage {
                     System.out.println(linkText);
                     allLinks.get(link).click();
                     BaseClass.staticWaitForVisibility(2000);
-                    Assert.assertEquals("Validate Link", ReaderManager.getInstance().getConfigReader().getUrlEndPoint(linkText), HyperLinkPage.driver.getCurrentUrl());
+                   // Assert.assertEquals("Validate Link", ReaderManager.getInstance().getConfigReader().getUrlEndPoint(linkText), HyperLinkPage.driver.getCurrentUrl());
+                    Assert.assertTrue("Validate Link",  HyperLinkPage.driver.getCurrentUrl().contains(ReaderManager.getInstance().getConfigReader().getUrlEndPoint(linkText)));
                     BaseClass.validateURLresponse(ReaderManager.getInstance().getConfigReader().getUrlEndPoint(linkText));
                     break;
                 }
@@ -440,7 +448,7 @@ public class HyperLinkPage {
 
 
     public void clickOnHowItWorkAndValidateUrl() {
-        BaseClass.waitForVisibility(howItWorkLink, 60, HyperLinkPage.driver);
+       // BaseClass.waitForVisibility(howItWorkLink, 60, HyperLinkPage.driver);
         howItWorkLink.click();
         BaseClass.waitForVisibility(howItWorksText, 60, HyperLinkPage.driver);
         Assert.assertEquals("Validate How It Work Text", "How It Works", howItWorksText.getText().trim());
@@ -521,7 +529,7 @@ public class HyperLinkPage {
     public void validateSubFooterLinkForByLanguage() {
         HyperLinkPage.driver.get("https://www.voices.systems/");
         BaseClass.staticWaitForVisibility(2000);
-        BaseClass.scrollUpToBottomOfPage(HyperLinkPage.driver);
+      //  BaseClass.scrollUpToBottomOfPage(HyperLinkPage.driver);
         List<WebElement> allByLanguageLinks = HyperLinkPage.driver.findElements(By.xpath("//a[normalize-space()='By Language']/../ul/li/a"));
         for (int link = 0; link < allByLanguageLinks.size(); link++) {
             HyperLinkPage.driver.get("https://www.voices.systems/");

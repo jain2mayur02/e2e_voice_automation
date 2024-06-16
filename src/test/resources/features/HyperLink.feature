@@ -1,13 +1,15 @@
-@HyperLink
+@HyperLink @Debug
 Feature: HyperLink Validation
 
   Background: Open Main URL
     Given User Open Home Page
 
+
   Scenario: Validate All Hyperlink On Main Navigation Panel For Non SignIn User
     And User click on How it works link and validate url
     And User click on log in link and validate url
     And User click on sign up link and validate url
+
 
   Scenario: Validate All Hyperlink On Sub Navigation Panel For Non SignIn User
     Then Validate all sub module hyperlink

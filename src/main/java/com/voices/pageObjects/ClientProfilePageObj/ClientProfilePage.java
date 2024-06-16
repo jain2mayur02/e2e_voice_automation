@@ -1,6 +1,7 @@
 package com.voices.pageObjects.ClientProfilePageObj;
 
 import com.voices.baseClass.BaseClass;
+import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -217,6 +218,170 @@ public class ClientProfilePage {
     private WebElement inviteAllToJobName;
     @FindBy(xpath = "//div[@id='private-invite-list']//p[1]")
     private WebElement jobNameOnPostAJobPage;
+    @FindBy(xpath = "//h1[normalize-space()='License Management']")
+    private WebElement licenseManagementHeader;
+    @FindBy(xpath = "//a[normalize-space()='All Licenses']")
+    private WebElement allLicensesTab;
+    @FindBy(xpath = "//a[normalize-space()='Quotes Requested']")
+    private WebElement quotesRequestedTab;
+    @FindBy(xpath = "//p[@id='pagination-number']")
+    private WebElement manageLicensePagination;
+    @FindBy(xpath = "//input[@id='action_bar_search_keyword']")
+    private WebElement licenseSearchField;
+    @FindBy(xpath = "//div[@id='filter-action-list']")
+    private WebElement licenseFilterButton;
+    @FindBy(xpath = "//div[@id='sort-action-list']//button[@type='button']")
+    private WebElement licenseSortButton;
+    @FindBy(xpath = "(//div[@id='pagination-container']//div[@class='job-details'])[1]")
+    private WebElement allLicenseTabJobDescription;
+    @FindBy(xpath = "(//div[@id='pagination-container']//div[@class='license-expiry'])[1]")
+    private WebElement allLicenseTabLicenseExpiryDetails;
+    @FindBy(xpath = "(//div[@id='pagination-container']//div[@class='license-terms'])[1]")
+    private WebElement allLicenseTabLicenseTerms;
+    @FindBy(xpath = "(//div[@id='pagination-container']//div[@class='text-xs text-dark'])[1]")
+    private WebElement allLicenseTabTalentName;
+    @FindBy(xpath = "//div[contains(@class,'status-col text-xs license-cta btn-primary btn btn-sm hidden-xs')]//a[contains(text(),'Get Renewal Quote')]")
+    private WebElement allLicenseTabGetRenewalQuoteButton;
+    @FindBy(xpath = "(//div[@id='pagination-container']//a[contains(text(),'View')])[2]")
+    private WebElement allLicenseTabviewLink;
+    @FindBy(xpath = "(//div[@id='pagination-container']//div[@class='job-details'])[1]//a")
+    private WebElement allLicenseJobId;
+    @FindBy(xpath = "(//div[@id='pagination-container']//div[@class='job-details'])[1]//span[@class='license-id']")
+    private WebElement licenseId;
+    @FindBy(xpath = "(//div[@id='pagination-container']//div[@class='job-details'])[1]//span[@class='description text-xs text-dark font-bold']")
+    private WebElement allLicenseJobTitle;
+    @FindBy(xpath = "//button[contains(@data-action,'submit_search')]")
+    private WebElement licenseSearchSubmitButton;
+    @FindBy(xpath = "//button[contains(@title,'Clear Search')]")
+    private WebElement licenseSearchClearButton;
+    @FindBy(xpath = "//h3[normalize-space()='Licenses Renewal History']")
+    private WebElement licensesRenewalHistoryHeader;
+    @FindBy(xpath = "//div[@id='license-items-group']//div[@id='license']")
+    private WebElement viewLicensingDetails;
+    @FindBy(xpath = "//div[@id='license-items-group']//p[@id='start']")
+    private WebElement viewStartDate;
+    @FindBy(xpath = "//div[@id='license-items-group']//p[@id='end']")
+    private WebElement viewEndDate;
+    @FindBy(xpath = "//div[@id='talent-licenses-modal']//button[@type='button'][normalize-space()='Close']")
+    private WebElement viewCloseButton;
+    @FindBy(xpath = "//button[@id='renewal-quote']")
+    private WebElement viewGetRenewalQuoteButton;
+    @FindBy(xpath = "(//div[@id='pagination-container']//a[text()='Edit Request'])[2]")
+    private WebElement editRequestButton;
+    @FindBy(xpath = "(//div[@id='pagination-container']//a[contains(text(),'Cancel Request')])[2]")
+    private WebElement cancelRequestButton;
+    @FindBy(xpath = "//div[@class='license-details-container']/div[1]")
+    private WebElement licensingDetailsUnderRenewal;
+    @FindBy(xpath = "//div[@class='license-details-container']/div[2]")
+    private WebElement startDateUnderRenewal;
+    @FindBy(xpath = "//div[@class='license-details-container']/div[3]")
+    private WebElement endDatesUnderRenewal;
+    @FindBy(xpath = "//button[@id='cancel']")
+    private WebElement cancelButtonUnderRenewal;
+    @FindBy(xpath = "//button[@id='submit']")
+    private WebElement submitButtonUnderRenewal;
+    @FindBy(xpath = "//h3[contains(text(),'Are you sure you want to cancel your licensing quo')]")
+    private WebElement cancelRequestHeader;
+    @FindBy(xpath = "//textarea[@name='message']")
+    private WebElement cancelRequestTextArea;
+    @FindBy(xpath = "//form[@id='delete-license-quote-request-form']//button[@type='button'][normalize-space()='Close']")
+    private WebElement cancelRequestCloseButton;
+    @FindBy(xpath = "//button[@id='cancel-quote']")
+    private WebElement cancelRequestConfirmButton;
+    @FindBy(xpath = "//h1[normalize-space()='Reviews']")
+    private WebElement reviewsHeader;
+    @FindBy(xpath = "//h4[normalize-space()='Pending Reviews']")
+    private WebElement pendingReviewHeader;
+    @FindBy(xpath = "//a[normalize-space()='Leave a Review']")
+    private WebElement leaveAReviewLink;
+    @FindBy(xpath = "//h4[normalize-space()='My Reviews']")
+    private WebElement myReviewsHeader;
+    @FindBy(xpath = "//a[normalize-space()='Received']")
+    private WebElement receivedTab;
+    @FindBy(xpath = "//a[normalize-space()='Given']")
+    private WebElement givenTab;
+    @FindBy(xpath = "//p[@class='reviews-pagination-text text-center']")
+    private WebElement pendingReviewPagination;
+    @FindBy(xpath = "//h4[normalize-space()='Overall Experience']")
+    private WebElement overallExperienceHeader;
+    @FindBy(xpath = "//label[@for='star-005']")
+    private WebElement fiveStarRating;
+    @FindBy(xpath = "//textarea[@id='note']")
+    private WebElement reviewTextArea;
+    @FindBy(xpath = "//a[@id='cancel-btn']")
+    private WebElement reviewCancelButton;
+    @FindBy(xpath = "//button[@id='submit-review-btn']")
+    private WebElement submitReviewButton;
+    @FindBy(xpath = "//h1[normalize-space()='Billing History']")
+    private WebElement billingHistoryHeader;
+    @FindBy(xpath = "//button[@id='calendar-filter-btn']")
+    private WebElement billingHistoryCalenderButton;
+    @FindBy(xpath = "//button[@class='action-list-btn btn-default hidden-xs billing-history-csv-download']")
+    private WebElement billingHistoryDownloadCSVButton;
+    @FindBy(xpath = "//div[@id='filter-action-list']//button[@type='button']")
+    private WebElement billingHistoryShowButton;
+    @FindBy(xpath = "//input[@id='action_bar_search_keyword']")
+    private WebElement billingHistorySearchTextField;
+    @FindBy(xpath = "//p[@id='results-total']")
+    private WebElement billingHistoryPagination;
+    @FindBy(xpath = "//div[@class='billing-list-group-items ']/div/div[1]/div[1]")
+    private WebElement billingHistoryFirstRecordDate;
+    @FindBy(xpath = "//div[@class='billing-list-group-items ']/div/div[1]/div[2]")
+    private WebElement billingHistoryFirstRecordDescription;
+    @FindBy(xpath = "//div[@class='billing-list-group-items ']/div/div[1]/div[4]")
+    private WebElement billingHistoryFirstRecordAmount;
+    @FindBy(xpath = "//div[@class='billing-list-group-items ']/div/div[1]/div[5]/span")
+    private WebElement billingHistoryFirstRecordStatus;
+    @FindBy(xpath = "//div[@class='billing-list-group-items ']/div/div[1]/div[6]/a[1]")
+    private WebElement billingHistoryFirstRecordDownloadPDF;
+    @FindBy(xpath = "//div[@class='billing-list-group-items ']/div/div[1]/div[6]/a[1]")
+    private WebElement billingHistoryFirstRecordViewDetails;
+    @FindBy(xpath = "(//span[text()='Paid'])[2]/../../div[2]/span")
+    private WebElement billingHistoryPaidDescriptionTitle;
+    @FindBy(xpath = "(//span[text()='Paid'])[2]/../../div[2]/div/div[1]")
+    private WebElement billingHistoryPaidDescriptionJobId;
+    @FindBy(xpath = "(//span[text()='Paid'])[2]/../../div[6]/a[2]")
+    private WebElement billingHistoryPaidViewDetailsLink;
+    @FindBy(xpath = "//h1[normalize-space()='Invoice']")
+    private WebElement invoiceHeader;
+    @FindBy(xpath = "//h2[@class='transaction-description']")
+    private WebElement paidDescriptionTitle;
+    @FindBy(xpath = "//h2[@class='transaction-description']/following-sibling::a")
+    private WebElement paidJobId;
+    @FindBy(xpath = "(//span[normalize-space()='Add (Optional)'])[1]")
+    private WebElement addOptionalLink1;
+    @FindBy(xpath = "(//span[normalize-space()='Add (Optional)'])[2]")
+    private WebElement addOptionalLink2;
+    @FindBy(xpath = "//h3[normalize-space()='Add Additional Invoice Details']")
+    private WebElement addAdditionalDetailsHeader;
+    @FindBy(xpath = "//button[@id='edit-invoice-modal-cancel-btn']")
+    private WebElement editInvoiceCancelButton;
+    @FindBy(xpath = "//div[@class='d-md-flex d-none flex-table-heading amount-col text-xs sort-header align-items-center']//i[@class='fas fa-sort']")
+    private WebElement amountSortingButton;
+    @FindBy(xpath = "//div[@class='d-md-flex d-none flex-table-heading amount-col text-xs sort-header align-items-center']")
+    private WebElement amountTableHeader;
+    @FindBy(xpath = "//button[normalize-space()='Paid']")
+    private WebElement paidViewOptionButton;
+    @FindBy(xpath = "//button[normalize-space()='All']")
+    private WebElement allViewOptionButton;
+    @FindBy(xpath = "//span[@id='date-range-text']")
+    private WebElement defaultDataRange;
+    @FindBy(xpath = "//input[@id='date-range-min']")
+    private WebElement startDateInputField;
+    @FindBy(xpath = "//input[@id='date-range-max']")
+    private WebElement endDateInputField;
+    @FindBy(xpath = "//input[@id='quick-date-year']/parent::div")
+    private WebElement thisYearRadioButton;
+    @FindBy(xpath = "//input[@id='quick-date-month']/parent::div")
+    private WebElement thisMonthRadioButton;
+    @FindBy(xpath = "//input[@id='quick-date-all']/parent::div")
+    private WebElement allTimeRadioButton;
+    @FindBy(xpath = "//button[@id='clear-date-pickers']")
+    private WebElement timeClearButton;
+    @FindBy(xpath = "//button[@id='submit-date-pickers']")
+    private WebElement timeApplyButton;
+    @FindBy(xpath = "//div[@class='d-md-flex d-none flex-table-heading date-col first-header text-xs sort-header align-items-center']//i[@class='fas fa-sort']")
+    private WebElement dateFilterButton;
 
 
     public void verifyClientUserIsAbleToNavigateToMyHomePage() {
@@ -551,5 +716,366 @@ public class ClientProfilePage {
 
     }
 
+    public void verifyClientUserIsAbleToNavigateToManageLicencesPage() {
+        BaseClass.waitForVisibility(meIconLink, 30, ClientProfilePage.driver);
+        BaseClass.mouseOverOnElement(ClientProfilePage.driver, meIconLink);
+        BaseClass.waitForVisibility(manageLicensesLink, 30, ClientProfilePage.driver);
+        manageLicensesLink.click();
+        BaseClass.waitForVisibility(licenseManagementHeader, 30, ClientProfilePage.driver);
+        Assert.assertEquals("Validate navigate to mange license page", "License Management", licenseManagementHeader.getText().trim());
+        Assert.assertEquals("Validate All Licenses tab", "All Licenses", allLicensesTab.getText().trim());
+        Assert.assertEquals("Validate Quotes Requested tab", "Quotes Requested", quotesRequestedTab.getText().trim());
+        Assert.assertTrue("Validate Pagination present", BaseClass.isElementPresent(ClientProfilePage.driver, manageLicensePagination));
+    }
+
+    public void verifyAllLicensesTab() {
+        int licenseCount = ClientProfilePage.driver.findElements(By.xpath("//div[@id='pagination-container']//span[@class='description text-xs text-dark font-bold']")).size();
+        Assert.assertTrue("Validate All License Count", licenseCount >= 1);
+        Assert.assertTrue("Validate License Search Field", BaseClass.isElementPresent(ClientProfilePage.driver, licenseSearchField));
+        Assert.assertTrue("Validate License filter button", BaseClass.isElementPresent(ClientProfilePage.driver, licenseFilterButton));
+        Assert.assertTrue("Validate License Sort button", BaseClass.isElementPresent(ClientProfilePage.driver, licenseSortButton));
+    }
+
+    public void verifyQuotesRequestedTab() {
+        BaseClass.waitForVisibility(quotesRequestedTab, 30, ClientProfilePage.driver);
+        quotesRequestedTab.click();
+        BaseClass.staticWaitForVisibility(5000);
+        List<String> actualQuoteRequestedTableHeader = BaseClass.getColumnDataInList(ClientProfilePage.driver, "//div[@id='detail-table']//div");
+        List<String> expectedQuoteRequestedTableHeader = BaseClass.addStringValueInList("Job Description", "Licensing Details", "Talent");
+        Assert.assertEquals("validate quote requested table header", actualQuoteRequestedTableHeader, expectedQuoteRequestedTableHeader);
+    }
+
+    public void verifyEachRecordInAllLicensesTab() {
+        List<String> actualAllLicensesTableHeader = BaseClass.getColumnDataInList(ClientProfilePage.driver, "//div[@id='detail-table']//div");
+        List<String> expectedAllLicensesTableHeader = BaseClass.addStringValueInList("Job Description", "Licensing Details", "Talent");
+        Assert.assertEquals("validate All License table header", expectedAllLicensesTableHeader, actualAllLicensesTableHeader);
+        Assert.assertTrue("Validate All License Tab Job Description", BaseClass.isElementPresent(ClientProfilePage.driver, allLicenseTabJobDescription));
+        Assert.assertTrue("Validate All License Tab License Expiry Details", BaseClass.isElementPresent(ClientProfilePage.driver, allLicenseTabLicenseExpiryDetails));
+        Assert.assertTrue("Validate All License Tab License Terms", BaseClass.isElementPresent(ClientProfilePage.driver, allLicenseTabLicenseTerms));
+        Assert.assertTrue("Validate All License Tab Talent Name", BaseClass.isElementPresent(ClientProfilePage.driver, allLicenseTabTalentName));
+        Assert.assertTrue("Validate All License Tab Get Rnewal Quote Button", BaseClass.isElementPresent(ClientProfilePage.driver, allLicenseTabGetRenewalQuoteButton));
+        Assert.assertTrue("Validate All License Tab view Link", BaseClass.isElementPresent(ClientProfilePage.driver, allLicenseTabviewLink));
+    }
+
+    public void verifySearchFunctionalityInAllLicensesTab() {
+        String actualJobId = allLicenseJobId.getText().trim().substring(5);
+        licenseSearchField.sendKeys(actualJobId);
+        licenseSearchSubmitButton.click();
+        BaseClass.staticWaitForVisibility(2000);
+        Assert.assertTrue("Validate Search function for Job Id", allLicenseJobId.getText().trim().contains(actualJobId));
+        licenseSearchClearButton.click();
+        BaseClass.staticWaitForVisibility(3000);
+
+        String actualLicenseId = licenseId.getText().trim().replaceAll("- License #", "");
+        licenseSearchField.sendKeys(actualLicenseId);
+        licenseSearchSubmitButton.click();
+        BaseClass.staticWaitForVisibility(2000);
+        Assert.assertTrue("Validate Search function for License Id", licenseId.getText().trim().contains(actualLicenseId));
+        licenseSearchClearButton.click();
+        BaseClass.staticWaitForVisibility(3000);
+
+        String actualTalentName = allLicenseTabTalentName.getText().trim();
+        licenseSearchField.sendKeys(actualTalentName);
+        licenseSearchSubmitButton.click();
+        BaseClass.staticWaitForVisibility(2000);
+        Assert.assertEquals("Validate Search function for Talent Name", actualTalentName, allLicenseTabTalentName.getText().trim());
+        licenseSearchClearButton.click();
+        BaseClass.staticWaitForVisibility(3000);
+
+        String actualJobTitle = allLicenseJobTitle.getText().trim();
+        licenseSearchField.sendKeys(actualJobTitle);
+        licenseSearchSubmitButton.click();
+        BaseClass.staticWaitForVisibility(2000);
+        Assert.assertEquals("Validate Search function for Talent Name", actualJobTitle, allLicenseJobTitle.getText().trim());
+        licenseSearchClearButton.click();
+        BaseClass.staticWaitForVisibility(3000);
+    }
+
+    public void verifyShowFilterFunctionalityInAllLicensesTab() {
+        BaseClass.waitForVisibility(licenseFilterButton, 30, ClientProfilePage.driver);
+        licenseFilterButton.click();
+        List<String> actualLicenseFilterOptions = BaseClass.getColumnDataInList(ClientProfilePage.driver, "//div[@id='filter-action-list']//div[@class='action-list-dropdown']//button");
+        List<String> expectedLicenseFilterOptions = BaseClass.addStringValueInList("All", "Expired", "Not Expired");
+        Assert.assertEquals("Validate License Filter options", expectedLicenseFilterOptions, actualLicenseFilterOptions);
+    }
+
+    public void verifySortFunctionalityInAllLicenses_tab() {
+        BaseClass.waitForVisibility(licenseSortButton, 30, ClientProfilePage.driver);
+        licenseSortButton.click();
+        List<String> actualLicenseSortOptions = BaseClass.getColumnDataInList(ClientProfilePage.driver, "//div[@id='sort-action-list']//div[@class='action-list-dropdown']//button");
+        List<String> expectedLicenseSortOptions = BaseClass.addStringValueInList("Newest", "Oldest", "Expiry Date (Earliest)", "Expiry Date (Latest)");
+        Assert.assertEquals("Validate License Sort options", expectedLicenseSortOptions, actualLicenseSortOptions);
+        licenseSortButton.click();
+    }
+
+    public void verifyViewButtonFunctionalityInAllLicensesTab() {
+        BaseClass.waitForVisibility(allLicenseTabviewLink, 30, ClientProfilePage.driver);
+        allLicenseTabviewLink.click();
+        BaseClass.waitForVisibility(licensesRenewalHistoryHeader, 30, ClientProfilePage.driver);
+        Assert.assertEquals("validate Licenses Renewal History Header", "Licenses Renewal History", licensesRenewalHistoryHeader.getText().trim());
+        Assert.assertTrue("validate View Licensing Details is present", BaseClass.isElementPresent(ClientProfilePage.driver, viewLicensingDetails));
+        Assert.assertTrue("validate View Start date is present", BaseClass.isElementPresent(ClientProfilePage.driver, viewStartDate));
+        Assert.assertTrue("validate View End date is present", BaseClass.isElementPresent(ClientProfilePage.driver, viewEndDate));
+        Assert.assertTrue("validate View Close button is present", BaseClass.isElementPresent(ClientProfilePage.driver, viewCloseButton));
+        Assert.assertTrue("validate View Get Renewal Quote Button is present", BaseClass.isElementPresent(ClientProfilePage.driver, viewGetRenewalQuoteButton));
+        viewCloseButton.click();
+        BaseClass.staticWaitForVisibility(3000);
+    }
+
+    public void verifyEachRecordInQuotesRequestedTab() {
+        Assert.assertTrue("Validate License Tab Job Description", BaseClass.isElementPresent(ClientProfilePage.driver, allLicenseTabJobDescription));
+        Assert.assertTrue("Validate License Tab License Expiry Details", BaseClass.isElementPresent(ClientProfilePage.driver, allLicenseTabLicenseExpiryDetails));
+        Assert.assertTrue("Validate License Tab License Terms", BaseClass.isElementPresent(ClientProfilePage.driver, allLicenseTabLicenseTerms));
+        Assert.assertTrue("Validate License Tab Talent Name", BaseClass.isElementPresent(ClientProfilePage.driver, allLicenseTabTalentName));
+        Assert.assertTrue("Validate Edit Request Button", BaseClass.isElementPresent(ClientProfilePage.driver, editRequestButton));
+        Assert.assertTrue("Validate Cancel request button", BaseClass.isElementPresent(ClientProfilePage.driver, cancelRequestButton));
+    }
+
+    public void verifyGetRenewalQuoteButtonFunctionalityInAllLicensesTab() {
+        BaseClass.waitForVisibility(allLicenseTabGetRenewalQuoteButton, 30, ClientProfilePage.driver);
+        allLicenseTabGetRenewalQuoteButton.click();
+        BaseClass.waitForVisibility(licensingDetailsUnderRenewal, 30, ClientProfilePage.driver);
+        Assert.assertTrue("Validate License Details present", BaseClass.isElementPresent(ClientProfilePage.driver, licensingDetailsUnderRenewal));
+        Assert.assertTrue("Validate start date present", BaseClass.isElementPresent(ClientProfilePage.driver, startDateUnderRenewal));
+        Assert.assertTrue("Validate end date present", BaseClass.isElementPresent(ClientProfilePage.driver, endDatesUnderRenewal));
+        Assert.assertTrue("Validate cancel button present", BaseClass.isElementPresent(ClientProfilePage.driver, cancelButtonUnderRenewal));
+        Assert.assertTrue("Validate Send License Terms to Talent button present", BaseClass.isElementPresent(ClientProfilePage.driver, submitButtonUnderRenewal));
+        ClientProfilePage.driver.navigate().back();
+        BaseClass.waitForVisibility(licenseManagementHeader, 30, ClientProfilePage.driver);
+
+    }
+
+    public void verifyEditRequestButtonFunctionalityInQuotesRequestedTab() {
+        BaseClass.waitForVisibility(quotesRequestedTab, 30, ClientProfilePage.driver);
+        quotesRequestedTab.click();
+        BaseClass.staticWaitForVisibility(5000);
+        editRequestButton.click();
+        BaseClass.waitForVisibility(licensingDetailsUnderRenewal, 30, ClientProfilePage.driver);
+        Assert.assertTrue("Validate License Details present", BaseClass.isElementPresent(ClientProfilePage.driver, licensingDetailsUnderRenewal));
+        Assert.assertTrue("Validate start date present", BaseClass.isElementPresent(ClientProfilePage.driver, startDateUnderRenewal));
+        Assert.assertTrue("Validate end date present", BaseClass.isElementPresent(ClientProfilePage.driver, endDatesUnderRenewal));
+        Assert.assertTrue("Validate cancel button present", BaseClass.isElementPresent(ClientProfilePage.driver, cancelButtonUnderRenewal));
+        Assert.assertTrue("Validate Send License Terms to Talent button present", BaseClass.isElementPresent(ClientProfilePage.driver, submitButtonUnderRenewal));
+        ClientProfilePage.driver.navigate().back();
+        BaseClass.waitForVisibility(licenseManagementHeader, 30, ClientProfilePage.driver);
+    }
+
+    public void verifyCancelRequestButtonFunctionalityInQuotesRequestedTab() {
+        BaseClass.waitForVisibility(quotesRequestedTab, 30, ClientProfilePage.driver);
+        quotesRequestedTab.click();
+        BaseClass.waitForVisibility(cancelRequestButton, 30, ClientProfilePage.driver);
+        cancelRequestButton.click();
+        BaseClass.waitForVisibility(cancelRequestHeader, 30, ClientProfilePage.driver);
+        Assert.assertEquals("validate Cancel Request Page", "Are you sure you want to cancel your licensing quote request?", cancelRequestHeader.getText().trim());
+        cancelRequestTextArea.sendKeys("Cancel My Request");
+        Assert.assertTrue("Validate Cancel Close Button Present", BaseClass.isElementPresent(ClientProfilePage.driver, cancelRequestCloseButton));
+        Assert.assertTrue("Validate Cancel Confirm Button Present", BaseClass.isElementPresent(ClientProfilePage.driver, cancelRequestConfirmButton));
+        cancelRequestCloseButton.click();
+
+    }
+
+    public void verifyClientUserIsAbleToNavigateToReviewsPage() {
+        BaseClass.waitForVisibility(meIconLink, 30, ClientProfilePage.driver);
+        BaseClass.mouseOverOnElement(ClientProfilePage.driver, meIconLink);
+        BaseClass.waitForVisibility(reviewsLink, 30, ClientProfilePage.driver);
+        reviewsLink.click();
+        BaseClass.waitForVisibility(reviewsHeader, 30, ClientProfilePage.driver);
+        Assert.assertEquals("Validate able to navigate to reviews page", "Reviews", reviewsHeader.getText().trim());
+    }
+
+    public void verifyPendingReviewsSectionForClient() {
+        Assert.assertEquals("Validate Pending Reviews header", "Pending Reviews", pendingReviewHeader.getText().trim());
+        int pendingReviewCount = ClientProfilePage.driver.findElements(By.xpath("//div[@id='pending-reviews']/div/div")).size();
+        Assert.assertTrue("Validate Pending review count", pendingReviewCount >= 1);
+        Assert.assertEquals("Validate Leave a Review link", "Leave a Review", leaveAReviewLink.getText().trim());
+    }
+
+    public void verifyMyReviewsSection() {
+        Assert.assertEquals("Validate My Reviews header", "My Reviews", myReviewsHeader.getText().trim());
+        Assert.assertEquals("Validate Received tab", "Received", receivedTab.getText().trim());
+        int receivedReviewCount = ClientProfilePage.driver.findElements(By.xpath("//div[@id='profile-reviews']/div/div")).size();
+        Assert.assertTrue("Validate Received review count", receivedReviewCount >= 1);
+        Assert.assertTrue("Validate Received pagination present", BaseClass.isElementPresent(ClientProfilePage.driver, pendingReviewPagination));
+        givenTab.click();
+        BaseClass.staticWaitForVisibility(4000);
+        Assert.assertEquals("Validate Given tab", "Given", givenTab.getText().trim());
+        int givenReviewCount = ClientProfilePage.driver.findElements(By.xpath("//div[@id='profile-reviews']/div/div")).size();
+        Assert.assertTrue("Validate Given review count", givenReviewCount >= 1);
+        Assert.assertTrue("Validate Given pagination present", BaseClass.isElementPresent(ClientProfilePage.driver, pendingReviewPagination));
+
+    }
+
+
+    public void verifyLeaveReviewCTAFunctionalityForClient() {
+        leaveAReviewLink.click();
+        BaseClass.waitForVisibility(overallExperienceHeader, 30, ClientProfilePage.driver);
+        Assert.assertEquals("validate overall experience header", "Overall Experience", overallExperienceHeader.getText().trim());
+        fiveStarRating.click();
+        reviewTextArea.sendKeys("My Review");
+        Assert.assertTrue("Validate Review Cancel button present", BaseClass.isElementPresent(ClientProfilePage.driver, reviewCancelButton));
+        Assert.assertTrue("Validate Submit Review button present", BaseClass.isElementPresent(ClientProfilePage.driver, submitReviewButton));
+
+    }
+
+
+    public void verifyClientUserIsAbleToNavigateToBillingHistoryPage() {
+        BaseClass.waitForVisibility(meIconLink, 30, ClientProfilePage.driver);
+        BaseClass.mouseOverOnElement(ClientProfilePage.driver, meIconLink);
+        BaseClass.waitForVisibility(billingHistoryLink, 30, ClientProfilePage.driver);
+        billingHistoryLink.click();
+        BaseClass.waitForVisibility(billingHistoryHeader, 30, ClientProfilePage.driver);
+        Assert.assertEquals("Validate able to navigate to Billing History page", "Billing History", billingHistoryHeader.getText().trim());
+        int billingHistoryList = ClientProfilePage.driver.findElements(By.xpath("//div[contains(@class,'billing-list-group-items')]/div/div")).size();
+        Assert.assertTrue("Validate billing history list present", billingHistoryList >= 1);
+        Assert.assertTrue("Validate calender button present", BaseClass.isElementPresent(ClientProfilePage.driver, billingHistoryCalenderButton));
+        Assert.assertTrue("Validate Download CSV button present", BaseClass.isElementPresent(ClientProfilePage.driver, billingHistoryDownloadCSVButton));
+        Assert.assertTrue("Validate Show button present", BaseClass.isElementPresent(ClientProfilePage.driver, billingHistoryShowButton));
+        Assert.assertTrue("Validate Search Text Field present", BaseClass.isElementPresent(ClientProfilePage.driver, billingHistorySearchTextField));
+        Assert.assertTrue("Validate Billing History Pagination", BaseClass.isElementPresent(ClientProfilePage.driver, billingHistoryPagination));
+
+    }
+
+    public void verifyBillingHistoryList() {
+        List<String> actualBillingHistoryTableHeader = BaseClass.getColumnDataInList(ClientProfilePage.driver, "//div[@class='d-flex table-heading text-grey1 font-medium']/div");
+        List<String> expectedBillingHistoryTableHeader = BaseClass.addStringValueInList("Date", "Description", "Amount", "Status", "");
+        Assert.assertEquals("Validate Billing History Table Header", expectedBillingHistoryTableHeader, actualBillingHistoryTableHeader);
+    }
+
+    public void verifyEachRecord() {
+        Assert.assertTrue("Validate Billing History First Record date", BaseClass.isElementPresent(ClientProfilePage.driver, billingHistoryFirstRecordDate));
+        Assert.assertTrue("Validate Billing History First Record Description", BaseClass.isElementPresent(ClientProfilePage.driver, billingHistoryFirstRecordDescription));
+        Assert.assertTrue("Validate Billing History First Record Amount", BaseClass.isElementPresent(ClientProfilePage.driver, billingHistoryFirstRecordAmount));
+        Assert.assertTrue("Validate Billing History First Record Status", BaseClass.isElementPresent(ClientProfilePage.driver, billingHistoryFirstRecordStatus));
+        Assert.assertTrue("Validate Billing History First Record Download PDF", BaseClass.isElementPresent(ClientProfilePage.driver, billingHistoryFirstRecordDownloadPDF));
+        Assert.assertTrue("Validate Billing History First Record View Details", BaseClass.isElementPresent(ClientProfilePage.driver, billingHistoryFirstRecordViewDetails));
+        if (billingHistoryFirstRecordStatus.getText().trim().equalsIgnoreCase("Paid"))
+            Assert.assertTrue("Validate Status as Paid Or Unpaid", billingHistoryFirstRecordStatus.getText().trim().equalsIgnoreCase("Paid"));
+        else if (billingHistoryFirstRecordStatus.getText().trim().equalsIgnoreCase("UnPaid"))
+            Assert.assertTrue("Validate Status as Paid Or Unpaid", billingHistoryFirstRecordStatus.getText().trim().equalsIgnoreCase("UnPaid"));
+        else
+            Assert.assertTrue("Validate Status as Paid Or Unpaid", false);
+    }
+
+    public void verifyTransactionDetailsOfPaidBill() {
+        String expectedDescription = billingHistoryPaidDescriptionTitle.getText().trim();
+        String expectedJobId = billingHistoryPaidDescriptionJobId.getText().trim();
+        billingHistoryPaidViewDetailsLink.click();
+        BaseClass.waitForVisibility(invoiceHeader, 30, ClientProfilePage.driver);
+        Assert.assertEquals("validate Invoice Header", "Invoice", invoiceHeader.getText().trim());
+        Assert.assertEquals("validate Paid Description Title", expectedDescription, paidDescriptionTitle.getText().trim());
+        Assert.assertTrue("validate Paid Job Id", expectedJobId.contains(paidJobId.getText().trim()));
+        addOptionalLink1.click();
+        BaseClass.waitForVisibility(addAdditionalDetailsHeader, 30, ClientProfilePage.driver);
+        Assert.assertEquals("validate Add Additional Invoice Details Header", "Add Additional Invoice Details", addAdditionalDetailsHeader.getText().trim());
+        editInvoiceCancelButton.click();
+        BaseClass.waitForVisibility(addOptionalLink2, 30, ClientProfilePage.driver);
+        addOptionalLink2.click();
+        BaseClass.waitForVisibility(addAdditionalDetailsHeader, 30, ClientProfilePage.driver);
+        Assert.assertEquals("validate Add Additional Invoice Details Header", "Add Additional Invoice Details", addAdditionalDetailsHeader.getText().trim());
+        editInvoiceCancelButton.click();
+        BaseClass.waitForVisibility(addOptionalLink1, 30, ClientProfilePage.driver);
+    }
+
+    public void verifyAmountSortUpAndSortDownFunctionality() {
+        BaseClass.waitForVisibility(meIconLink, 30, ClientProfilePage.driver);
+        BaseClass.mouseOverOnElement(ClientProfilePage.driver, meIconLink);
+        BaseClass.waitForVisibility(billingHistoryLink, 30, ClientProfilePage.driver);
+        billingHistoryLink.click();
+        BaseClass.waitForVisibility(billingHistoryHeader, 30, ClientProfilePage.driver);
+        List<String> defaultAmountList = BaseClass.getColumnDataInList(ClientProfilePage.driver, "//div[@class='billing-list-group-items ']//div[contains(text(),'$')]");
+        Collections.sort(defaultAmountList);
+        amountSortingButton.click();
+        BaseClass.staticWaitForVisibility(3000);
+        List<String> sort1AmountList = BaseClass.getColumnDataInList(ClientProfilePage.driver, "//div[@class='billing-list-group-items ']//div[contains(text(),'$')]");
+        Collections.reverse(sort1AmountList);
+        Assert.assertEquals("Validate Amount Sort Up and Down Functionality", defaultAmountList, sort1AmountList);
+
+    }
+
+    public void verifySearchFunctionalityForBillingHistory() {
+        String expectedJobId = billingHistoryPaidDescriptionJobId.getText().trim().substring(5, 11);
+        billingHistorySearchTextField.sendKeys(expectedJobId);
+        previouslyHiredTalentSearchIcon.click();
+        BaseClass.staticWaitForVisibility(4000);
+        String actuallyJobId = billingHistoryPaidDescriptionJobId.getText().trim().substring(5, 11);
+        Assert.assertEquals("Validate search functionality for job ID", expectedJobId, actuallyJobId);
+        previouslyHiredTalentClearSearchIcon.click();
+        BaseClass.staticWaitForVisibility(4000);
+    }
+
+    public void verifyDownloadCsvFunctionality() {
+        billingHistoryDownloadCSVButton.click();
+        BaseClass.staticWaitForVisibility(10000);
+    }
+
+    public void verifyShowFilterFunctionalityForBillingHistory() {
+        BaseClass.waitForVisibility(billingHistoryShowButton, 30, ClientProfilePage.driver);
+        billingHistoryShowButton.click();
+        List<String> actualShowOptions = BaseClass.getColumnDataInList(ClientProfilePage.driver, "//div[@id='filter-action-list']//button[@type='button']/parent::div/div//button");
+        List<String> expectedShowOptions = BaseClass.addStringValueInList("All", "Add-Ons", "Hired Talent", "Paid", "Unpaid", "Overdue", "Subscriptions", "Closed");
+        Assert.assertEquals("Validate View Options list", expectedShowOptions, actualShowOptions);
+        paidViewOptionButton.click();
+        BaseClass.staticWaitForVisibility(4000);
+        List<String> paidStatusList = BaseClass.getColumnDataInList(ClientProfilePage.driver, "//div[@class='billing-list-group-items ']/div/div/div[5]/span");
+        for (String paidStatus : paidStatusList)
+            Assert.assertEquals("Validate pais status", "Paid", paidStatus);
+        billingHistoryShowButton.click();
+        BaseClass.waitForVisibility(allViewOptionButton, 30, ClientProfilePage.driver);
+        allViewOptionButton.click();
+    }
+
+    public void verifyDateFilterFunctionality() {
+        String defaultDateRange = defaultDataRange.getText().trim();
+        billingHistoryCalenderButton.click();
+        BaseClass.waitForVisibility(startDateInputField, 30, ClientProfilePage.driver);
+        Assert.assertTrue("Validate Start Date Input Field Present", BaseClass.isElementPresent(ClientProfilePage.driver, startDateInputField));
+        Assert.assertTrue("Validate End Date Input Field Present", BaseClass.isElementPresent(ClientProfilePage.driver, endDateInputField));
+        Assert.assertTrue("Validate This Year Radio Button Present", BaseClass.isElementPresent(ClientProfilePage.driver, thisYearRadioButton));
+        Assert.assertTrue("Validate This Month Radio Button Present", BaseClass.isElementPresent(ClientProfilePage.driver, thisMonthRadioButton));
+        Assert.assertTrue("Validate All Time Radio Button Present", BaseClass.isElementPresent(ClientProfilePage.driver, allTimeRadioButton));
+        Assert.assertTrue("Validate Clear Time Button Present", BaseClass.isElementPresent(ClientProfilePage.driver, timeClearButton));
+        Assert.assertTrue("Validate Apply Time Button Present", BaseClass.isElementPresent(ClientProfilePage.driver, timeApplyButton));
+        thisYearRadioButton.click();
+        timeApplyButton.click();
+        BaseClass.staticWaitForVisibility(3000);
+        Assert.assertEquals("validate This year date range", "Jan 1, 2024 - Dec 31, 2024", defaultDataRange.getText().trim());
+        List<String> dateList = BaseClass.getColumnDataInList(ClientProfilePage.driver, "//div[@class='billing-list-group-items ']/div/div/div[1]");
+        for (String date : dateList)
+            Assert.assertTrue("Validate date Range", date.contains("2024"));
+        billingHistoryCalenderButton.click();
+        BaseClass.waitForVisibility(startDateInputField, 30, ClientProfilePage.driver);
+        timeClearButton.click();
+    }
+
+    public void verifyPagination() {
+        String[] paginationArray = billingHistoryPagination.getText().trim().split(" ");
+        int paginationCount = Integer.parseInt(paginationArray[3]);
+        int actualListCount = ClientProfilePage.driver.findElements(By.xpath("//div[@class='billing-list-group-items ']/div/div")).size();
+        Assert.assertEquals("Validate Pagination count", paginationCount, actualListCount);
+    }
+
+    public void verifyDateSortUpAndSortDownFunctionality() {
+        BaseClass.waitForVisibility(meIconLink, 30, ClientProfilePage.driver);
+        BaseClass.mouseOverOnElement(ClientProfilePage.driver, meIconLink);
+        BaseClass.waitForVisibility(billingHistoryLink, 30, ClientProfilePage.driver);
+        billingHistoryLink.click();
+        BaseClass.waitForVisibility(billingHistoryHeader, 30, ClientProfilePage.driver);
+        List<String> defaultDateList = BaseClass.getColumnDataInList(ClientProfilePage.driver, "//div[@class='billing-list-group-items ']/div/div/div[1]");
+        Collections.sort(defaultDateList);
+        List<String> expectedDateList = BaseClass.sortDateStringAscendingOrder(defaultDateList);
+        dateFilterButton.click();
+        BaseClass.staticWaitForVisibility(3000);
+        List<String> actualDateList = BaseClass.getColumnDataInList(ClientProfilePage.driver, "//div[@class='billing-list-group-items ']/div/div/div[1]");
+        Assert.assertEquals("Validate Date filter function", expectedDateList, actualDateList);
+    }
+
 
 }
+
+
+
+
+
+
+
+
