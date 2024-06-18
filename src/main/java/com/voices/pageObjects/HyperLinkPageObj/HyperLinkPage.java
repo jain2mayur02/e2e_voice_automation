@@ -125,22 +125,28 @@ public class HyperLinkPage {
     @FindBy(xpath = "//h2[@id='signup-title']")
     private WebElement signUpWithVoicesText;
 
+    @FindBy(xpath = "//a[@id='find-talent']")
+    private WebElement findTalent;
+
 
     public void userLaunchAndValidateHomePage() {
         HyperLinkPage.driver.get(ReaderManager.getInstance().getConfigReader().getApplicationUrl());
         BaseClass.staticWaitForVisibility(2000);
     }
 
+
+
     public void userLogin(String userName, String password, String urlKey) {
-        BaseClass.waitForVisibility(logInLink, 60, HyperLinkPage.driver);
-        BaseClass.staticWaitForVisibility(5000);
+       BaseClass.waitForVisibility(logInLink, 60, HyperLinkPage.driver);
         logInLink.click();
+        BaseClass.staticWaitForVisibility(3000);
         BaseClass.waitForVisibility(loginEmailTextBox, 60, HyperLinkPage.driver);
         loginEmailTextBox.sendKeys(userName);
         BaseClass.waitForVisibility(passwordTextBox, 60, HyperLinkPage.driver);
         passwordTextBox.sendKeys(password);
         BaseClass.waitForElementClickable(logInButton, 60, HyperLinkPage.driver);
         logInButton.click();
+        BaseClass.staticWaitForVisibility(5000);
         BaseClass.waitForVisibility(searchIcon, 60, HyperLinkPage.driver);
         Assert.assertEquals("Validate Login Url", ReaderManager.getInstance().getConfigReader().getUrlEndPoint(urlKey), HyperLinkPage.driver.getCurrentUrl());
         searchIcon.click();
@@ -456,6 +462,11 @@ public class HyperLinkPage {
         BaseClass.validateURLresponse(HyperLinkPage.driver.getCurrentUrl());
         HyperLinkPage.driver.navigate().refresh();
 
+    }
+
+    public void clickOnFindTalentUrl() {
+        findTalent.click();
+        BaseClass.staticWaitForVisibility(5000);
     }
 
     public void clickOnLogInAndValidateUrl() {

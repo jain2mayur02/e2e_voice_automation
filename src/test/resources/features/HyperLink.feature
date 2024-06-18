@@ -6,7 +6,7 @@ Feature: HyperLink Validation
 
 
   Scenario: Validate All Hyperlink On Main Navigation Panel For Non SignIn User
-    And User click on How it works link and validate url
+  #  And User click on How it works link and validate url
     And User click on log in link and validate url
     And User click on sign up link and validate url
 
@@ -27,6 +27,7 @@ Feature: HyperLink Validation
     And User validate all social media links under footer for Non Sign user
     And User validate all footer links under footer for Non Sign user
 
+
   Scenario: Validate All HyerLink On Main Navigation Panel For Client SingIn User
     And User login with client credentials
     And User Click on post job and Validate url open successfully
@@ -45,6 +46,7 @@ Feature: HyperLink Validation
     Then User validate all social media link under footer of page
     Then User validate all footer link under footer of page
 
+  @fixrun
   Scenario: Validate All HyerLink On Main Navigation Panel For Talent Guest SingIn User
     And User login with Talent Guest credentials
     And User over on jobs and Validate all hyperlinks

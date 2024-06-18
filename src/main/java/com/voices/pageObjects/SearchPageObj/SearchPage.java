@@ -26,6 +26,9 @@ public class SearchPage {
     private WebElement searchIcon;
     @FindBy(xpath = "//button[@id='category_ids-FiltersTrigger']")
     private WebElement categoryDropdown;
+
+    @FindBy(xpath = "//a[@id='find-talent']")
+    private WebElement findTalent;
     @FindBy(xpath = "//div[@data-category='language_ids']//div[@role='combobox']")
     private WebElement languageDropdown;
     @FindBy(xpath = "//button[@id='category_ids-Apply']")
@@ -221,7 +224,7 @@ public class SearchPage {
 
     public void validateCategorySearchForNonSignUser(String tabName, String... categoryList) {
         for (String category : categoryList) {
-            SearchPage.driver.get("https://www.voices.systems/");
+                SearchPage.driver.get("https://www.voices.systems/");
             BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
             searchIcon.click();
             if (tabName.equalsIgnoreCase("Talent")) {
@@ -2414,8 +2417,12 @@ public class SearchPage {
         Assert.assertFalse("Validate filter option not present", BaseClass.isElementPresent(SearchPage.driver, thirdFilterText));
     }
 
+    public void clickOnFindTalentUrl() {
+        findTalent.click();
+        BaseClass.staticWaitForVisibility(5000);
+    }
 
-    public void clickOnHowItWorkAndValidateUrl() {
+/*    public void clickOnHowItWorkAndValidateUrl() {
         BaseClass.waitForVisibility(howItWorkLink, 60, SearchPage.driver);
         howItWorkLink.click();
         BaseClass.waitForVisibility(howItWorksText, 60, SearchPage.driver);
@@ -2424,10 +2431,10 @@ public class SearchPage {
         BaseClass.validateURLresponse(SearchPage.driver.getCurrentUrl());
         SearchPage.driver.navigate().refresh();
 
-    }
+    }*/
 
     public void userSelectAdvanceSearchOptionsForPackagesTabForNonSignUser(String minPrice, String maxPrice, String deliveryTime, String category, String language, String accent, String gender, String age, String keyword) {
-        clickOnHowItWorkAndValidateUrl();
+        clickOnFindTalentUrl();
         BaseClass.waitForVisibility(advanceSearchButton, 30, SearchPage.driver);
         advanceSearchButton.click();
         BaseClass.waitForVisibility(minPriceTextBox, 30, SearchPage.driver);
@@ -2515,7 +2522,7 @@ public class SearchPage {
     }
 
     public void userSelectAdvanceSearchOptionsForTalentTabForNonSignUser(String category, String language, String accent, String gender, String age, String keyword) {
-        clickOnHowItWorkAndValidateUrl();
+        clickOnFindTalentUrl();
         BaseClass.waitForVisibility(advanceSearchButton, 30, SearchPage.driver);
         advanceSearchButton.click();
         BaseClass.waitForVisibility(talentFilter, 30, SearchPage.driver);

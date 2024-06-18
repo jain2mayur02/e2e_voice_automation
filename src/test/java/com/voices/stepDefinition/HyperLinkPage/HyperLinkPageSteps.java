@@ -37,11 +37,11 @@ public class HyperLinkPageSteps {
 
     }
 
-    @And("User click on How it works link and validate url")
+   /* @And("User click on How it works link and validate url")
     public void user_click_on_how_it_works_link_and_validate_url() {
         hyperLinkPage.clickOnHowItWorkAndValidateUrl();
     }
-
+*/
     @And("User click on log in link and validate url")
     public void user_click_on_log_in_link_and_validate_url() {
         hyperLinkPage.clickOnLogInAndValidateUrl();
@@ -79,19 +79,19 @@ public class HyperLinkPageSteps {
 
     @And("User login with client credentials")
     public void user_login_with_client_credentials() {
-        hyperLinkPage.clickOnHowItWorkAndValidateUrl();
+        hyperLinkPage.clickOnFindTalentUrl();
         hyperLinkPage.userLogin(ReaderManager.getInstance().getConfigReader().getClientUserName(), ReaderManager.getInstance().getConfigReader().getClientPassword(), "clientLoginUrl");
     }
 
     @And("User login with prime user credentials")
     public void user_login_prime_user_credentials() {
-        hyperLinkPage.clickOnHowItWorkAndValidateUrl();
+        hyperLinkPage.clickOnFindTalentUrl();
         hyperLinkPage.userLogin(ReaderManager.getInstance().getConfigReader().getPrimeUserName(), ReaderManager.getInstance().getConfigReader().getPrimePassword(), "TalentLoginUrl");
     }
 
     @And("User login with prime account credentials")
     public void user_login_prime_account_credentials() {
-        hyperLinkPage.clickOnHowItWorkAndValidateUrl();
+        hyperLinkPage.clickOnFindTalentUrl();
         hyperLinkPage.userLogin(ReaderManager.getInstance().getConfigReader().getPrimeAccountUserName(), ReaderManager.getInstance().getConfigReader().getPrimeAccountPassword(), "TalentLoginUrl");
     }
 
@@ -142,7 +142,7 @@ public class HyperLinkPageSteps {
 
     @And("User login with Talent Guest credentials")
     public void user_login_with_Talent_Guest_credentials() {
-        hyperLinkPage.clickOnHowItWorkAndValidateUrl();
+        hyperLinkPage.clickOnFindTalentUrl();
         hyperLinkPage.userLogin(ReaderManager.getInstance().getConfigReader().getTalentGuestUserName(), ReaderManager.getInstance().getConfigReader().getTalentGuestPassword(), "TalentLoginUrl");
     }
 

@@ -37,7 +37,6 @@ Feature: Validate search functionality
       | Tab Name | Country | State          | City |
       | Packages | India   | Madhya Pradesh | abc  |
 
-
   Scenario: Validate search for talent tab for Non Sign User
     And User validate category talent search function for Non Sign User
       | Tab Name | Category 01 | Category 02   | Category 03 | Category 04 |
@@ -72,7 +71,6 @@ Feature: Validate search functionality
     And User validate live directed session talent search function for Non Sign User
       | Tab Name | Live Dir Session 01 | Live Dir Session 02 | Live Dir Session 03 | Live Dir Session 04 |
       | Talent   | Zoom                | Microsoft Teams     | Phone Call          | Google Meet         |
-
 
   Scenario: Validate search for packages tab for Client User
     And User login with client credentials
@@ -212,29 +210,28 @@ Feature: Validate search functionality
       | Tab Name | Live Dir Session 01 | Live Dir Session 02 | Live Dir Session 03 | Live Dir Session 04 |
       | Talent   | Zoom                | Microsoft Teams     | Phone Call          | Google Meet         |
 
-  @NeedCheck @Test
   Scenario: Validate Play Demo Search For Packages Tab For Non Sign User
-#    And User validate category packages play demo function for Non Sign User
-#      | Tab Name | Category 01 | Category 02   |
-#      | Packages | Animation   | Documentaries |
-#    And User validate language packages play demo function for Non Sign User
-#      | Tab Name | Language 01 | Language 02 |
-#      | Packages | Arabic      | Dutch       |
-#    And User validate accent packages play demo function for Non Sign User
-#      | Tab Name | Accent 01 | Accent 02 |
-#      | Packages | Afghan    | Algerian  |
-#    And User validate voice gender packages play demo function for Non Sign User
-#      | Tab Name | Gender 01 | Gender 02 |
-#      | Packages | Male      | Female    |
-#    And User validate voice age packages play demo function for Non Sign User
-#      | Tab Name | Age 01       | Age 02       |
-#      | Packages | Child (5-12) | Teen (13-17) |
-#    And User validate price packages play demo function for Non Sign User
-#      | Minimum Price | Maximum Price |
-#      | 10            | 100           |
-#    And User validate delivery time packages play demo function for Non Sign User
-#      | Delivery Time 01 | Delivery Time 02 |
-#      | 24hr             | Up to 3 Days     |
+    And User validate category packages play demo function for Non Sign User
+      | Tab Name | Category 01 | Category 02   |
+      | Packages | Animation   | Documentaries |
+    And User validate language packages play demo function for Non Sign User
+      | Tab Name | Language 01 | Language 02 |
+      | Packages | Arabic      | Dutch       |
+    And User validate accent packages play demo function for Non Sign User
+      | Tab Name | Accent 01 | Accent 02 |
+      | Packages | Afghan    | Algerian  |
+    And User validate voice gender packages play demo function for Non Sign User
+      | Tab Name | Gender 01 | Gender 02 |
+      | Packages | Male      | Female    |
+    And User validate voice age packages play demo function for Non Sign User
+      | Tab Name | Age 01       | Age 02       |
+      | Packages | Child (5-12) | Teen (13-17) |
+    And User validate price packages play demo function for Non Sign User
+      | Minimum Price | Maximum Price |
+      | 10            | 100           |
+    And User validate delivery time packages play demo function for Non Sign User
+      | Delivery Time 01 | Delivery Time 02 |
+      | 24hr             | Up to 3 Days     |
     And User validate talent tier packages play demo function for Non Sign User
       | Tab Name | Talent Tier 01 | Talent Tier 02 |
       | Packages | Top Talent     | Up & Coming    |
