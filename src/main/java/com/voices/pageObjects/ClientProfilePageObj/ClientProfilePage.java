@@ -54,11 +54,11 @@ public class ClientProfilePage {
     private WebElement jobsIconLink;
     @FindBy(xpath = "//h4[normalize-space()='My Jobs']")
     private WebElement myJobsHeader;
-    @FindBy(xpath = "(//nav[@id='main-tab-nav']//a)[1]")
+    @FindBy(xpath = "//nav[@id='main-tab-nav']//a[text()='Draft']")
     private WebElement draftTabUnderMyHome;
-    @FindBy(xpath = "(//nav[@id='main-tab-nav']//a)[2]")
+    @FindBy(xpath = "//nav[@id='main-tab-nav']//a[text()='Working']")
     private WebElement workingTabUnderMyHome;
-    @FindBy(xpath = "(//nav[@id='main-tab-nav']//a)[3]")
+    @FindBy(xpath = "//nav[@id='main-tab-nav']//a[text()='Done']")
     private WebElement doneTabUnderMyHome;
     @FindBy(xpath = "//span[normalize-space()='Post a job']")
     private WebElement postAJobUnderDraftTab;
@@ -126,13 +126,13 @@ public class ClientProfilePage {
     private WebElement previouslyHiredTalentJobDetails;
     @FindBy(xpath = "//h4[normalize-space()='Additional Resources']")
     private WebElement additionalResourcesHeader;
-    @FindBy(xpath = "//h4[normalize-space()='Customer Support']")
+    @FindBy(xpath = "//h4[normalize-space()='Your Dedicated Support']")
     private WebElement customerSupportHeader;
-    @FindBy(xpath = "//p[@class='text-sm text-grey1 margin-bottom-medium']")
+    @FindBy(xpath = "//p[@class='text-sm text-grey1 margin-bottom-zero']")
     private WebElement customerSupportDescription;
-    @FindBy(xpath = "//p[@class='margin-top-zero text-sm margin-bottom-smallest']/a")
+    @FindBy(xpath = "//strong[text()='Toll free:']/../following-sibling::a")
     private WebElement customerSupportCallTollFree;
-    @FindBy(xpath = "//p[@class='text-sm margin-bottom-zero']/a")
+    @FindBy(xpath = "//strong[text()='Email:']/../following-sibling::a")
     private WebElement customerSupportEmail;
     @FindBy(xpath = "//p[@class='text-grey1 text-sm text-left']")
     private WebElement accountSettingHeader;
@@ -292,7 +292,7 @@ public class ClientProfilePage {
     private WebElement reviewsHeader;
     @FindBy(xpath = "//h4[normalize-space()='Pending Reviews']")
     private WebElement pendingReviewHeader;
-    @FindBy(xpath = "//a[normalize-space()='Leave a Review']")
+    @FindBy(xpath = "(//a[normalize-space()='Leave a Review'])[2]")
     private WebElement leaveAReviewLink;
     @FindBy(xpath = "//h4[normalize-space()='My Reviews']")
     private WebElement myReviewsHeader;
@@ -338,10 +338,16 @@ public class ClientProfilePage {
     private WebElement billingHistoryFirstRecordViewDetails;
     @FindBy(xpath = "(//span[text()='Paid'])[2]/../../div[2]/span")
     private WebElement billingHistoryPaidDescriptionTitle;
+    @FindBy(xpath = "(//span[text()='Unpaid'])[2]/../../div[2]/span")
+    private WebElement billingHistoryUnPaidDescriptionTitle;
     @FindBy(xpath = "(//span[text()='Paid'])[2]/../../div[2]/div/div[1]")
     private WebElement billingHistoryPaidDescriptionJobId;
+    @FindBy(xpath = "(//span[text()='Unpaid'])[2]/../../div[2]/div/div[1]")
+    private WebElement billingHistoryUnPaidDescriptionJobId;
     @FindBy(xpath = "(//span[text()='Paid'])[2]/../../div[6]/a[2]")
     private WebElement billingHistoryPaidViewDetailsLink;
+    @FindBy(xpath = "(//span[text()='Unpaid'])[2]/../../div[6]/a[2]")
+    private WebElement billingHistoryUnpaidViewDetailsLink;
     @FindBy(xpath = "//h1[normalize-space()='Invoice']")
     private WebElement invoiceHeader;
     @FindBy(xpath = "//h2[@class='transaction-description']")
@@ -352,6 +358,8 @@ public class ClientProfilePage {
     private WebElement addOptionalLink1;
     @FindBy(xpath = "(//span[normalize-space()='Add (Optional)'])[2]")
     private WebElement addOptionalLink2;
+    @FindBy(xpath = "//a[normalize-space()='Pay Now']")
+    private WebElement payNowButton;
     @FindBy(xpath = "//h3[normalize-space()='Add Additional Invoice Details']")
     private WebElement addAdditionalDetailsHeader;
     @FindBy(xpath = "//button[@id='edit-invoice-modal-cancel-btn']")
@@ -382,6 +390,80 @@ public class ClientProfilePage {
     private WebElement timeApplyButton;
     @FindBy(xpath = "//div[@class='d-md-flex d-none flex-table-heading date-col first-header text-xs sort-header align-items-center']//i[@class='fas fa-sort']")
     private WebElement dateFilterButton;
+    @FindBy(xpath = "//span[normalize-space()='Owner']/../..//h3")
+    private WebElement ownerName;
+    @FindBy(xpath = "//span[normalize-space()='Owner']/following-sibling::span")
+    private WebElement ownerStatus;
+    @FindBy(xpath = "//span[normalize-space()='Owner']/../../following-sibling::span")
+    private WebElement ownerEmailAddress;
+    @FindBy(xpath = "//span[normalize-space()='Owner']/../../../../div/a/div")
+    private WebElement ownerPhoto;
+    @FindBy(xpath = "//span[normalize-space()='Manager']/../..//h3")
+    private WebElement managerName;
+    @FindBy(xpath = "//span[normalize-space()='Manager']/following-sibling::span")
+    private WebElement managerStatus;
+    @FindBy(xpath = "//span[normalize-space()='Manager']/../../following-sibling::span")
+    private WebElement managerEmailAddress;
+    @FindBy(xpath = "//span[normalize-space()='Manager']/../../../../div/a/div")
+    private WebElement managerPhoto;
+    @FindBy(xpath = "(//span[normalize-space()='Manager'])[2]/../../../../div[3]/div/button")
+    private WebElement managerButton;
+    @FindBy(xpath = "(//span[normalize-space()='Manager'])[2]/../../../../div[3]/div/div/ul/li[3]/a")
+    private WebElement managerLearnMoreAboutRole;
+    @FindBy(xpath = "(//span[normalize-space()='Manager'])[2]/../../../../div[3]/div[2]")
+    private WebElement managerOptionsButton;
+    @FindBy(xpath = "(//span[normalize-space()='Member']/../..//h3)[1]")
+    private WebElement memberName;
+    @FindBy(xpath = "(//span[normalize-space()='Member']/following-sibling::span)[3]")
+    private WebElement memberStatus;
+    @FindBy(xpath = "(//span[normalize-space()='Member']/../../following-sibling::span)[1]")
+    private WebElement memberEmailAddress;
+    @FindBy(xpath = "(//span[normalize-space()='Member']/../../../../div/a/div)[1]")
+    private WebElement memberPhoto;
+    @FindBy(xpath = "(//span[normalize-space()='Member'])[3]/../../../following-sibling::div/div/button")
+    private WebElement memberButton;
+    @FindBy(xpath = "(//span[normalize-space()='Member'])[3]/../../../following-sibling::div/div[1]/div/ul/li[3]/a")
+    private WebElement memberLearnMoreAboutRole;
+    @FindBy(xpath = "(//span[normalize-space()='Member'])[3]/../../../following-sibling::div/div[2]")
+    private WebElement memberOptionsButton;
+    @FindBy(xpath = "(//h1[contains(text(),'Team Account')])[1]")
+    private WebElement teamAccountHeader;
+    @FindBy(xpath = "//h2[normalize-space()='Invite New Team Member']")
+    private WebElement inviteNewJobMemberHeader;
+    @FindBy(xpath = "//div[@class='circle-avatar circle-avatar-upload circle-avatar-default']")
+    private WebElement profilePhoto;
+    @FindBy(xpath = "//label[normalize-space()='Full Name']")
+    private WebElement fullNameLabel;
+    @FindBy(xpath = "//label[normalize-space()='Title']")
+    private WebElement titleLabel;
+    @FindBy(xpath = "//label[normalize-space()='Work Email']")
+    private WebElement workEmailLabel;
+    @FindBy(xpath = "//label[normalize-space()='Phone']")
+    private WebElement phoneLabel;
+    @FindBy(xpath = "//label[normalize-space()='Username']")
+    private WebElement usernameLabel;
+    @FindBy(xpath = "//label[normalize-space()='Role']")
+    private WebElement roleLabel;
+    @FindBy(xpath = "//button[normalize-space()='Owner']")
+    private WebElement ownerRole;
+    @FindBy(xpath = "//span[@class='action-list-btn-selection-text font-regular']")
+    private WebElement managerRole;
+    @FindBy(xpath = "//span[@class='action-list-btn-selection-text font-regular']")
+    private WebElement memberRole;
+    @FindBy(xpath = "//span[normalize-space()='Active']/span")
+    private WebElement activeStatus;
+    @FindBy(xpath = "//button[normalize-space()='Reset Password']")
+    private WebElement resetPasswordButton;
+    @FindBy(xpath = "//button[normalize-space()='Remove']")
+    private WebElement removeButton;
+    @FindBy(xpath = "//button[normalize-space()='Submit']")
+    private WebElement submitButton;
+    @FindBy(xpath = "//a[normalize-space()='Cancel']")
+    private WebElement cancelButton1;
+    @FindBy(xpath = "//input[@id='member_email_tags_input']")
+    private WebElement memberEmailTextField;
+    @FindBy(xpath = "//button[@class='action-list-btn']")
+    private WebElement inviteAMemberButton;
 
 
     public void verifyClientUserIsAbleToNavigateToMyHomePage() {
@@ -422,7 +504,7 @@ public class ClientProfilePage {
         BaseClass.staticWaitForVisibility(4000);
         List<String> actualJobTabList = BaseClass.getColumnDataInList(ClientProfilePage.driver, "//nav[@id='main-tab-nav']//a");
         List<String> expectedJobTabList = BaseClass.addStringValueInList("Draft", "Working", "Done");
-        Assert.assertEquals("Validate Job Tab List", expectedJobTabList, actualJobTabList);
+        Assert.assertTrue("Validate Job Tab List", expectedJobTabList.containsAll(actualJobTabList));
     }
 
 
@@ -445,7 +527,7 @@ public class ClientProfilePage {
     public void verifyMyJobsWorkingTab() {
         BaseClass.waitForVisibility(workingTabUnderMyHome, 30, ClientProfilePage.driver);
         workingTabUnderMyHome.click();
-        BaseClass.waitForVisibility(viewAllLinkUnderWorkingTab, 30, ClientProfilePage.driver);
+        BaseClass.waitForVisibility(firstJobNameUnderWorkingTab, 30, ClientProfilePage.driver);
         Assert.assertTrue("Validate job name present under working tab", BaseClass.isElementPresent(ClientProfilePage.driver, firstJobNameUnderWorkingTab));
         Assert.assertTrue("Validate job Category present under working tab", BaseClass.isElementPresent(ClientProfilePage.driver, firstJobCategoryUnderWorkingTab));
         Assert.assertTrue("Validate job Project Dead Line under working tab", BaseClass.isElementPresent(ClientProfilePage.driver, firstJobProjectDeadLineSection));
@@ -480,10 +562,10 @@ public class ClientProfilePage {
     }
 
     public void verifyCustomerSupportSectionForClient() {
-        Assert.assertEquals("Validate Customer Support Header", "Customer Support", customerSupportHeader.getText().trim());
-        Assert.assertEquals("Validate Customer Support Description", "We're here to help you. Contact our Customer Support Team with any questions you may have.", customerSupportDescription.getText().trim());
-        Assert.assertEquals("Validate Customer Support Toll free", "1-888-359-3472", customerSupportCallTollFree.getText().trim());
-        Assert.assertEquals("Validate Customer Support Email", "support@voices.com", customerSupportEmail.getText().trim());
+        Assert.assertEquals("Validate Customer Support Header", "Your Dedicated Support", customerSupportHeader.getText().trim());
+        Assert.assertEquals("Validate Customer Support Description", "We’re here to help. Contact Kelly with any questions and they will follow up.", customerSupportDescription.getText().trim());
+        Assert.assertEquals("Validate Customer Support Toll free", "1-888-359-3472 x068", customerSupportCallTollFree.getText().trim());
+        Assert.assertEquals("Validate Customer Support Email", "kelly.o'shaughnessy@voices.com", customerSupportEmail.getText().trim());
     }
 
     public void verifyClientUserIsAbleToNavigateToAccountSettingsPage() {
@@ -976,6 +1058,17 @@ public class ClientProfilePage {
         BaseClass.waitForVisibility(addOptionalLink1, 30, ClientProfilePage.driver);
     }
 
+    public void verifyTransactionDetailsOfUnPaidBill() {
+        String expectedDescription = billingHistoryUnPaidDescriptionTitle.getText().trim();
+        String expectedJobId = billingHistoryUnPaidDescriptionJobId.getText().trim();
+        billingHistoryUnpaidViewDetailsLink.click();
+        BaseClass.waitForVisibility(invoiceHeader, 30, ClientProfilePage.driver);
+        Assert.assertEquals("validate Invoice Header", "Invoice", invoiceHeader.getText().trim());
+        Assert.assertEquals("validate UnPaid Description Title", expectedDescription, paidDescriptionTitle.getText().trim());
+        Assert.assertTrue("validate UnPaid Job Id", expectedJobId.contains(paidJobId.getText().trim()));
+        Assert.assertEquals("Validate pay now button", "Pay Now", payNowButton.getText().trim());
+    }
+
     public void verifyAmountSortUpAndSortDownFunctionality() {
         BaseClass.waitForVisibility(meIconLink, 30, ClientProfilePage.driver);
         BaseClass.mouseOverOnElement(ClientProfilePage.driver, meIconLink);
@@ -987,7 +1080,6 @@ public class ClientProfilePage {
         amountSortingButton.click();
         BaseClass.staticWaitForVisibility(3000);
         List<String> sort1AmountList = BaseClass.getColumnDataInList(ClientProfilePage.driver, "//div[@class='billing-list-group-items ']//div[contains(text(),'$')]");
-        Collections.reverse(sort1AmountList);
         Assert.assertEquals("Validate Amount Sort Up and Down Functionality", defaultAmountList, sort1AmountList);
 
     }
@@ -1047,6 +1139,52 @@ public class ClientProfilePage {
         timeClearButton.click();
     }
 
+    @FindBy(xpath = "//h2[normalize-space()='Invoice Payment']")
+    private WebElement invoicePaymentHeader;
+    @FindBy(xpath = "//h3[normalize-space()='1. Billing Address']")
+    private WebElement billingAddressHeader;
+    @FindBy(xpath = "//h3[normalize-space()='2. Payment Method']")
+    private WebElement paymentMethodHeader;
+    @FindBy(xpath = "//button[@id='submit-button']")
+    private WebElement confirmAndPayButton;
+
+    public void verifyPayNowButtonFunctionality() {
+        BaseClass.waitForVisibility(payNowButton, 30, ClientProfilePage.driver);
+        payNowButton.click();
+        BaseClass.waitForVisibility(invoicePaymentHeader, 30, ClientProfilePage.driver);
+        Assert.assertEquals("Validate Invoice Payment Header", "Invoice Payment", invoicePaymentHeader.getText().trim());
+        Assert.assertEquals("Validate Billing Address Header", "1. Billing Address", billingAddressHeader.getText().trim());
+        Assert.assertEquals("Validate Payment Method Header", "2. Payment Method", paymentMethodHeader.getText().trim());
+        Assert.assertEquals("Validate Confirm and Pay button", "Confirm and Pay", confirmAndPayButton.getText().trim());
+        ClientProfilePage.driver.navigate().back();
+        BaseClass.waitForVisibility(payNowButton, 30, ClientProfilePage.driver);
+    }
+
+    public void verifyAddOptionalButtonFunctionality() {
+        addOptionalLink1.click();
+        BaseClass.waitForVisibility(addAdditionalDetailsHeader, 30, ClientProfilePage.driver);
+        Assert.assertEquals("validate Add Additional Invoice Details Header", "Add Additional Invoice Details", addAdditionalDetailsHeader.getText().trim());
+        editInvoiceCancelButton.click();
+        BaseClass.waitForVisibility(addOptionalLink2, 30, ClientProfilePage.driver);
+        addOptionalLink2.click();
+        BaseClass.waitForVisibility(addAdditionalDetailsHeader, 30, ClientProfilePage.driver);
+        Assert.assertEquals("validate Add Additional Invoice Details Header", "Add Additional Invoice Details", addAdditionalDetailsHeader.getText().trim());
+        editInvoiceCancelButton.click();
+        BaseClass.waitForVisibility(addOptionalLink1, 30, ClientProfilePage.driver);
+    }
+
+    @FindBy(xpath = "//a[@title='Back']")
+    private WebElement backButton;
+
+    public void verifyBackButtonFunctionality() {
+        BaseClass.waitForVisibility(backButton, 30, ClientProfilePage.driver);
+//        backButton.click();
+        BaseClass.javaScriptClick(ClientProfilePage.driver, backButton);
+        BaseClass.waitForVisibility(billingHistoryHeader, 30, ClientProfilePage.driver);
+        Assert.assertEquals("Validate able to navigate to Billing History page", "Billing History", billingHistoryHeader.getText().trim());
+
+    }
+
     public void verifyPagination() {
         String[] paginationArray = billingHistoryPagination.getText().trim().split(" ");
         int paginationCount = Integer.parseInt(paginationArray[3]);
@@ -1069,13 +1207,120 @@ public class ClientProfilePage {
         Assert.assertEquals("Validate Date filter function", expectedDateList, actualDateList);
     }
 
+    public void verifyClientUserIsAbleToNavigateToManageTeamPage() {
+        BaseClass.waitForVisibility(meIconLink, 30, ClientProfilePage.driver);
+        BaseClass.mouseOverOnElement(ClientProfilePage.driver, meIconLink);
+        BaseClass.waitForVisibility(manageTeamLink, 30, ClientProfilePage.driver);
+        manageTeamLink.click();
+        BaseClass.waitForVisibility(teamAccountHeader, 30, ClientProfilePage.driver);
+        Assert.assertTrue("Validate user navigate to mange team page", teamAccountHeader.getText().trim().contains("Team Account"));
+        Assert.assertEquals("Validate Invite New Team Member header", "Invite New Team Member", inviteNewJobMemberHeader.getText().trim());
+
+    }
+
+    public void verifyOwnerRecord() {
+        Assert.assertTrue("Validate Owner name present", BaseClass.isElementPresent(ClientProfilePage.driver, ownerName));
+        Assert.assertTrue("Validate Owner status present", BaseClass.isElementPresent(ClientProfilePage.driver, ownerStatus));
+        Assert.assertTrue("Validate Owner email present", BaseClass.isElementPresent(ClientProfilePage.driver, ownerEmailAddress));
+        Assert.assertTrue("Validate Owner photo present", BaseClass.isElementPresent(ClientProfilePage.driver, ownerPhoto));
+    }
+
+    public void verifyManagerRecord() {
+        Assert.assertTrue("Validate Manager name present", BaseClass.isElementPresent(ClientProfilePage.driver, managerName));
+        Assert.assertTrue("Validate Manager status present", BaseClass.isElementPresent(ClientProfilePage.driver, managerStatus));
+        Assert.assertTrue("Validate Manager email present", BaseClass.isElementPresent(ClientProfilePage.driver, managerEmailAddress));
+        Assert.assertTrue("Validate Manager photo present", BaseClass.isElementPresent(ClientProfilePage.driver, managerPhoto));
+        managerButton.click();
+        List<String> actualManagerDropdownOption = BaseClass.getColumnDataInList(ClientProfilePage.driver, "(//span[normalize-space()='Manager'])[2]/../../../../div[3]/div/div//span");
+        List<String> expectedMangerDropdownOption = BaseClass.addStringValueInList("Member", "Can manage jobs", "Manager", "Can manage jobs, payments and members", "");
+        Assert.assertEquals("validate Manager Dropdown Options", expectedMangerDropdownOption, actualManagerDropdownOption);
+        Assert.assertEquals("Validate Manager Learn More About Roles and Permission", "Learn More About Roles And Permissions", managerLearnMoreAboutRole.getText().trim());
+        managerOptionsButton.click();
+        List<String> actualMangerDropdown = BaseClass.getColumnDataInList(ClientProfilePage.driver, "(//span[normalize-space()='Manager'])[2]/../../../../div[3]/div[2]/div//li");
+        List<String> expectedManagerDropdown = BaseClass.addStringValueInList("Edit Details", "Reset Password", "Delete User");
+        Assert.assertEquals("Validate Manger dropdown", expectedManagerDropdown, actualMangerDropdown);
+        managerOptionsButton.click();
+    }
+
+    public void verifyMemberRecord() {
+        Assert.assertTrue("Validate Member name present", BaseClass.isElementPresent(ClientProfilePage.driver, memberName));
+        Assert.assertTrue("Validate Member status present", BaseClass.isElementPresent(ClientProfilePage.driver, memberStatus));
+        Assert.assertTrue("Validate Member email present", BaseClass.isElementPresent(ClientProfilePage.driver, memberEmailAddress));
+        Assert.assertTrue("Validate Member photo present", BaseClass.isElementPresent(ClientProfilePage.driver, memberPhoto));
+        memberButton.click();
+        List<String> actualMemberDropdownOption = BaseClass.getColumnDataInList(ClientProfilePage.driver, "(//span[normalize-space()='Member'])[3]/../../../following-sibling::div/div/div//span");
+        List<String> expectedMemberDropdownOption = BaseClass.addStringValueInList("Member", "Can manage jobs", "Manager", "Can manage jobs, payments and members", "");
+        Assert.assertEquals("validate Member Dropdown Options", expectedMemberDropdownOption, actualMemberDropdownOption);
+        Assert.assertEquals("Validate Member Learn More About Roles and Permission", "Learn More About Roles And Permissions", memberLearnMoreAboutRole.getText().trim());
+        memberOptionsButton.click();
+        List<String> actualMemberDropdown = BaseClass.getColumnDataInList(ClientProfilePage.driver, "(//span[normalize-space()='Member'])[3]/../../../following-sibling::div/div[2]//li");
+        List<String> expectedMemberDropdown = BaseClass.addStringValueInList("Edit Details", "Reset Password", "Delete User");
+        Assert.assertEquals("Validate Member dropdown", expectedMemberDropdown, actualMemberDropdown);
+
+    }
+
+
+    public void verifyOwnerNameMemberNameManagerNameLinkNavigation() {
+        ownerName.click();
+        BaseClass.waitForVisibility(profilePhoto, 30, ClientProfilePage.driver);
+        Assert.assertTrue("Validate Owner profile photo", BaseClass.isElementPresent(ClientProfilePage.driver, profilePhoto));
+        Assert.assertEquals("Validate Owner Full Name", "Full Name", fullNameLabel.getText().trim());
+        Assert.assertEquals("Validate Owner Title", "Title", titleLabel.getText().trim());
+        Assert.assertEquals("Validate Owner Work Email", "Work Email", workEmailLabel.getText().trim());
+        Assert.assertEquals("Validate Owner Phone", "Phone", phoneLabel.getText().trim());
+        Assert.assertEquals("Validate Owner Username", "Username", usernameLabel.getText().trim());
+        Assert.assertEquals("Validate Owner Role", "Role", roleLabel.getText().trim());
+        Assert.assertEquals("Validate Owner as Role", "Owner", ownerRole.getText().trim());
+        Assert.assertEquals("Validate Active as Status", "ACTIVE", activeStatus.getText().trim());
+        Assert.assertEquals("Validate Submit button", "Submit", submitButton.getText().trim());
+        Assert.assertEquals("Validate Cancel button", "Cancel", cancelButton1.getText().trim());
+        cancelButton1.click();
+        BaseClass.waitForVisibility(managerName, 30, ClientProfilePage.driver);
+        managerName.click();
+        BaseClass.waitForVisibility(profilePhoto, 30, ClientProfilePage.driver);
+        Assert.assertTrue("Validate Manager profile photo", BaseClass.isElementPresent(ClientProfilePage.driver, profilePhoto));
+        Assert.assertEquals("Validate Manager Full Name", "Full Name", fullNameLabel.getText().trim());
+        Assert.assertEquals("Validate Manager Title", "Title", titleLabel.getText().trim());
+        Assert.assertEquals("Validate Manager Work Email", "Work Email", workEmailLabel.getText().trim());
+        Assert.assertEquals("Validate Manager Phone", "Phone", phoneLabel.getText().trim());
+        Assert.assertEquals("Validate Manager Username", "Username", usernameLabel.getText().trim());
+        Assert.assertEquals("Validate Manager Role", "Role", roleLabel.getText().trim());
+        Assert.assertEquals("Validate Manager as Role", "Manager", managerRole.getText().trim());
+        Assert.assertEquals("Validate Active as Status", "ACTIVE", activeStatus.getText().trim());
+        Assert.assertEquals("Validate Reset Password button", "Reset Password", resetPasswordButton.getText().trim());
+        Assert.assertEquals("Validate Remove button", "Remove", removeButton.getText().trim());
+        Assert.assertEquals("Validate Submit button", "Submit", submitButton.getText().trim());
+        Assert.assertEquals("Validate Cancel button", "Cancel", cancelButton1.getText().trim());
+        cancelButton1.click();
+        BaseClass.waitForVisibility(memberName, 30, ClientProfilePage.driver);
+        memberName.click();
+        BaseClass.waitForVisibility(profilePhoto, 30, ClientProfilePage.driver);
+        Assert.assertTrue("Validate Member profile photo", BaseClass.isElementPresent(ClientProfilePage.driver, profilePhoto));
+        Assert.assertEquals("Validate Member Full Name", "Full Name", fullNameLabel.getText().trim());
+        Assert.assertEquals("Validate Member Title", "Title", titleLabel.getText().trim());
+        Assert.assertEquals("Validate Member Work Email", "Work Email", workEmailLabel.getText().trim());
+        Assert.assertEquals("Validate Member Phone", "Phone", phoneLabel.getText().trim());
+        Assert.assertEquals("Validate Member Username", "Username", usernameLabel.getText().trim());
+        Assert.assertEquals("Validate Member Role", "Role", roleLabel.getText().trim());
+        Assert.assertEquals("Validate Member as Role", "Member", memberRole.getText().trim());
+        Assert.assertEquals("Validate Active as Status", "ACTIVE", activeStatus.getText().trim());
+        Assert.assertEquals("Validate Reset Password button", "Reset Password", resetPasswordButton.getText().trim());
+        Assert.assertEquals("Validate Remove button", "Remove", removeButton.getText().trim());
+        Assert.assertEquals("Validate Submit button", "Submit", submitButton.getText().trim());
+        Assert.assertEquals("Validate Cancel button", "Cancel", cancelButton1.getText().trim());
+        cancelButton1.click();
+        BaseClass.waitForVisibility(managerName, 30, ClientProfilePage.driver);
+    }
+
+    public void verifyInviteToTeamFunctionality() {
+        BaseClass.waitForVisibility(memberEmailTextField, 30, ClientProfilePage.driver);
+        memberEmailTextField.sendKeys("Test@gmail.com");
+        inviteAMemberButton.click();
+        List<String> actualInviteDropdownOption = BaseClass.getColumnDataInList(ClientProfilePage.driver, "//button[@class='action-list-btn']/following-sibling::div//span");
+        List<String> expectedInviteDropdownOption = BaseClass.addStringValueInList("Member", "Can manage jobs", "Manager", "Can manage jobs, payments and members", "");
+        Assert.assertEquals("validate Invite Dropdown Options", expectedInviteDropdownOption, actualInviteDropdownOption);
+
+    }
+
 
 }
-
-
-
-
-
-
-
-

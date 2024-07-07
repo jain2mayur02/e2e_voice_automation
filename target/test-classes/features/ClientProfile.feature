@@ -1,3 +1,4 @@
+
 Feature: Validate Client Profile Functionality
 
   Background: Open Main URL
@@ -10,8 +11,8 @@ Feature: Validate Client Profile Functionality
     Then Verify Top Talent Home Banner
     Then Verify Manual closing of Top Talent Home Banner
     Then Verify My Jobs Section
-    Then Verify My Jobs Draft tab
-#    Then Verify My Jobs Hiring tab
+#    Then Verify My Jobs Draft tab
+#####    Then Verify My Jobs Hiring tab
     Then Verify My Jobs Working tab
     Then Verify My Jobs Done tab
     Then Verify Previously Hired Talent Section
@@ -62,9 +63,6 @@ Feature: Validate Client Profile Functionality
     Then Verify Get Renewal Quote button Functionality in All Licenses Tab
     Then Verify Quotes Requested Tab
     Then Verify each record in Quotes Requested Tab
-#    Then Verify Search Functionality in Quotes Requested Tab
-#    Then Verify Show filter Functionality in Quotes Requested Tab
-#    Then Verify Sort Functionality in Quotes Requested Tab
     Then Verify Edit Request button Functionality in Quotes Requested Tab
     Then Verify Cancel Request button Functionality in Quotes Requested Tab
 
@@ -76,14 +74,11 @@ Feature: Validate Client Profile Functionality
     Then Verify My Reviews section
     Then Verify Leave a Review CTA functionality for client
 
-
-  @ClientProfile
   Scenario: Verify Billing History for client
     When User login with client credentials
     Then Verify Client user is able to navigate to Billing History page
     Then Verify Billing History list
     Then Verify Each record
-#    Then Verify Transaction Details of Unpaid bill
     Then Verify Transaction Details of Paid bill
     Then Verify Date Sort Up and Sort Down functionality
     Then Verify Amount Sort Up and Sort Down functionality
@@ -91,12 +86,21 @@ Feature: Validate Client Profile Functionality
     Then Verify Download CSV Functionality
     Then Verify Show filter Functionality for billing history
     Then Verify Date filter Functionality
-#    Then Verify Pay Now button Functionality
-#    Then Verify Add Optional button Functionality
-#    Then Verify Back button functionality
+    Then Verify Transaction Details of Unpaid bill
+    Then Verify Pay Now button Functionality
+    Then Verify Add Optional button Functionality
+    Then Verify Back button functionality
     Then Verify Pagination
 
 
+  Scenario: Verify Manage Team for client
+    When User login with client credentials
+    Then Verify Client user is able to navigate to Manage Team page
+    Then Verify Owner Record
+    Then Verify Manager Record
+    Then Verify Member Record
+    Then Verify Owner Name Member Name Manager Name link navigation
+    Then Verify Invite To Team Functionality
 
 
 

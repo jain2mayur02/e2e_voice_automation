@@ -1,6 +1,7 @@
 package com.voices.managers;
 
 import com.voices.baseClass.BaseClass;
+import com.voices.pageObjects.AIStudioPageObj.AIStudioPage;
 import com.voices.pageObjects.ClientProfilePageObj.ClientProfilePage;
 import com.voices.pageObjects.HyperLinkPageObj.HyperLinkPage;
 import com.voices.pageObjects.LoginPageObj.LoginPage;
@@ -19,6 +20,7 @@ public class PageManager {
 
     private TalentProfilePage talentProfilePage;
     private ClientProfilePage clientProfilePage;
+    private AIStudioPage aiStudioPage;
 
     public PageManager(WebDriver driver) {
         this.driver = driver;
@@ -35,9 +37,11 @@ public class PageManager {
     public HyperLinkPage getHomePage() {
         return (hyperLinkPage == null) ? hyperLinkPage = new HyperLinkPage(driver) : hyperLinkPage;
     }
+
     public SearchPage getSearchPage() {
         return (searchPage == null) ? searchPage = new SearchPage(driver) : searchPage;
     }
+
     public MarketPlacePage getMarketPlacePage() {
         return (marketPlacePage == null) ? marketPlacePage = new MarketPlacePage(driver) : marketPlacePage;
     }
@@ -45,8 +49,13 @@ public class PageManager {
     public TalentProfilePage getTalentProfilePage() {
         return (talentProfilePage == null) ? talentProfilePage = new TalentProfilePage(driver) : talentProfilePage;
     }
+
     public ClientProfilePage getClientProfilePage() {
         return (clientProfilePage == null) ? clientProfilePage = new ClientProfilePage(driver) : clientProfilePage;
+    }
+
+    public AIStudioPage getAIStudioPage() {
+        return (aiStudioPage == null) ? aiStudioPage = new AIStudioPage(driver) : aiStudioPage;
     }
 
 }

@@ -215,20 +215,6 @@ public class ClientProfilePageStep {
         clientProfilePage.verifyEachRecordInQuotesRequestedTab();
     }
 
-    @Then("Verify Search Functionality in Quotes Requested Tab")
-    public void verify_search_functionality_in_quotes_requested_tab() {
-
-    }
-
-    @Then("Verify Show filter Functionality in Quotes Requested Tab")
-    public void verify_show_filter_functionality_in_quotes_requested_tab() {
-
-    }
-
-    @Then("Verify Sort Functionality in Quotes Requested Tab")
-    public void verify_sort_functionality_in_quotes_requested_tab() {
-
-    }
 
     @Then("Verify Edit Request button Functionality in Quotes Requested Tab")
     public void verify_edit_request_button_functionality_in_quotes_requested_tab() {
@@ -277,7 +263,7 @@ public class ClientProfilePageStep {
 
     @Then("Verify Transaction Details of Unpaid bill")
     public void verify_transaction_details_of_unpaid_bill() {
-
+        clientProfilePage.verifyTransactionDetailsOfUnPaidBill();
     }
 
     @Then("Verify Transaction Details of Paid bill")
@@ -317,22 +303,52 @@ public class ClientProfilePageStep {
 
     @Then("Verify Pay Now button Functionality")
     public void verify_pay_now_button_functionality() {
-
+        clientProfilePage.verifyPayNowButtonFunctionality();
     }
 
     @Then("Verify Add Optional button Functionality")
     public void verify_add_optional_button_functionality() {
-
+        clientProfilePage.verifyAddOptionalButtonFunctionality();
     }
 
     @Then("Verify Back button functionality")
     public void verify_back_button_functionality() {
-
+        clientProfilePage.verifyBackButtonFunctionality();
     }
 
     @Then("Verify Pagination")
     public void verify_pagination() {
         clientProfilePage.verifyPagination();
+    }
+
+    @Then("Verify Client user is able to navigate to Manage Team page")
+    public void verify_client_user_is_able_to_navigate_to_manage_team_page() {
+        clientProfilePage.verifyClientUserIsAbleToNavigateToManageTeamPage();
+    }
+
+    @Then("Verify Owner Record")
+    public void verify_owner_record() {
+        clientProfilePage.verifyOwnerRecord();
+    }
+
+    @Then("Verify Manager Record")
+    public void verify_manager_record() {
+        clientProfilePage.verifyManagerRecord();
+    }
+
+    @Then("Verify Member Record")
+    public void verify_member_record() {
+        clientProfilePage.verifyMemberRecord();
+    }
+
+    @Then("Verify Owner Name Member Name Manager Name link navigation")
+    public void verify_owner_name_member_name_manager_name_link_navigation() {
+        clientProfilePage.verifyOwnerNameMemberNameManagerNameLinkNavigation();
+    }
+
+    @Then("Verify Invite To Team Functionality")
+    public void verify_invite_to_team_functionality() {
+        clientProfilePage.verifyInviteToTeamFunctionality();
     }
 
 

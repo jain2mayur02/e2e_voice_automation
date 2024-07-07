@@ -1,7 +1,9 @@
+@TalentProfile
 Feature: Validate Talent Profile Functionality
 
   Background: Open Main URL
     Given User Open Home Page
+
 
   Scenario: Verify MyHome page for Talent Profile
     When User login with prime user credentials
@@ -24,6 +26,7 @@ Feature: Validate Talent Profile Functionality
     Then Verify Membership
     Then Verify Billing History
     Then Verify Change Password
+
 
   Scenario: Verify statistics
     When User login with prime user credentials
@@ -52,6 +55,7 @@ Feature: Validate Talent Profile Functionality
     Then Verify Response Template Record in the list
     Then Verify Down arrow functionality
     Then Verify Up arrow functionality
+
 
   Scenario: Validate manage package
     When User login with prime user credentials
@@ -90,7 +94,7 @@ Feature: Validate Talent Profile Functionality
     Then Verify Drag To Reorder button functionality
     Then Verify Play button of Demo Sample
 
-  @TalentProfile
+
   Scenario: Validate Public Profile
     When User login with prime user credentials
     Then Verify Talent user is able to navigate to Edit Profile Page

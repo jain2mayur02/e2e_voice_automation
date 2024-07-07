@@ -64,6 +64,17 @@ public class ConfigFileReader {
         if(password != null) return password;
         else throw new RuntimeException("password not specified in the Configuration.properties file.");
     }
+
+    public String getAIUserName() {
+        String userName = properties.getProperty("AIUserName");
+        if(userName != null) return userName;
+        else throw new RuntimeException("userName not specified in the Configuration.properties file.");
+    }
+    public String getAIPassword() {
+        String password = properties.getProperty("AIPassword");
+        if(password != null) return password;
+        else throw new RuntimeException("password not specified in the Configuration.properties file.");
+    }
     public String getApproveUserName() {
         String userName = properties.getProperty("ApproveUsername");
         if(userName != null) return userName;
