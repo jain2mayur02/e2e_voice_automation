@@ -118,4 +118,235 @@ public class AIStudioPageStep {
         aiStudioPage.verifyTheUIInStudioPageViaAITalentProfilePage();
     }
 
+    @Then("Verify by clicking on Voices logo")
+    public void verify_by_clicking_on_voices_logo() {
+        aiStudioPage.verifyByClickingOnVoicesLogo();
+    }
+
+    @Then("Verify user able to Save the AI studio by clicking on Voices logo button Save and Exit button")
+    public void verify_user_able_to_save_the_ai_studio_by_clicking_on_voices_logo_button_save_and_exit_button() {
+        aiStudioPage.verifyUserAbleToSaveTheAIStudioByClickingOnVoicesLogoButtonSaveAndExitButton();
+    }
+
+    @Then("Verify by clicking on Exit button")
+    public void verify_by_clicking_on_exit_button() {
+        aiStudioPage.verifyByClickingOnExitButton();
+    }
+
+    @Then("Verify user able to Save the AI studio by clicking on Exit button Save and Exit button")
+    public void verify_user_able_to_save_the_ai_studio_by_clicking_on_exit_button_save_and_exit_button() {
+        aiStudioPage.verifyUserAbleToSaveTheAIStudioByClickingOnVoicesLogoButtonSaveAndExitButton();
+    }
+
+    @Then("Verify Save & Exit modal is not displayed if user clicks on exit button")
+    public void verify_save_exit_modal_is_not_displayed_if_user_clicks_on_exit_button() {
+        aiStudioPage.verifySaveExitModalIsNotDisplayedIfUserClicksOnExitButton();
+    }
+
+    @Then("Confirm text block is displayed with default script")
+    public void confirm_text_block_is_displayed_with_default_script() {
+        aiStudioPage.confirmTextBlockIsDisplayedWithDefaultScript();
+    }
+
+    @Then("Confirm if there is only one text block move up down and delete buttons should be disabled")
+    public void confirm_if_there_is_only_one_text_block_move_up_down_and_delete_buttons_should_be_disabled() {
+        aiStudioPage.moveUpDownAndDeleteButtonsShouldBeDisabled();
+    }
+
+    @Then("Verify user able to play Audio player within text block")
+    public void verify_user_able_to_play_audio_player_within_text_block() {
+        aiStudioPage.verifyUserAbleToPlayAudioPlayerWithinTextBlock();
+    }
+
+    @Then("Verify Word count within text block")
+    public void verify_word_count_within_text_block() {
+        aiStudioPage.verifyWordCountWithinTextBlock();
+    }
+
+    @Then("Verify user should not able to play Audio player if text block does not have any words")
+    public void verify_user_should_not_able_to_play_audio_player_if_text_block_does_not_have_any_words() {
+        aiStudioPage.verifyUserShouldNotAbleToPlayAudioPlayerIfTextBlockDoesNotHaveAnyWords();
+    }
+
+    @Then("Verify error message is displayed and audio player is not clickable if user enters dirty word filter within text block single text block")
+    public void verify_error_message_is_displayed_and_audio_player_is_not_clickable_if_user_enters_dirty_word_filter_within_text_block_single_text_block() {
+        aiStudioPage.verifyErrorMessageForDirtyWordSingleTextBlock();
+    }
+
+    @Then("Confirm Error Message gets cleared if user remove the dirty word filter")
+    public void confirm_error_message_gets_cleared_if_user_remove_the_dirty_word_filter() {
+        aiStudioPage.confirmErrorMessageGetsClearedIfUserRemoveTheDirtyWordFilter();
+    }
+
+    @Then("Verify error message is displayed and audio player is not clickable if user enters restriction word filter within text block single text block")
+    public void verify_error_message_is_displayed_and_audio_player_is_not_clickable_if_user_enters_restriction_word_filter_within_text_block_single_text_block() {
+        aiStudioPage.verifyErrorMessageForRestrictedWordSingleTextBlock();
+    }
+
+    @Then("Confirm Error Message gets cleared if user remove the restricted word filter")
+    public void confirm_error_message_gets_cleared_if_user_remove_the_restricted_word_filter() {
+        aiStudioPage.confirmErrorMessageGetsClearedIfUserRemoveTheDirtyWordFilter();
+    }
+
+    @Then("Confirm user able to add multiple text block")
+    public void confirm_user_able_to_add_multiple_text_block() {
+        aiStudioPage.confirmUserAbleToAddMultipleTextBlock();
+    }
+
+    @Then("Confirm if there is more than one text block move up down and delete buttons should be enabled")
+    public void confirm_if_there_is_more_than_one_text_block_move_up_down_and_delete_buttons_should_be_enabled() {
+        aiStudioPage.moveUpDownAndDeleteButtonsShouldBeEnabled();
+    }
+
+    @Then("Verify Move up icon within text block")
+    public void verify_move_up_icon_within_text_block() {
+        aiStudioPage.verifyMoveUpIconWithinTextBlock();
+    }
+
+    @Then("Verify Move down icon within text block")
+    public void verify_move_down_icon_within_text_block() {
+        aiStudioPage.verifyMoveDownIconWithinTextBlock();
+    }
+
+    @Then("Verify error message is displayed and audio player is not clickable if user enters dirty word filter within text block multiple text block")
+    public void verify_error_message_is_displayed_and_audio_player_is_not_clickable_if_user_enters_dirty_word_filter_within_text_block_multiple_text_block() {
+        aiStudioPage.verifyErrorMessageForDirtyWordMultipleTextBlock();
+    }
+
+    @Then("Verify error message is displayed and audio player is not clickable if user enters restriction word filter within text block multiple text block")
+    public void verify_error_message_is_displayed_and_audio_player_is_not_clickable_if_user_enters_restriction_word_filter_within_text_block_multiple_text_block() {
+        aiStudioPage.verifyErrorMessageForRestrictedWordMultipleTextBlock();
+    }
+
+    @Then("Confirm user able to delete text block")
+    public void confirm_user_able_to_delete_text_block() {
+        aiStudioPage.confirmUserAbleToDeleteTextBlock();
+    }
+
+    @Then("Verify user should not able to add more than one fifty words in single text block")
+    public void verify_user_should_not_able_to_add_more_than_one_fifty_words_in_single_text_block() {
+        aiStudioPage.verifyUserNotAbleToAddMoreThanOneFiftyWordsInSingleTextBlock();
+    }
+
+    @Then("Confirm Default speed should be 1x")
+    public void confirm_default_speed_should_be_1x() {
+        aiStudioPage.confirmDefaultSpeedShouldBe1x();
+    }
+
+    @Then("Verify Speed adjustment for single text block")
+    public void verify_speed_adjustment_for_single_text_block() {
+        aiStudioPage.verifySpeedAdjustmentForSingleBlock();
+    }
+
+    @Then("Verify Speed adjustment for multiple text block")
+    public void verify_speed_adjustment_for_multiple_text_block() {
+        aiStudioPage.verifySpeedAdjustmentForMultipleBlock();
+    }
+
+    @Then("Confirm User able to adjust speed zero 75x")
+    public void confirm_user_able_to_adjust_speed_zero_75x() {
+        aiStudioPage.verifySpeedAdjustmentForAnySpeed(0.75, "0.75");
+    }
+
+    @Then("Confirm User able to adjust speed Onex")
+    public void confirm_user_able_to_adjust_speed_onex() {
+        aiStudioPage.verifySpeedAdjustmentForAnySpeed(1.0, "1");
+    }
+
+    @Then("Confirm User able to adjust speed One 25x")
+    public void confirm_user_able_to_adjust_speed_one_25x() {
+        aiStudioPage.verifySpeedAdjustmentForAnySpeed(1.25, "1.25");
+    }
+
+    @Then("Confirm User able to adjust speed One 5x")
+    public void confirm_user_able_to_adjust_speed_one_5x() {
+        aiStudioPage.verifySpeedAdjustmentForAnySpeed(1.5, "1.5");
+    }
+
+    @Then("Confirm User able to adjust speed One 75x")
+    public void confirm_user_able_to_adjust_speed_one_75x() {
+        aiStudioPage.verifySpeedAdjustmentForAnySpeed(1.75, "1.75");
+    }
+
+    @Then("Confirm User able to adjust speed Twox")
+    public void confirm_user_able_to_adjust_speed_twox() {
+        aiStudioPage.verifySpeedAdjustmentForAnySpeed(2.0, "2");
+    }
+
+    @Then("Confirm User able to adjust speed Twox to One 25x")
+    public void confirm_user_able_to_adjust_speed_twox_to_one_25x() {
+        aiStudioPage.verifySpeedAdjustmentBetweenTwoPoint(2.0, "2", 1.25, "1.25");
+    }
+
+    @Then("Confirm User able to adjust speed One 5x to Zero 75x")
+    public void confirm_user_able_to_adjust_speed_one_5x_to_zero_75x() {
+        aiStudioPage.verifySpeedAdjustmentBetweenTwoPoint(1.5, "1.5", 0.75, "0.75");
+    }
+
+    @Then("Confirm User able to adjust speed One x to One 5x")
+    public void confirm_user_able_to_adjust_speed_one_x_to_one_5x() {
+        aiStudioPage.verifySpeedAdjustmentBetweenTwoPoint(1.0, "1", 1.5, "1.5");
+    }
+
+    @Then("Confirm User able to adjust speed Zero 75x to Twox")
+    public void confirm_user_able_to_adjust_speed_zero_75x_to_twox() {
+        aiStudioPage.verifySpeedAdjustmentBetweenTwoPoint(0.75, "0.75", 2.0, "2");
+    }
+
+    @Then("Confirm User able to adjust speed One 5x to One 5x")
+    public void confirm_user_able_to_adjust_speed_one_5x_to_one_5x() {
+        aiStudioPage.verifySpeedAdjustmentBetweenTwoPoint(1.5, "1.5", 1.5, "1.5");
+    }
+
+    @Then("Verify Price Per word is displayed correctly for Broadcast within AI Studio")
+    public void verify_price_per_word_is_displayed_correctly_for_broadcast_within_ai_studio() {
+        aiStudioPage.verifyPricePerWordForBroadcastWithinAIStudio();
+    }
+
+    @Then("Verify Price Per word is displayed correctly for Non-Broadcast within AI Studio")
+    public void verify_price_per_word_is_displayed_correctly_for_non_broadcast_within_ai_studio() {
+        aiStudioPage.verifyPricePerWordForNonBroadcastWithinAIStudio();
+    }
+
+    @Then("Verify Price Per word is displayed correctly if user edit Category Non broadcast to Non broadcast")
+    public void verify_price_per_word_is_displayed_correctly_if_user_edit_category_non_broadcast_to_non_broadcast() {
+        aiStudioPage.verifyPricePerWordForNonBroadcastToNonBroadcastWithinAIStudio();
+    }
+
+    @Then("Verify Price Per word is displayed correctly if user edit Category Non-broadcast to broadcast")
+    public void verify_price_per_word_is_displayed_correctly_if_user_edit_category_non_broadcast_to_broadcast() {
+        aiStudioPage.verifyPricePerWordForNonBroadcastToBroadcastWithinAIStudio();
+    }
+
+    @Then("Verify Price Per word is displayed correctly if user edit Category broadcast to Non broadcast")
+    public void verify_price_per_word_is_displayed_correctly_if_user_edit_category_broadcast_to_non_broadcast() {
+        aiStudioPage.verifyPricePerWordForBroadcastToNonBroadcastWithinAIStudio();
+    }
+
+    @Then("Verify Price Per word is displayed correctly if user edit Category Broadcast to broadcast")
+    public void verify_price_per_word_is_displayed_correctly_if_user_edit_category_broadcast_to_broadcast() {
+        aiStudioPage.verifyPricePerWordForBroadcastToBroadcastWithinAIStudio();
+    }
+
+    @Then("Verify Price Per word is displayed correctly if user edit Voice Clone David to Rachael Broadcast")
+    public void verify_price_per_word_is_displayed_correctly_if_user_edit_voice_clone_david_to_rachael_broadcast() {
+        aiStudioPage.verifyPricePerWordForDavidToRachaelBroadcastWithinAIStudio();
+    }
+
+    @Then("Verify Price Per word is displayed correctly if user edit Voice Clone David to Rachael Non Broadcast")
+    public void verify_price_per_word_is_displayed_correctly_if_user_edit_voice_clone_david_to_rachael_non_broadcast() {
+        aiStudioPage.verifyPricePerWordForDavidToRachaelNonBroadcastWithinAIStudio();
+    }
+
+    @Then("Verify Select Another talent Banner is displayed if user edits voice clone and Category where broadcast price is removed on talent AI profile")
+    public void verify_select_another_talent_banner_is_displayed_if_user_edits_voice_clone_and_category_where_broadcast_price_is_removed_on_talent_ai_profile() {
+
+    }
+
+    @Then("Verify Select Another talent Banner is displayed if user edits voice clone and Category where non broadcast price is removed on talent AI profile")
+    public void verify_select_another_talent_banner_is_displayed_if_user_edits_voice_clone_and_category_where_non_broadcast_price_is_removed_on_talent_ai_profile() {
+
+    }
+
+
 }

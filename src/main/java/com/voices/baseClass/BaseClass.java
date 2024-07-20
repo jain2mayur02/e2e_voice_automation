@@ -665,5 +665,23 @@ public class BaseClass {
         return sortedDateStrings;
     }
 
+    public static int countWordInString(String inputString) {
+        String[] stringArray = inputString.split(" ");
+        int count = stringArray.length;
+        return count;
+    }
+
+    public static void clickOnAudioSpeedSlider(WebDriver driver, WebElement slider, double inputValue) {
+        BaseClass.staticWaitForVisibility(2000);
+        int sliderWidth = slider.getSize().getWidth();
+        double minValue = 0.75;
+        double maxValue = 2;
+        Actions action = new Actions(driver);
+        int xOffset = (int) ((inputValue - minValue) / (maxValue - minValue) * sliderWidth);
+        action.clickAndHold(slider).moveByOffset(xOffset - sliderWidth / 2, 0).release().perform();
+        BaseClass.staticWaitForVisibility(3000);
+
+    }
+
 
 }

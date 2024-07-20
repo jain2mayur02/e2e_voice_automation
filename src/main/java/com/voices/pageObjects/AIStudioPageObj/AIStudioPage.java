@@ -2,8 +2,8 @@ package com.voices.pageObjects.AIStudioPageObj;
 
 import com.voices.baseClass.BaseClass;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -38,6 +38,12 @@ public class AIStudioPage {
     private WebElement confirmButton;
     @FindBy(xpath = "//div[@class='radio-input-group d-flex flex-wrap']//label[text()='Online Ad']/..")
     private WebElement onlineAdCategoryRadioButton;
+    @FindBy(xpath = "//div[@class='radio-input-group d-flex flex-wrap']//label[text()='Animation']/..")
+    private WebElement animationCategoryRadioButton;
+    @FindBy(xpath = "//div[@class='radio-input-group d-flex flex-wrap']//label[text()='Movie Trailers']/..")
+    private WebElement movieTrailersCategoryRadioButton;
+    @FindBy(xpath = "//div[@class='radio-input-group d-flex flex-wrap']//label[text()='Television Ad']/..")
+    private WebElement televisionCategoryRadioButton;
     @FindBy(xpath = "//ul[@id='licensing-details']/li[1]")
     private WebElement onlineAdLicensingDetails01;
     @FindBy(xpath = "//ul[@id='licensing-details']/li[2]")
@@ -72,12 +78,18 @@ public class AIStudioPage {
     private WebElement toneDropdown;
     @FindBy(xpath = "//textarea[@class='ai-script-input']")
     private WebElement projectTextBox;
-    @FindBy(xpath = "//button[@class='caret-up action-btns']")
+    @FindBy(xpath = "(//button[@class='caret-up action-btns'])[1]")
     private WebElement moveUpButton;
-    @FindBy(xpath = "//button[@class='caret-down action-btns']")
+    @FindBy(xpath = "(//button[@class='caret-up action-btns'])[2]")
+    private WebElement moveUpButton2;
+    @FindBy(xpath = "(//button[@class='caret-down action-btns'])[1]")
     private WebElement moveDownButton;
-    @FindBy(xpath = "//button[@class='trash-icon action-btns']")
+    @FindBy(xpath = "(//button[@class='caret-down action-btns'])[2]")
+    private WebElement moveDownButton2;
+    @FindBy(xpath = "(//button[@class='trash-icon action-btns'])[1]")
     private WebElement deleteButton;
+    @FindBy(xpath = "(//button[@class='trash-icon action-btns'])[2]")
+    private WebElement deleteButton2;
     @FindBy(xpath = "//div[@class='play-pause-btn']")
     private WebElement audioPlayButton;
     @FindBy(xpath = "//span[@class='script-block-speed-wrapper margin-left-small']")
@@ -130,6 +142,38 @@ public class AIStudioPage {
     private WebElement meIcon;
     @FindBy(xpath = "//li[@class='nav-main-dropdown-list-item']//a[@class='nav-main-dropdown-link'][normalize-space()='Log Out']")
     private WebElement logoutLink;
+    @FindBy(xpath = "//div[@id='voices-studio-logo']/a")
+    private WebElement voicesStudioLogo;
+    @FindBy(xpath = "//button[@id='just-exit-modal']")
+    private WebElement discardChangesButton;
+    @FindBy(xpath = "//button[@id='submit-save-exit-modal']")
+    private WebElement saveAndExitButton;
+    @FindBy(xpath = "//h3[normalize-space()='Save and Exit']")
+    private WebElement saveAndExitHeader;
+    @FindBy(xpath = "//h1[contains(text(),'Welcome back')]")
+    private WebElement welcomeBackHeader;
+    @FindBy(xpath = "//div[@class='jobs-info-wrapper']/div[1]//span[@class='job-title']")
+    private WebElement firstDraftProjectName;
+    @FindBy(xpath = "(//form[@id='ai-scripts']//textarea[@class='ai-script-input'])[1]")
+    private WebElement firstProjectTextBlock;
+    @FindBy(xpath = "(//form[@id='ai-scripts']//textarea[@class='ai-script-input'])[2]")
+    private WebElement secondProjectTextBlock;
+    @FindBy(xpath = "//span[@class='current-time']")
+    private WebElement audioCurrentTime;
+    @FindBy(xpath = "//span[@class='word-counter']")
+    private WebElement wordCount;
+    @FindBy(xpath = "(//div[@class='form-input-message form-input-message-error']/span)[1]")
+    private WebElement shitErrorMessage;
+    @FindBy(xpath = "(//div[@class='form-input-message form-input-message-error']/span)[2]")
+    private WebElement shitErrorMessage2;
+    @FindBy(xpath = "//div[@class='form-input-message form-input-message-error']")
+    private WebElement blankErrorMessage;
+    @FindBy(xpath = "//form[@id='ai-scripts']/div[1]")
+    private WebElement firstTextBlock;
+    @FindBy(xpath = "//form[@id='ai-scripts']/div[2]")
+    private WebElement secondTextBlock;
+    @FindBy(xpath = "//button[@id='delete-script-modal-btn']")
+    private WebElement deleteBlockButton;
 
     public void verifyAIVoiceSectionIsNotDisplayedOnProfilePageForNonAITalentUsers() {
         AIStudioPage.driver.get("https://www.voices.systems/profile/talent0123");
@@ -270,8 +314,552 @@ public class AIStudioPage {
         Assert.assertTrue("Validate Pause +0.25s Button", BaseClass.isElementPresent(AIStudioPage.driver, pauseButton01));
         Assert.assertTrue("Validate Pause +1s Button", BaseClass.isElementPresent(AIStudioPage.driver, pauseButton02));
         Assert.assertTrue("Validate Pause +1.5s Button", BaseClass.isElementPresent(AIStudioPage.driver, pauseButton03));
+    }
 
+    public void verifyByClickingOnVoicesLogo() {
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys("Project");
+        confirmButton.click();
+        BaseClass.waitForVisibility(voicesStudioLogo, 30, AIStudioPage.driver);
+        voicesStudioLogo.click();
+        BaseClass.waitForVisibility(saveAndExitHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("validate save and exit header", "Save and Exit", saveAndExitHeader.getText().trim());
+        Assert.assertTrue("validate Save and exit button present", BaseClass.isElementPresent(AIStudioPage.driver, saveAndExitButton));
+        Assert.assertTrue("validate Discard Changes button present", BaseClass.isElementPresent(AIStudioPage.driver, discardChangesButton));
+    }
 
+    public void verifyUserAbleToSaveTheAIStudioByClickingOnVoicesLogoButtonSaveAndExitButton() {
+        BaseClass.staticWaitForVisibility(3000);
+        saveAndExitButton.click();
+        BaseClass.waitForVisibility(welcomeBackHeader, 30, AIStudioPage.driver);
+        Assert.assertTrue("Validate project name in draft", firstDraftProjectName.getText().trim().contains("Project"));
+    }
+
+    public void verifyByClickingOnExitButton() {
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys("Project");
+        confirmButton.click();
+        BaseClass.waitForVisibility(exitButton, 30, AIStudioPage.driver);
+        BaseClass.javaScriptClick(AIStudioPage.driver, exitButton);
+//        exitButton.click();
+        BaseClass.waitForVisibility(saveAndExitHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("validate save and exit header", "Save and Exit", saveAndExitHeader.getText().trim());
+        Assert.assertTrue("validate Save and exit button present", BaseClass.isElementPresent(AIStudioPage.driver, saveAndExitButton));
+        Assert.assertTrue("validate Discard Changes button present", BaseClass.isElementPresent(AIStudioPage.driver, discardChangesButton));
+    }
+
+    public void verifySaveExitModalIsNotDisplayedIfUserClicksOnExitButton() {
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys("Project");
+        confirmButton.click();
+        BaseClass.waitForVisibility(saveDraftButton, 30, AIStudioPage.driver);
+        BaseClass.staticWaitForVisibility(3000);
+        saveDraftButton.click();
+        BaseClass.staticWaitForVisibility(5000);
+        exitButton.click();
+        BaseClass.waitForVisibility(welcomeBackHeader, 30, AIStudioPage.driver);
+        Assert.assertTrue("Validate project name in draft", firstDraftProjectName.getText().trim().contains("Project"));
+
+    }
+
+    public void confirmTextBlockIsDisplayedWithDefaultScript() {
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys("Project");
+        confirmButton.click();
+        BaseClass.waitForVisibility(firstProjectTextBlock, 30, AIStudioPage.driver);
+        BaseClass.staticWaitForVisibility(2000);
+        String actualTextBoxText = firstProjectTextBlock.getText().trim();
+        String expectedTextBoxText = "As a parent, I want to know that my kids are safe wherever they are. That includes riding in the car. With the new Carpool Optic from Solar I can breathe easy knowing my kids will arrive where they need to safely – whether I am the driver or not.";
+        Assert.assertEquals("Validate Text Block text", expectedTextBoxText, actualTextBoxText);
+        int actualWordCount = BaseClass.countWordInString(firstProjectTextBlock.getText().trim());
+        System.out.println(actualWordCount);
+        Assert.assertEquals("Validate Word Count", 50, actualWordCount);
+    }
+
+    public void moveUpDownAndDeleteButtonsShouldBeDisabled() {
+        Assert.assertFalse("Validate Move Up Button Disabled", moveUpButton.isEnabled());
+        Assert.assertFalse("Validate Move Down Button Disabled", moveDownButton.isEnabled());
+        Assert.assertFalse("Validate Delete Button Disabled", deleteButton.isEnabled());
+    }
+
+    public void verifyUserAbleToPlayAudioPlayerWithinTextBlock() {
+        audioPlayButton.click();
+        BaseClass.staticWaitForVisibility(5000);
+        Assert.assertNotEquals("validate play time not zero", "0.00", audioCurrentTime.getText().trim());
+        BaseClass.staticWaitForVisibility(35000);
+    }
+
+    public void verifyWordCountWithinTextBlock() {
+        BaseClass.staticWaitForVisibility(3000);
+        int actualWordCount = BaseClass.countWordInString(firstProjectTextBlock.getText().trim());
+        System.out.println("actualWordCount " + actualWordCount);
+        int expectedWordCount = Integer.parseInt(wordCount.getText().trim().replaceAll("/150", ""));
+        System.out.println("expectedWordCount " + expectedWordCount);
+        Assert.assertEquals("Validate Word Count", expectedWordCount, actualWordCount);
+    }
+
+    public void verifyUserShouldNotAbleToPlayAudioPlayerIfTextBlockDoesNotHaveAnyWords() {
+        firstProjectTextBlock.clear();
+        projectDuration.click();
+        BaseClass.staticWaitForVisibility(3000);
+//        audioPlayButton.click();
+//        BaseClass.staticWaitForVisibility(5000);
+//        Assert.assertEquals("validate play time not zero", "0.00", audioCurrentTime.getText().trim());
+        Assert.assertTrue("Validate Error Message for blank", blankErrorMessage.getText().trim().contains("You must fill out at least one script."));
+
+    }
+
+    public void verifyErrorMessageForDirtyWordSingleTextBlock() {
+        firstProjectTextBlock.clear();
+        firstProjectTextBlock.sendKeys("shit");
+        projectDuration.click();
+        BaseClass.staticWaitForVisibility(3000);
+//        audioPlayButton.click();
+//        BaseClass.staticWaitForVisibility(3000);
+//        Assert.assertEquals("validate play time zero", "0:00", audioCurrentTime.getText().trim());
+        BaseClass.waitForVisibility(shitErrorMessage, 30, AIStudioPage.driver);
+        Assert.assertTrue("Validate Error Message 01", shitErrorMessage.getText().trim().contains("Script contains words or terms that violate Voices "));
+        Assert.assertTrue("Validate Error Message 02", shitErrorMessage.getText().trim().contains("Terms of Service"));
+        Assert.assertTrue("Validate Error Message 03", shitErrorMessage.getText().trim().contains("(shit)"));
+        Assert.assertFalse("Validate Continue to Download button is disabled", continueToDownloadButton.isEnabled());
+        Assert.assertFalse("Validate Save Draft button is disabled", saveDraftButton.isEnabled());
+    }
+
+    public void confirmErrorMessageGetsClearedIfUserRemoveTheDirtyWordFilter() {
+        firstProjectTextBlock.clear();
+        BaseClass.staticWaitForVisibility(3000);
+        firstProjectTextBlock.sendKeys("As a parent, I want to know that my kids are safe wherever they are. That includes riding in the car. With the new Carpool Optic from Solar I can breathe easy knowing my kids will arrive where they need to safely – whether I am the driver or not.");
+        projectDuration.click();
+        BaseClass.staticWaitForVisibility(3000);
+//        audioPlayButton.click();
+//        BaseClass.staticWaitForVisibility(5000);
+//        Assert.assertNotEquals("validate play time not zero", "0:00", audioCurrentTime.getText().trim());
+        Assert.assertFalse("Validate Error Message not present", BaseClass.isElementPresent(AIStudioPage.driver, shitErrorMessage));
+        Assert.assertTrue("Validate Continue to Download button is Enabled", continueToDownloadButton.isEnabled());
+        Assert.assertTrue("Validate Save Draft button is Enabled", saveDraftButton.isEnabled());
+    }
+
+    public void verifyErrorMessageForRestrictedWordSingleTextBlock() {
+        firstProjectTextBlock.clear();
+        BaseClass.staticWaitForVisibility(3000);
+        firstProjectTextBlock.sendKeys("test");
+        projectDuration.click();
+        BaseClass.staticWaitForVisibility(3000);
+//        audioPlayButton.click();
+//        Assert.assertEquals("validate play time zero", "0:00", audioCurrentTime.getText().trim());
+        BaseClass.waitForVisibility(shitErrorMessage, 30, AIStudioPage.driver);
+        Assert.assertTrue("Validate Error Message 01", shitErrorMessage.getText().trim().contains("Script contains words or terms that the talent has excluded from their AI voice"));
+        Assert.assertTrue("Validate Error Message 02", shitErrorMessage.getText().trim().contains("Terms of Service"));
+        Assert.assertTrue("Validate Error Message 03", shitErrorMessage.getText().trim().contains("(test)"));
+        Assert.assertFalse("Validate Continue to Download button is disabled", continueToDownloadButton.isEnabled());
+        Assert.assertFalse("Validate Save Draft button is disabled", saveDraftButton.isEnabled());
+    }
+
+    public void confirmUserAbleToAddMultipleTextBlock() {
+        Assert.assertFalse("validate single text block is present", BaseClass.isElementPresent(AIStudioPage.driver, secondProjectTextBlock));
+        addTextBlockButton.click();
+        BaseClass.waitForVisibility(secondProjectTextBlock, 30, AIStudioPage.driver);
+        Assert.assertTrue("validate two text block is present", BaseClass.isElementPresent(AIStudioPage.driver, secondProjectTextBlock));
+
+    }
+
+    public void moveUpDownAndDeleteButtonsShouldBeEnabled() {
+        Assert.assertTrue("Validate Move Up Button Enabled", moveUpButton.isEnabled());
+        Assert.assertTrue("Validate Move Down Button Enabled", moveDownButton.isEnabled());
+        Assert.assertTrue("Validate Delete Button Enabled", deleteButton.isEnabled());
+        Assert.assertTrue("Validate Move Up Button 2 Enabled", moveUpButton2.isEnabled());
+        Assert.assertTrue("Validate Move Down Button 2 Enabled", moveDownButton2.isEnabled());
+        Assert.assertTrue("Validate Delete Button 2 Enabled", deleteButton2.isEnabled());
+    }
+
+    public void verifyMoveUpIconWithinTextBlock() {
+        String firstBlockId = firstTextBlock.getAttribute("id");
+        String secondBlockId = secondTextBlock.getAttribute("id");
+        moveUpButton2.click();
+        BaseClass.staticWaitForVisibility(4000);
+        Assert.assertEquals("validate First Block Id", secondBlockId, firstTextBlock.getAttribute("id"));
+        Assert.assertEquals("validate Second Block Id", firstBlockId, secondTextBlock.getAttribute("id"));
+    }
+
+    public void verifyMoveDownIconWithinTextBlock() {
+        String firstBlockId = firstTextBlock.getAttribute("id");
+        String secondBlockId = secondTextBlock.getAttribute("id");
+        moveDownButton2.click();
+        BaseClass.staticWaitForVisibility(4000);
+        Assert.assertEquals("validate First Block Id", secondBlockId, firstTextBlock.getAttribute("id"));
+        Assert.assertEquals("validate Second Block Id", firstBlockId, secondTextBlock.getAttribute("id"));
+    }
+
+    public void verifyErrorMessageForDirtyWordMultipleTextBlock() {
+        firstProjectTextBlock.clear();
+        secondProjectTextBlock.clear();
+        firstProjectTextBlock.sendKeys("shit");
+        secondProjectTextBlock.sendKeys("shit");
+        projectDuration.click();
+        BaseClass.staticWaitForVisibility(3000);
+        BaseClass.waitForVisibility(shitErrorMessage, 30, AIStudioPage.driver);
+        Assert.assertTrue("Validate Error Message 01 for first block", shitErrorMessage.getText().trim().contains("Script contains words or terms that violate Voices "));
+        Assert.assertTrue("Validate Error Message 02 for first block", shitErrorMessage.getText().trim().contains("Terms of Service"));
+        Assert.assertTrue("Validate Error Message 03 for first block", shitErrorMessage.getText().trim().contains("(shit)"));
+        Assert.assertTrue("Validate Error Message 01 for Second block", shitErrorMessage2.getText().trim().contains("Script contains words or terms that violate Voices "));
+        Assert.assertTrue("Validate Error Message 02 for Second block", shitErrorMessage2.getText().trim().contains("Terms of Service"));
+        Assert.assertTrue("Validate Error Message 03 for Second block", shitErrorMessage2.getText().trim().contains("(shit)"));
+        Assert.assertFalse("Validate Continue to Download button is disabled", continueToDownloadButton.isEnabled());
+        Assert.assertFalse("Validate Save Draft button is disabled", saveDraftButton.isEnabled());
+    }
+
+    public void verifyErrorMessageForRestrictedWordMultipleTextBlock() {
+        firstProjectTextBlock.clear();
+        secondProjectTextBlock.clear();
+        firstProjectTextBlock.sendKeys("test");
+        secondProjectTextBlock.sendKeys("test");
+        projectDuration.click();
+        BaseClass.staticWaitForVisibility(3000);
+        BaseClass.waitForVisibility(shitErrorMessage, 30, AIStudioPage.driver);
+        Assert.assertTrue("Validate Error Message 01 for first block", shitErrorMessage.getText().trim().contains("Script contains words or terms that the talent has excluded from their AI voice"));
+        Assert.assertTrue("Validate Error Message 02 for first block", shitErrorMessage.getText().trim().contains("Terms of Service"));
+        Assert.assertTrue("Validate Error Message 03 for first block", shitErrorMessage.getText().trim().contains("(test)"));
+        Assert.assertTrue("Validate Error Message 01 for Second block", shitErrorMessage2.getText().trim().contains("Script contains words or terms that the talent has excluded from their AI voice"));
+        Assert.assertTrue("Validate Error Message 02 for Second block", shitErrorMessage2.getText().trim().contains("Terms of Service"));
+        Assert.assertTrue("Validate Error Message 03 for Second block", shitErrorMessage2.getText().trim().contains("(test)"));
+        Assert.assertFalse("Validate Continue to Download button is disabled", continueToDownloadButton.isEnabled());
+        Assert.assertFalse("Validate Save Draft button is disabled", saveDraftButton.isEnabled());
+    }
+
+    public void confirmUserAbleToDeleteTextBlock() {
+        Assert.assertTrue("Validate second block is present", BaseClass.isElementPresent(AIStudioPage.driver, secondProjectTextBlock));
+        deleteButton2.click();
+        BaseClass.waitForVisibility(deleteBlockButton, 30, AIStudioPage.driver);
+        deleteBlockButton.click();
+        BaseClass.staticWaitForVisibility(3000);
+        Assert.assertFalse("Validate second block is not present", BaseClass.isElementPresent(AIStudioPage.driver, secondProjectTextBlock));
+    }
+
+    public void verifyUserNotAbleToAddMoreThanOneFiftyWordsInSingleTextBlock() {
+        Assert.assertFalse("validate second block not present", BaseClass.isElementPresent(AIStudioPage.driver, secondProjectTextBlock));
+        firstProjectTextBlock.clear();
+        firstProjectTextBlock.sendKeys("As a parent, I want to know that my kids are safe wherever they are. That includes riding in the car. With the new Carpool Optic from Solar I can breathe easy knowing my kids will arrive where they need to safely – whether I am the driver or not. As a parent, I want to know that my kids are safe wherever they are. That includes riding in the car. With the new Carpool Optic from Solar I can breathe easy knowing my kids will arrive where they need to safely – whether I am the driver or not. As a parent, I want to know that my kids are safe wherever they are. That includes riding in the car. With the new Carpool Optic from Solar I can breathe easy knowing my kids will arrive where they need to safely – whether I am the driver or not. More Word two three");
+        projectDuration.click();
+        BaseClass.waitForVisibility(secondProjectTextBlock, 30, AIStudioPage.driver);
+        Assert.assertTrue("validate second block generated after 150 word", BaseClass.isElementPresent(AIStudioPage.driver, secondProjectTextBlock));
+        System.out.println("Done");
+    }
+
+    @FindBy(xpath = "(//span[@class='script-block-speed'])[1]")
+    private WebElement firstTextBlockAudioSpeed;
+    @FindBy(xpath = "(//span[@class='script-block-speed'])[2]")
+    private WebElement secondTextBlockAudioSpeed;
+    @FindBy(xpath = "//div[@class='range-slider']")
+    private WebElement audioSpeedSlider;
+
+    public void confirmDefaultSpeedShouldBe1x() {
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys("Project");
+        confirmButton.click();
+        BaseClass.waitForVisibility(speedSlider, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate text block default audio speed", "1", firstTextBlockAudioSpeed.getText().trim());
+        Assert.assertEquals("Validate slider default audio speed", "--step: 0.25; --min: 0.75; --max: 2; --val: 1;", audioSpeedSlider.getAttribute("style"));
+
+    }
+
+    public void verifySpeedAdjustmentForSingleBlock() {
+        BaseClass.clickOnAudioSpeedSlider(AIStudioPage.driver, speedSlider, 0.75);
+        Assert.assertEquals("Validate Speed slider for single block", "0.75", firstTextBlockAudioSpeed.getText().trim());
+    }
+
+    public void verifySpeedAdjustmentForMultipleBlock() {
+        addTextBlockButton.click();
+        BaseClass.clickOnAudioSpeedSlider(AIStudioPage.driver, speedSlider, 2.0);
+        Assert.assertEquals("Validate Speed slider for multiple block", "2", firstTextBlockAudioSpeed.getText().trim());
+        Assert.assertEquals("Validate Speed slider for multiple block", "2", secondTextBlockAudioSpeed.getText().trim());
+    }
+
+    public void verifySpeedAdjustmentForAnySpeed(double inputSpeed, String outputSpeed) {
+        BaseClass.clickOnAudioSpeedSlider(AIStudioPage.driver, speedSlider, inputSpeed);
+        Assert.assertEquals("Validate Speed slider for single block", outputSpeed, firstTextBlockAudioSpeed.getText().trim());
+    }
+
+    public void verifySpeedAdjustmentBetweenTwoPoint(double firstInputSpeed, String firstOutputSpeed, double secondInputSpeed, String secondOutputSpeed) {
+        BaseClass.clickOnAudioSpeedSlider(AIStudioPage.driver, speedSlider, 0.75);
+        BaseClass.clickOnAudioSpeedSlider(AIStudioPage.driver, speedSlider, firstInputSpeed);
+        Assert.assertEquals("Validate first Speed slider for single block", firstOutputSpeed, firstTextBlockAudioSpeed.getText().trim());
+        BaseClass.clickOnAudioSpeedSlider(AIStudioPage.driver, speedSlider, secondInputSpeed);
+        Assert.assertEquals("Validate second Speed slider for single block", secondOutputSpeed, firstTextBlockAudioSpeed.getText().trim());
+    }
+
+    @FindBy(xpath = "//h3[text()='Edit Your Voice']")
+    private WebElement editYourVoiceHeader;
+    @FindBy(xpath = "//h5[text()='David Kaplan']/../../following-sibling::div[@class='ResultCard-action']/button[2]")
+    private WebElement davidSelectButton;
+    @FindBy(xpath = "//h5[text()='Rachael West']/../../following-sibling::div[@class='ResultCard-action']/button[2]")
+    private WebElement rachaelSelectButton;
+    @FindBy(xpath = "//div[@id='ai-talent-modal']//button[@type='button']")
+    private WebElement editYourVoiceCloseButton;
+
+    public void verifyPricePerWordForBroadcastWithinAIStudio() {
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys("Project");
+        confirmButton.click();
+        BaseClass.waitForVisibility(voiceClonePricePerWord, 30, AIStudioPage.driver);
+        voiceCloneEditIcon.click();
+        BaseClass.waitForVisibility(editYourVoiceHeader, 30, AIStudioPage.driver);
+        if (davidSelectButton.getText().trim().equalsIgnoreCase("Select")) {
+            davidSelectButton.click();
+        } else {
+//            editYourVoiceCloseButton.click();
+            BaseClass.javaScriptClick(AIStudioPage.driver, editYourVoiceCloseButton);
+        }
+        BaseClass.waitForVisibility(voiceClonePricePerWord, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Price per word", "$0.50/word", voiceClonePricePerWord.getText().trim());
+
+    }
+
+    public void verifyPricePerWordForNonBroadcastWithinAIStudio() {
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        animationCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys("Project");
+        confirmButton.click();
+        BaseClass.waitForVisibility(voiceClonePricePerWord, 30, AIStudioPage.driver);
+        voiceCloneEditIcon.click();
+        BaseClass.waitForVisibility(editYourVoiceHeader, 30, AIStudioPage.driver);
+        if (davidSelectButton.getText().trim().equalsIgnoreCase("Select")) {
+            davidSelectButton.click();
+        } else {
+//            editYourVoiceCloseButton.click();
+            BaseClass.javaScriptClick(AIStudioPage.driver, editYourVoiceCloseButton);
+        }
+        BaseClass.waitForVisibility(voiceClonePricePerWord, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Price per word", "$0.10/word", voiceClonePricePerWord.getText().trim());
+
+    }
+
+    @FindBy(xpath = "//a[normalize-space()='Edit details']")
+    private WebElement editDetailsLink;
+
+    public void verifyPricePerWordForNonBroadcastToNonBroadcastWithinAIStudio() {
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        animationCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys("Project");
+        confirmButton.click();
+        BaseClass.waitForVisibility(voiceCloneEditIcon, 30, AIStudioPage.driver);
+        BaseClass.javaScriptClick(AIStudioPage.driver, voiceCloneEditIcon);
+        BaseClass.waitForVisibility(editYourVoiceHeader, 30, AIStudioPage.driver);
+        if (davidSelectButton.getText().trim().equalsIgnoreCase("Select")) {
+            davidSelectButton.click();
+        } else {
+//            editYourVoiceCloseButton.click();
+            BaseClass.javaScriptClick(AIStudioPage.driver, editYourVoiceCloseButton);
+        }
+        BaseClass.waitForVisibility(voiceClonePricePerWord, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Price per word", "$0.10/word", voiceClonePricePerWord.getText().trim());
+        editDetailsLink.click();
+        BaseClass.waitForVisibility(movieTrailersCategoryRadioButton, 30, AIStudioPage.driver);
+        movieTrailersCategoryRadioButton.click();
+        confirmButton.click();
+        BaseClass.waitForVisibility(voiceCloneEditIcon, 30, AIStudioPage.driver);
+        BaseClass.javaScriptClick(AIStudioPage.driver, voiceCloneEditIcon);
+        BaseClass.waitForVisibility(davidSelectButton, 30, AIStudioPage.driver);
+        if (davidSelectButton.getText().trim().equalsIgnoreCase("Select")) {
+            davidSelectButton.click();
+        } else {
+//            editYourVoiceCloseButton.click();
+            BaseClass.javaScriptClick(AIStudioPage.driver, editYourVoiceCloseButton);
+        }
+        BaseClass.waitForVisibility(voiceClonePricePerWord, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Price per word", "$0.10/word", voiceClonePricePerWord.getText().trim());
+
+    }
+
+    public void verifyPricePerWordForNonBroadcastToBroadcastWithinAIStudio() {
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        animationCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys("Project");
+        confirmButton.click();
+        BaseClass.waitForVisibility(voiceCloneEditIcon, 30, AIStudioPage.driver);
+        BaseClass.javaScriptClick(AIStudioPage.driver, voiceCloneEditIcon);
+        BaseClass.waitForVisibility(editYourVoiceHeader, 30, AIStudioPage.driver);
+        if (davidSelectButton.getText().trim().equalsIgnoreCase("Select")) {
+            davidSelectButton.click();
+        } else {
+            BaseClass.javaScriptClick(AIStudioPage.driver, editYourVoiceCloseButton);
+//            editYourVoiceCloseButton.click();
+        }
+        BaseClass.waitForVisibility(voiceClonePricePerWord, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Price per word", "$0.10/word", voiceClonePricePerWord.getText().trim());
+        editDetailsLink.click();
+        BaseClass.waitForVisibility(televisionCategoryRadioButton, 30, AIStudioPage.driver);
+        televisionCategoryRadioButton.click();
+        confirmButton.click();
+        BaseClass.waitForVisibility(voiceCloneEditIcon, 30, AIStudioPage.driver);
+        BaseClass.javaScriptClick(AIStudioPage.driver, voiceCloneEditIcon);
+        BaseClass.waitForVisibility(davidSelectButton, 30, AIStudioPage.driver);
+        if (davidSelectButton.getText().trim().equalsIgnoreCase("Select")) {
+            davidSelectButton.click();
+        } else {
+//            editYourVoiceCloseButton.click();
+            BaseClass.javaScriptClick(AIStudioPage.driver, editYourVoiceCloseButton);
+        }
+        BaseClass.waitForVisibility(voiceClonePricePerWord, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Price per word", "$0.50/word", voiceClonePricePerWord.getText().trim());
+
+    }
+
+    public void verifyPricePerWordForBroadcastToNonBroadcastWithinAIStudio() {
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys("Project");
+        confirmButton.click();
+        BaseClass.waitForVisibility(voiceCloneEditIcon, 30, AIStudioPage.driver);
+        BaseClass.javaScriptClick(AIStudioPage.driver, voiceCloneEditIcon);
+        BaseClass.waitForVisibility(editYourVoiceHeader, 30, AIStudioPage.driver);
+        if (davidSelectButton.getText().trim().equalsIgnoreCase("Select")) {
+            davidSelectButton.click();
+        } else {
+//            editYourVoiceCloseButton.click();
+            BaseClass.javaScriptClick(AIStudioPage.driver, editYourVoiceCloseButton);
+        }
+        BaseClass.waitForVisibility(voiceClonePricePerWord, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Price per word", "$0.50/word", voiceClonePricePerWord.getText().trim());
+        editDetailsLink.click();
+        BaseClass.waitForVisibility(movieTrailersCategoryRadioButton, 30, AIStudioPage.driver);
+        movieTrailersCategoryRadioButton.click();
+        confirmButton.click();
+        BaseClass.waitForVisibility(voiceCloneEditIcon, 30, AIStudioPage.driver);
+        BaseClass.javaScriptClick(AIStudioPage.driver, voiceCloneEditIcon);
+        BaseClass.waitForVisibility(davidSelectButton, 30, AIStudioPage.driver);
+        if (davidSelectButton.getText().trim().equalsIgnoreCase("Select")) {
+            davidSelectButton.click();
+        } else {
+//            editYourVoiceCloseButton.click();
+            BaseClass.javaScriptClick(AIStudioPage.driver, editYourVoiceCloseButton);
+        }
+        BaseClass.waitForVisibility(voiceClonePricePerWord, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Price per word", "$0.10/word", voiceClonePricePerWord.getText().trim());
+
+    }
+
+    public void verifyPricePerWordForBroadcastToBroadcastWithinAIStudio() {
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys("Project");
+        confirmButton.click();
+        BaseClass.waitForVisibility(voiceCloneEditIcon, 30, AIStudioPage.driver);
+        BaseClass.javaScriptClick(AIStudioPage.driver, voiceCloneEditIcon);
+        BaseClass.waitForVisibility(editYourVoiceHeader, 30, AIStudioPage.driver);
+        if (davidSelectButton.getText().trim().equalsIgnoreCase("Select")) {
+            davidSelectButton.click();
+        } else {
+            BaseClass.javaScriptClick(AIStudioPage.driver, editYourVoiceCloseButton);
+        }
+        BaseClass.waitForVisibility(voiceClonePricePerWord, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Price per word", "$0.50/word", voiceClonePricePerWord.getText().trim());
+        editDetailsLink.click();
+        BaseClass.waitForVisibility(televisionCategoryRadioButton, 30, AIStudioPage.driver);
+        televisionCategoryRadioButton.click();
+        confirmButton.click();
+        BaseClass.waitForVisibility(voiceCloneEditIcon, 30, AIStudioPage.driver);
+        BaseClass.javaScriptClick(AIStudioPage.driver, voiceCloneEditIcon);
+        BaseClass.waitForVisibility(davidSelectButton, 30, AIStudioPage.driver);
+        if (davidSelectButton.getText().trim().equalsIgnoreCase("Select")) {
+            davidSelectButton.click();
+        } else {
+//            editYourVoiceCloseButton.click();
+            BaseClass.javaScriptClick(AIStudioPage.driver, editYourVoiceCloseButton);
+        }
+        BaseClass.waitForVisibility(voiceClonePricePerWord, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Price per word", "$0.50/word", voiceClonePricePerWord.getText().trim());
+
+    }
+
+    public void verifyPricePerWordForDavidToRachaelBroadcastWithinAIStudio() {
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys("Project");
+        confirmButton.click();
+        BaseClass.waitForVisibility(voiceCloneEditIcon, 30, AIStudioPage.driver);
+        BaseClass.javaScriptClick(AIStudioPage.driver, voiceCloneEditIcon);
+        BaseClass.waitForVisibility(editYourVoiceHeader, 30, AIStudioPage.driver);
+        if (davidSelectButton.getText().trim().equalsIgnoreCase("Select")) {
+            davidSelectButton.click();
+        } else {
+            BaseClass.javaScriptClick(AIStudioPage.driver, editYourVoiceCloseButton);
+        }
+        BaseClass.waitForVisibility(voiceClonePricePerWord, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Price per word", "$0.50/word", voiceClonePricePerWord.getText().trim());
+        BaseClass.waitForVisibility(voiceCloneEditIcon, 30, AIStudioPage.driver);
+        BaseClass.javaScriptClick(AIStudioPage.driver, voiceCloneEditIcon);
+        BaseClass.waitForVisibility(rachaelSelectButton, 30, AIStudioPage.driver);
+        if (rachaelSelectButton.getText().trim().equalsIgnoreCase("Select")) {
+            rachaelSelectButton.click();
+        } else {
+//            editYourVoiceCloseButton.click();
+            BaseClass.javaScriptClick(AIStudioPage.driver, editYourVoiceCloseButton);
+        }
+        BaseClass.waitForVisibility(voiceClonePricePerWord, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Price per word", "$0.30/word", voiceClonePricePerWord.getText().trim());
+
+    }
+
+    public void verifyPricePerWordForDavidToRachaelNonBroadcastWithinAIStudio() {
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        animationCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys("Project");
+        confirmButton.click();
+        BaseClass.waitForVisibility(voiceCloneEditIcon, 30, AIStudioPage.driver);
+        BaseClass.javaScriptClick(AIStudioPage.driver, voiceCloneEditIcon);
+        BaseClass.waitForVisibility(editYourVoiceHeader, 30, AIStudioPage.driver);
+        if (davidSelectButton.getText().trim().equalsIgnoreCase("Select")) {
+            davidSelectButton.click();
+        } else {
+            BaseClass.javaScriptClick(AIStudioPage.driver, editYourVoiceCloseButton);
+        }
+        BaseClass.waitForVisibility(voiceClonePricePerWord, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Price per word", "$0.10/word", voiceClonePricePerWord.getText().trim());
+        System.out.println(voiceClonePricePerWord.getText().trim());
+        BaseClass.waitForVisibility(voiceCloneEditIcon, 30, AIStudioPage.driver);
+        BaseClass.javaScriptClick(AIStudioPage.driver, voiceCloneEditIcon);
+        BaseClass.waitForVisibility(rachaelSelectButton, 30, AIStudioPage.driver);
+        if (rachaelSelectButton.getText().trim().equalsIgnoreCase("Select")) {
+            rachaelSelectButton.click();
+        } else {
+//            editYourVoiceCloseButton.click();
+            BaseClass.javaScriptClick(AIStudioPage.driver, editYourVoiceCloseButton);
+        }
+        BaseClass.waitForVisibility(voiceClonePricePerWord, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Price per word", "$0.15/word", voiceClonePricePerWord.getText().trim());
+        System.out.println(voiceClonePricePerWord.getText().trim());
     }
 
 }
