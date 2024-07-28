@@ -348,5 +348,130 @@ public class AIStudioPageStep {
 
     }
 
+    @Then("Verify Save Draft button is disabled if AI studio has zero words")
+    public void verify_save_draft_button_is_disabled_if_ai_studio_has_zero_words() {
+        aiStudioPage.verifySaveDraftButtonIsDisabledIfAIStudioHasZeroWords();
+    }
+
+    @Then("Verify Save Draft button is disabled if text block contains error message dirty word")
+    public void verify_save_draft_button_is_disabled_if_text_block_contains_error_message_dirty_word() {
+        aiStudioPage.verifySaveDraftButtonIsDisabledIfAIStudioHasDirtyWords();
+    }
+
+    @Then("Verify Save Draft button is disabled if text block contains error message restriction word")
+    public void verify_save_draft_button_is_disabled_if_text_block_contains_error_message_restriction_word() {
+        aiStudioPage.verifySaveDraftButtonIsDisabledIfAIStudioHasRestrictedWords();
+    }
+
+    @Then("Verify Functionality of Save Draft button")
+    public void verify_functionality_of_save_draft_button() {
+        aiStudioPage.verifyFunctionalityOfSaveDraftButton();
+    }
+
+    @Then("Verify Functionality of Save Draft button by editing the AI Studio")
+    public void verify_functionality_of_save_draft_button_by_editing_the_ai_studio() {
+        aiStudioPage.verifyFunctionalityOfSaveDraftButtonByEditingAIStudio();
+    }
+
+    @Then("Verify {int} Error if user tries to access deleted draft AI studio")
+    public void verify_error_if_user_tries_to_access_deleted_draft_ai_studio(Integer errorCode) {
+        aiStudioPage.verifyErrorIfUserTriesToAccessDeletedDraftAIStudio(errorCode);
+    }
+
+    @Then("Verify Functionality of Edit Draft button")
+    public void verify_functionality_of_edit_draft_button() {
+        aiStudioPage.verifyFunctionalityOfEditDraftButton();
+    }
+
+    @Then("Verify AI Studio is saved as Draft My Home Jobs All Jobs Draft Draft tab within AI Studio")
+    public void verify_ai_studio_is_saved_as_draft_my_home_jobs_all_jobs_draft_draft_tab_within_ai_studio() {
+        aiStudioPage.verifyAIStudioIsSavedAsDraft();
+    }
+
+    @Then("Verify by deleting the Draft AI studio via Drafts tab within AI Studio")
+    public void verify_by_deleting_the_draft_ai_studio_via_drafts_tab_within_ai_studio() {
+        aiStudioPage.verifyByDeletingDraftAIStudioViaDraftsTab();
+    }
+
+    @Then("Verify by deleting the Draft AI studio via Drafts tab within Jobs page Draft tab")
+    public void verify_by_deleting_the_draft_ai_studio_via_drafts_tab_within_jobs_page_draft_tab() {
+        aiStudioPage.verifyByDeletingDraftAIStudioViaDraftsTab();
+    }
+
+    @Then("Verify Search functionality within AI Studio Draft Tab")
+    public void verify_search_functionality_within_ai_studio_draft_tab() {
+        aiStudioPage.verifySearchFunctionality();
+    }
+
+    @Then("Verify Sort functionality within AI Studio Draft Tab")
+    public void verify_sort_functionality_within_ai_studio_draft_tab() {
+        aiStudioPage.verifySortFunctionality();
+    }
+
+    @Then("Verify Ai studio is saved as Draft if user navigates to check out page and land back on AI Studio page")
+    public void verify_ai_studio_is_saved_as_draft_if_user_navigates_to_check_out_page_and_land_back_on_ai_studio_page() {
+        aiStudioPage.verifySavedAsDraftNavigatesToCheckOutPageAndBackAIStudioPage();
+    }
+
+    @Then("Verify the Job status gets changed from Draft to Done if user purchases the AI Draft job")
+    public void verify_the_job_status_gets_changed_from_draft_to_done_if_user_purchases_the_ai_draft_job() {
+
+    }
+
+    @Then("Verify user lands on Home page if user clicks on Exit button if AI studio is already saved")
+    public void verify_user_lands_on_home_page_if_user_clicks_on_exit_button_if_ai_studio_is_already_saved() {
+        aiStudioPage.verifyUserLandsOnHomePageIfUserClicksExitButtonForAlreadySaved();
+    }
+
+    @Then("Verify Exit modal shows up if user clicks on Exit button if AI Studio is not saved")
+    public void verify_exit_modal_shows_up_if_user_clicks_on_exit_button_if_ai_studio_is_not_saved() {
+        aiStudioPage.verifyExitModalShowsIfClickExitButtonForNotSavedJob();
+    }
+
+    @Then("Verify AI Studio is saved as Draft and if user clicks on Save and Exit button within AI studio Exit modal")
+    public void verify_ai_studio_is_saved_as_draft_and_if_user_clicks_on_save_and_exit_button_within_ai_studio_exit_modal() {
+        aiStudioPage.verifyAIStudioIsSavedIfClickExitButtonForNotSavedJob();
+    }
+
+    @Then("Verify AI Studio is not saved as Draft and if user clicks on Discard changes button within AI studio Exit modal")
+    public void verify_ai_studio_is_not_saved_as_draft_and_if_user_clicks_on_discard_changes_button_within_ai_studio_exit_modal() {
+        aiStudioPage.verifyAIStudioIsNotSavedIfClickExitButtonForNotSavedJob();
+    }
+
+    @Then("Verify AI Studio is not saved as Draft and if user clicks on close icon within AI studio Exit modal")
+    public void verify_ai_studio_is_not_saved_as_draft_and_if_user_clicks_on_close_icon_within_ai_studio_exit_modal() {
+        aiStudioPage.verifyAIStudioIsNotSavedIfClickCloseButtonForNotSavedJob();
+    }
+
+    @Then("Verify Exit modal shows up if user clicks on Voices logo if AI Studio is not saved Voices logo")
+    public void verify_exit_modal_shows_up_if_user_clicks_on_voices_logo_if_ai_studio_is_not_saved_voices_logo() {
+        aiStudioPage.verifyExitModalShowsIfClickExitButtonForNotSavedJobVoicesLogo();
+    }
+
+    @Then("Verify AI Studio is saved as Draft and if user clicks on Save and Exit button within AI studio Exit modal Voices logo")
+    public void verify_ai_studio_is_saved_as_draft_and_if_user_clicks_on_voices_logo_within_ai_studio_exit_modal_voices_logo() {
+        aiStudioPage.verifyAIStudioIsSavedIfClickExitButtonForNotSavedJobVoicesLogo();
+    }
+
+    @Then("Verify AI Studio is not saved as Draft and if user clicks on Discard changes button within AI studio Exit modal Voices logo")
+    public void verify_ai_studio_is_not_saved_as_draft_and_if_user_clicks_on_discard_changes_button_within_ai_studio_exit_modal_voices_logo() {
+        aiStudioPage.verifyAIStudioIsNotSavedIfClickExitButtonForNotSavedJobVoicesLogo();
+    }
+
+    @Then("Verify AI Studio is not saved as Draft and if user clicks on close icon within AI studio Exit modal Voices logo")
+    public void verify_ai_studio_is_not_saved_as_draft_and_if_user_clicks_on_close_icon_within_ai_studio_exit_modal_voices_logo() {
+        aiStudioPage.verifyAIStudioIsNotSavedIfClickCloseButtonForNotSavedJobVoicesLogo();
+    }
+
+    @Then("Verify AI Drafts job should not be displayed in Job form public job")
+    public void verify_ai_drafts_job_should_not_be_displayed_in_job_form_public_job() {
+        aiStudioPage.verifyAIDraftsJobShouldNotDisplayedInJobFormPublicJob();
+    }
+
+    @Then("Verify AI Drafts job should not be displayed in Job form private job")
+    public void verify_ai_drafts_job_should_not_be_displayed_in_job_form_private_job() {
+
+    }
+
 
 }

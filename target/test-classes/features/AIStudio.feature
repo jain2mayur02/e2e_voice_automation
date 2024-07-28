@@ -89,7 +89,7 @@ Feature: Validate Talent Profile Functionality
     Then Confirm User able to adjust speed Zero 75x to Twox
     Then Confirm User able to adjust speed One 5x to One 5x
 
-  @AIStudio
+
   Scenario: Validate Edit Voice Clone functionality
     When User login with AI user credentials
     Then Verify Price Per word is displayed correctly for Broadcast within AI Studio
@@ -100,10 +100,38 @@ Feature: Validate Talent Profile Functionality
     Then Verify Price Per word is displayed correctly if user edit Category Broadcast to broadcast
     Then Verify Price Per word is displayed correctly if user edit Voice Clone David to Rachael Broadcast
     Then Verify Price Per word is displayed correctly if user edit Voice Clone David to Rachael Non Broadcast
-    Then Verify Select Another talent Banner is displayed if user edits voice clone and Category where broadcast price is removed on talent AI profile
-    Then Verify Select Another talent Banner is displayed if user edits voice clone and Category where non broadcast price is removed on talent AI profile
+#    Then Verify Select Another talent Banner is displayed if user edits voice clone and Category where broadcast price is removed on talent AI profile
+#    Then Verify Select Another talent Banner is displayed if user edits voice clone and Category where non broadcast price is removed on talent AI profile
 
 
+  @AIStudio
+  Scenario: Validate Save draft functionality
+    When User login with AI user credentials
+#    Then Verify Save Draft button is disabled if AI studio has zero words
+#    Then Verify Save Draft button is disabled if text block contains error message dirty word
+#    Then Verify Save Draft button is disabled if text block contains error message restriction word
+#    Then Verify Functionality of Save Draft button
+#    Then Verify Functionality of Save Draft button by editing the AI Studio
+#    Then Verify 404 Error if user tries to access deleted draft AI studio
+#    Then Verify Functionality of Edit Draft button
+#    Then Verify AI Studio is saved as Draft My Home Jobs All Jobs Draft Draft tab within AI Studio
+#    Then Verify by deleting the Draft AI studio via Drafts tab within AI Studio
+#    Then Verify by deleting the Draft AI studio via Drafts tab within Jobs page Draft tab
+#    Then Verify Search functionality within AI Studio Draft Tab
+#    Then Verify Sort functionality within AI Studio Draft Tab
+#    Then Verify Ai studio is saved as Draft if user navigates to check out page and land back on AI Studio page
+##    Then Verify the Job status gets changed from Draft to Done if user purchases the AI Draft job
+#    Then Verify user lands on Home page if user clicks on Exit button if AI studio is already saved
+#    Then Verify Exit modal shows up if user clicks on Exit button if AI Studio is not saved
+#    Then Verify AI Studio is saved as Draft and if user clicks on Save and Exit button within AI studio Exit modal
+#    Then Verify AI Studio is not saved as Draft and if user clicks on Discard changes button within AI studio Exit modal
+#    Then Verify AI Studio is not saved as Draft and if user clicks on close icon within AI studio Exit modal
+#    Then Verify Exit modal shows up if user clicks on Voices logo if AI Studio is not saved Voices logo
+#    Then Verify AI Studio is saved as Draft and if user clicks on Save and Exit button within AI studio Exit modal Voices logo
+#    Then Verify AI Studio is not saved as Draft and if user clicks on Discard changes button within AI studio Exit modal Voices logo
+#    Then Verify AI Studio is not saved as Draft and if user clicks on close icon within AI studio Exit modal Voices logo
+    Then Verify AI Drafts job should not be displayed in Job form public job
+#    Then Verify AI Drafts job should not be displayed in Job form private job
 
 
 

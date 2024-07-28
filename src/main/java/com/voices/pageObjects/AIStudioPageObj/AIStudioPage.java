@@ -1,6 +1,7 @@
 package com.voices.pageObjects.AIStudioPageObj;
 
 import com.voices.baseClass.BaseClass;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
+import java.util.Random;
 
 public class AIStudioPage {
 
@@ -384,7 +386,6 @@ public class AIStudioPage {
         String expectedTextBoxText = "As a parent, I want to know that my kids are safe wherever they are. That includes riding in the car. With the new Carpool Optic from Solar I can breathe easy knowing my kids will arrive where they need to safely – whether I am the driver or not.";
         Assert.assertEquals("Validate Text Block text", expectedTextBoxText, actualTextBoxText);
         int actualWordCount = BaseClass.countWordInString(firstProjectTextBlock.getText().trim());
-        System.out.println(actualWordCount);
         Assert.assertEquals("Validate Word Count", 50, actualWordCount);
     }
 
@@ -404,9 +405,7 @@ public class AIStudioPage {
     public void verifyWordCountWithinTextBlock() {
         BaseClass.staticWaitForVisibility(3000);
         int actualWordCount = BaseClass.countWordInString(firstProjectTextBlock.getText().trim());
-        System.out.println("actualWordCount " + actualWordCount);
         int expectedWordCount = Integer.parseInt(wordCount.getText().trim().replaceAll("/150", ""));
-        System.out.println("expectedWordCount " + expectedWordCount);
         Assert.assertEquals("Validate Word Count", expectedWordCount, actualWordCount);
     }
 
@@ -554,7 +553,6 @@ public class AIStudioPage {
         projectDuration.click();
         BaseClass.waitForVisibility(secondProjectTextBlock, 30, AIStudioPage.driver);
         Assert.assertTrue("validate second block generated after 150 word", BaseClass.isElementPresent(AIStudioPage.driver, secondProjectTextBlock));
-        System.out.println("Done");
     }
 
     @FindBy(xpath = "(//span[@class='script-block-speed'])[1]")
@@ -847,19 +845,524 @@ public class AIStudioPage {
         }
         BaseClass.waitForVisibility(voiceClonePricePerWord, 30, AIStudioPage.driver);
         Assert.assertEquals("Validate Price per word", "$0.10/word", voiceClonePricePerWord.getText().trim());
-        System.out.println(voiceClonePricePerWord.getText().trim());
         BaseClass.waitForVisibility(voiceCloneEditIcon, 30, AIStudioPage.driver);
         BaseClass.javaScriptClick(AIStudioPage.driver, voiceCloneEditIcon);
         BaseClass.waitForVisibility(rachaelSelectButton, 30, AIStudioPage.driver);
         if (rachaelSelectButton.getText().trim().equalsIgnoreCase("Select")) {
             rachaelSelectButton.click();
         } else {
-//            editYourVoiceCloseButton.click();
             BaseClass.javaScriptClick(AIStudioPage.driver, editYourVoiceCloseButton);
         }
         BaseClass.waitForVisibility(voiceClonePricePerWord, 30, AIStudioPage.driver);
         Assert.assertEquals("Validate Price per word", "$0.15/word", voiceClonePricePerWord.getText().trim());
-        System.out.println(voiceClonePricePerWord.getText().trim());
+    }
+
+    public void verifySaveDraftButtonIsDisabledIfAIStudioHasZeroWords() {
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys("Project");
+        confirmButton.click();
+        BaseClass.waitForVisibility(firstProjectTextBlock, 30, AIStudioPage.driver);
+        BaseClass.staticWaitForVisibility(3000);
+        firstProjectTextBlock.clear();
+        projectDuration.click();
+        BaseClass.staticWaitForVisibility(5000);
+        Assert.assertFalse("Validate save draft button is disabled for 0 word", saveDraftButton.isEnabled());
+    }
+
+    public void verifySaveDraftButtonIsDisabledIfAIStudioHasDirtyWords() {
+        firstProjectTextBlock.sendKeys("shit");
+        projectDuration.click();
+        BaseClass.staticWaitForVisibility(3000);
+        Assert.assertFalse("Validate save draft button is disabled for dirty word", saveDraftButton.isEnabled());
+    }
+
+    public void verifySaveDraftButtonIsDisabledIfAIStudioHasRestrictedWords() {
+        firstProjectTextBlock.clear();
+        projectDuration.click();
+        firstProjectTextBlock.sendKeys("test");
+        projectDuration.click();
+        BaseClass.staticWaitForVisibility(3000);
+        Assert.assertFalse("Validate save draft button is disabled for restricted word", saveDraftButton.isEnabled());
+    }
+
+    public void verifyFunctionalityOfSaveDraftButton() {
+        firstProjectTextBlock.clear();
+        projectDuration.click();
+        firstProjectTextBlock.sendKeys("As a parent, I want to know that my kids are safe wherever they are. That includes riding in the car. With the new Carpool Optic from Solar I can breathe easy knowing my kids will arrive where they need to safely – whether I am the driver or not.");
+        projectDuration.click();
+        BaseClass.staticWaitForVisibility(3000);
+        Assert.assertTrue("Validate save draft button is Enabled", saveDraftButton.isEnabled());
+        saveDraftButton.click();
+        BaseClass.staticWaitForVisibility(5000);
+    }
+
+    public void verifyFunctionalityOfSaveDraftButtonByEditingAIStudio() {
+        firstProjectTextBlock.sendKeys("As a parent");
+        BaseClass.clickOnAudioSpeedSlider(AIStudioPage.driver, speedSlider, 1.25);
+        addTextBlockButton.click();
+        BaseClass.staticWaitForVisibility(3000);
+        Assert.assertTrue("Validate save draft button is Enabled", saveDraftButton.isEnabled());
+        saveDraftButton.click();
+        BaseClass.staticWaitForVisibility(5000);
+        Assert.assertEquals("Validate first Speed slider for single block", "1.25", firstTextBlockAudioSpeed.getText().trim());
+        Assert.assertEquals("Validate second Speed slider for single block", "1.25", secondTextBlockAudioSpeed.getText().trim());
+    }
+
+    @FindBy(xpath = "//li[@id='view-draft-list']")
+    private WebElement draftTab;
+    @FindBy(xpath = "//button[@id='bulk-delete-jobs']")
+    private WebElement deleteBulkJobButton;
+    @FindBy(xpath = "//button[@id='submit-delete-draft-modal']")
+    private WebElement confirmDeleteJobButton;
+    @FindBy(xpath = "//span[@class='page-status']")
+    private WebElement pageStatus;
+    @FindBy(xpath = "//li[@id='view-studio']")
+    private WebElement aiStudioTab;
+
+    public void verifyErrorIfUserTriesToAccessDeletedDraftAIStudio(Integer errorCode) {
+        String projectName = "Project For Delete";
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys(projectName);
+        confirmButton.click();
+        BaseClass.waitForVisibility(firstProjectTextBlock, 30, AIStudioPage.driver);
+        BaseClass.staticWaitForVisibility(3000);
+        Assert.assertTrue("Validate save draft button is enabled", saveDraftButton.isEnabled());
+        saveDraftButton.click();
+        BaseClass.staticWaitForVisibility(7000);
+        draftTab.click();
+        BaseClass.staticWaitForVisibility(3000);
+        WebElement projectCodeElement = AIStudioPage.driver.findElement(By.xpath("//a[text()='" + projectName + "']/following-sibling::span"));
+        BaseClass.waitForVisibility(projectCodeElement, 30, AIStudioPage.driver);
+        String[] codeArray = projectCodeElement.getText().trim().split(" ");
+        String projectCode = codeArray[1].replaceAll("#", "");
+        WebElement projectCheckbox = AIStudioPage.driver.findElement(By.xpath("//a[text()='" + projectName + "']/../../div/input"));
+        BaseClass.javaScriptClick(AIStudioPage.driver, projectCheckbox);
+        BaseClass.waitForElementClickable(deleteBulkJobButton, 30, AIStudioPage.driver);
+        deleteBulkJobButton.click();
+        BaseClass.waitForVisibility(confirmDeleteJobButton, 30, AIStudioPage.driver);
+        confirmDeleteJobButton.click();
+        BaseClass.staticWaitForVisibility(4000);
+        AIStudioPage.driver.get("https://www.voices.systems/studio?edit=" + projectCode);
+        BaseClass.waitForVisibility(pageStatus, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Page Status as 404", "404", pageStatus.getText().trim());
+    }
+
+    public void verifyFunctionalityOfEditDraftButton() {
+        String projectName = "Project For Edit";
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys(projectName);
+        confirmButton.click();
+        BaseClass.waitForVisibility(firstProjectTextBlock, 30, AIStudioPage.driver);
+        BaseClass.staticWaitForVisibility(3000);
+        Assert.assertTrue("Validate save draft button is enabled", saveDraftButton.isEnabled());
+        saveDraftButton.click();
+        BaseClass.staticWaitForVisibility(7000);
+        draftTab.click();
+        BaseClass.staticWaitForVisibility(3000);
+        AIStudioPage.driver.findElement(By.xpath("//a[text()='" + projectName + "']/../../../div[2]/a")).click();
+        BaseClass.waitForVisibility(firstProjectTextBlock, 30, AIStudioPage.driver);
+        firstProjectTextBlock.sendKeys("As a parent");
+        BaseClass.clickOnAudioSpeedSlider(AIStudioPage.driver, speedSlider, 1.25);
+        addTextBlockButton.click();
+        BaseClass.staticWaitForVisibility(3000);
+        Assert.assertTrue("Validate save draft button is Enabled", saveDraftButton.isEnabled());
+        saveDraftButton.click();
+        BaseClass.staticWaitForVisibility(5000);
+        Assert.assertEquals("Validate first Speed slider for single block", "1.25", firstTextBlockAudioSpeed.getText().trim());
+        Assert.assertEquals("Validate second Speed slider for single block", "1.25", secondTextBlockAudioSpeed.getText().trim());
+    }
+
+    public void verifyAIStudioIsSavedAsDraft() {
+        String projectName = "Project Test" + RandomStringUtils.randomAlphanumeric(15);
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys(projectName);
+        confirmButton.click();
+        BaseClass.waitForVisibility(firstProjectTextBlock, 30, AIStudioPage.driver);
+        BaseClass.staticWaitForVisibility(3000);
+        Assert.assertTrue("Validate save draft button is enabled", saveDraftButton.isEnabled());
+        saveDraftButton.click();
+        BaseClass.staticWaitForVisibility(7000);
+        draftTab.click();
+        BaseClass.staticWaitForVisibility(3000);
+        WebElement projectNameElement = AIStudioPage.driver.findElement(By.xpath("//a[text()='" + projectName + "']"));
+        BaseClass.waitForVisibility(projectNameElement, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Project Name", projectName, projectNameElement.getText().trim());
+        String actualProjectStatus = AIStudioPage.driver.findElement(By.xpath("//a[text()='" + projectName + "']/../following-sibling::div/span")).getText().trim();
+        Assert.assertEquals("Validate project status as Draft", "Draft", actualProjectStatus);
+    }
+
+    public void verifyByDeletingDraftAIStudioViaDraftsTab() {
+        String projectName = "Mayur" + RandomStringUtils.randomAlphanumeric(15);
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys(projectName);
+        confirmButton.click();
+        BaseClass.waitForVisibility(firstProjectTextBlock, 30, AIStudioPage.driver);
+        BaseClass.staticWaitForVisibility(3000);
+        Assert.assertTrue("Validate save draft button is enabled", saveDraftButton.isEnabled());
+        saveDraftButton.click();
+        BaseClass.staticWaitForVisibility(7000);
+        draftTab.click();
+        BaseClass.staticWaitForVisibility(3000);
+        WebElement projectNameElement = AIStudioPage.driver.findElement(By.xpath("//a[text()='" + projectName + "']"));
+        Assert.assertTrue("validate Project Present", BaseClass.isElementPresent(AIStudioPage.driver, projectNameElement));
+        WebElement projectCheckbox = AIStudioPage.driver.findElement(By.xpath("//a[text()='" + projectName + "']/../../div/input"));
+        BaseClass.javaScriptClick(AIStudioPage.driver, projectCheckbox);
+        BaseClass.waitForElementClickable(deleteBulkJobButton, 30, AIStudioPage.driver);
+        deleteBulkJobButton.click();
+        BaseClass.waitForVisibility(confirmDeleteJobButton, 30, AIStudioPage.driver);
+        confirmDeleteJobButton.click();
+        BaseClass.staticWaitForVisibility(5000);
+        aiStudioTab.click();
+        BaseClass.waitForVisibility(projectDuration, 30, AIStudioPage.driver);
+        draftTab.click();
+        BaseClass.staticWaitForVisibility(5000);
+        Assert.assertFalse("validate Project Not Present", BaseClass.isElementPresent(AIStudioPage.driver, projectNameElement));
+    }
+
+    @FindBy(xpath = "(//span[@class='studio-job-details'])[1]")
+    private WebElement firstDraftProjectCode;
+    @FindBy(xpath = "//input[@id='action_bar_search_keyword']")
+    private WebElement draftSearchField;
+    @FindBy(xpath = "//button[@title='Submit Search']")
+    private WebElement searchIcon;
+    @FindBy(xpath = "//button[@title='Clear Search']")
+    private WebElement clearSearchField;
+    @FindBy(xpath = "(//a[@class='studio-job-title'])[1]")
+    private WebElement firstDraftProject;
+    @FindBy(xpath = "//button[@class='action-list-btn btn-default']")
+    private WebElement projectSortButton;
+
+    public void verifySearchFunctionality() {
+        BaseClass.waitForVisibility(firstDraftProject, 30, AIStudioPage.driver);
+        String expectedProjectName = firstDraftProject.getText().trim();
+        draftSearchField.sendKeys(expectedProjectName);
+        BaseClass.staticWaitForVisibility(2000);
+        searchIcon.click();
+        BaseClass.waitForVisibility(firstDraftProject, 30, AIStudioPage.driver);
+        String actualProjectName = firstDraftProject.getText().trim();
+        Assert.assertEquals("Validate Draft Search function for project name", expectedProjectName, actualProjectName);
+        BaseClass.javaScriptClick(AIStudioPage.driver, clearSearchField);
+//        clearSearchField.click();
+        BaseClass.staticWaitForVisibility(4000);
+        BaseClass.waitForVisibility(firstDraftProjectCode, 30, AIStudioPage.driver);
+        String[] codeArray = firstDraftProjectCode.getText().trim().split(" ");
+        String expectedProjectCode = codeArray[1].replaceAll("#", "");
+        draftSearchField.sendKeys(expectedProjectCode);
+        BaseClass.staticWaitForVisibility(2000);
+        searchIcon.click();
+        BaseClass.waitForVisibility(firstDraftProjectCode, 30, AIStudioPage.driver);
+        String[] codeArray01 = firstDraftProjectCode.getText().trim().split(" ");
+        String actualProjectCode = codeArray01[1].replaceAll("#", "");
+        Assert.assertEquals("Validate Draft Search function for project code", expectedProjectCode, actualProjectCode);
+        BaseClass.waitForVisibility(clearSearchField, 30, AIStudioPage.driver);
+        BaseClass.javaScriptClick(AIStudioPage.driver, clearSearchField);
+        BaseClass.staticWaitForVisibility(4000);
+    }
+
+    public void verifySortFunctionality() {
+        projectSortButton.click();
+        List<String> actualSortList = BaseClass.getColumnDataInList(AIStudioPage.driver, "//div[@class='action-list-dropdown']//button");
+        List<String> expectedSortList = BaseClass.addStringValueInList("Newest", "Oldest");
+        Assert.assertEquals("Validate Sort Option", expectedSortList, actualSortList);
+    }
+
+    @FindBy(xpath = "//div[@id='header-title']/span")
+    private WebElement secureCheckoutPageTitle;
+
+    public void verifySavedAsDraftNavigatesToCheckOutPageAndBackAIStudioPage() {
+        String projectName = "My Test Project" + RandomStringUtils.randomAlphanumeric(15);
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys(projectName);
+        confirmButton.click();
+        BaseClass.waitForVisibility(continueToDownloadButton, 30, AIStudioPage.driver);
+        BaseClass.staticWaitForVisibility(3000);
+        continueToDownloadButton.click();
+        BaseClass.waitForVisibility(secureCheckoutPageTitle, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Checkout Page", "Secure Checkout", secureCheckoutPageTitle.getText().trim());
+        AIStudioPage.driver.navigate().back();
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        goToDraftButton.click();
+        WebElement projectNameElement = AIStudioPage.driver.findElement(By.xpath("//a[text()='" + projectName + "']"));
+        BaseClass.waitForVisibility(projectNameElement, 30, AIStudioPage.driver);
+        Assert.assertTrue("validate Project Present", BaseClass.isElementPresent(AIStudioPage.driver, projectNameElement));
+    }
+
+    public void verifyUserLandsOnHomePageIfUserClicksExitButtonForAlreadySaved() {
+        String projectName = "Test Job" + RandomStringUtils.randomAlphanumeric(15);
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys(projectName);
+        confirmButton.click();
+        BaseClass.waitForVisibility(saveDraftButton, 30, AIStudioPage.driver);
+        BaseClass.staticWaitForVisibility(3000);
+        Assert.assertTrue("Validate save draft button is enabled", saveDraftButton.isEnabled());
+        saveDraftButton.click();
+        BaseClass.staticWaitForVisibility(5000);
+        exitButton.click();
+        BaseClass.waitForVisibility(welcomeBackHeader, 30, AIStudioPage.driver);
+        Assert.assertTrue("Validate landed on home page", welcomeBackHeader.getText().trim().contains("Welcome back"));
+    }
+
+    public void verifyExitModalShowsIfClickExitButtonForNotSavedJob() {
+        String projectName = "Test Job" + RandomStringUtils.randomAlphanumeric(15);
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys(projectName);
+        confirmButton.click();
+        BaseClass.waitForVisibility(saveDraftButton, 30, AIStudioPage.driver);
+        BaseClass.staticWaitForVisibility(3000);
+        Assert.assertTrue("Validate save draft button is enabled", saveDraftButton.isEnabled());
+        exitButton.click();
+        BaseClass.waitForVisibility(saveAndExitHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("validate save and exit header", "Save and Exit", saveAndExitHeader.getText().trim());
+        Assert.assertTrue("validate Save and exit button present", BaseClass.isElementPresent(AIStudioPage.driver, saveAndExitButton));
+        Assert.assertTrue("validate Discard Changes button present", BaseClass.isElementPresent(AIStudioPage.driver, discardChangesButton));
+
+    }
+
+    public void verifyAIStudioIsSavedIfClickExitButtonForNotSavedJob() {
+        String projectName = "Test Job" + RandomStringUtils.randomAlphanumeric(15);
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys(projectName);
+        confirmButton.click();
+        BaseClass.waitForVisibility(saveDraftButton, 30, AIStudioPage.driver);
+        BaseClass.staticWaitForVisibility(3000);
+        Assert.assertTrue("Validate save draft button is enabled", saveDraftButton.isEnabled());
+        exitButton.click();
+        BaseClass.waitForVisibility(saveAndExitHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("validate save and exit header", "Save and Exit", saveAndExitHeader.getText().trim());
+        Assert.assertTrue("validate Save and exit button present", BaseClass.isElementPresent(AIStudioPage.driver, saveAndExitButton));
+        Assert.assertTrue("validate Discard Changes button present", BaseClass.isElementPresent(AIStudioPage.driver, discardChangesButton));
+        saveAndExitButton.click();
+        BaseClass.waitForVisibility(welcomeBackHeader, 30, AIStudioPage.driver);
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        goToDraftButton.click();
+        BaseClass.staticWaitForVisibility(5000);
+        WebElement projectNameElement = AIStudioPage.driver.findElement(By.xpath("//a[text()='" + projectName + "']"));
+        BaseClass.waitForVisibility(projectNameElement, 30, AIStudioPage.driver);
+        Assert.assertTrue("validate Project is saved", BaseClass.isElementPresent(AIStudioPage.driver, projectNameElement));
+    }
+
+    @FindBy(xpath = "//div[@id='ai-save-exit-modal']//div[@class='modal-header']//button[@type='button']")
+    private WebElement closeButtonInExitModel;
+
+    public void verifyAIStudioIsNotSavedIfClickExitButtonForNotSavedJob() {
+        String projectName = "Test Job" + RandomStringUtils.randomAlphanumeric(15);
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys(projectName);
+        confirmButton.click();
+        BaseClass.waitForVisibility(exitButton, 30, AIStudioPage.driver);
+        exitButton.click();
+        BaseClass.waitForVisibility(saveAndExitHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("validate save and exit header", "Save and Exit", saveAndExitHeader.getText().trim());
+        Assert.assertTrue("validate Save and exit button present", BaseClass.isElementPresent(AIStudioPage.driver, saveAndExitButton));
+        Assert.assertTrue("validate Discard Changes button present", BaseClass.isElementPresent(AIStudioPage.driver, discardChangesButton));
+        discardChangesButton.click();
+        BaseClass.waitForVisibility(welcomeBackHeader, 30, AIStudioPage.driver);
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        goToDraftButton.click();
+        BaseClass.staticWaitForVisibility(5000);
+        boolean projectStatus;
+        try {
+            WebElement projectNameElement = AIStudioPage.driver.findElement(By.xpath("//a[text()='" + projectName + "']"));
+            projectStatus = true;
+        } catch (Exception e) {
+            projectStatus = false;
+        }
+
+        Assert.assertFalse("validate Project Not Saves", projectStatus);
+    }
+
+    public void verifyAIStudioIsNotSavedIfClickCloseButtonForNotSavedJob() {
+        String projectName = "Test Job" + RandomStringUtils.randomAlphanumeric(15);
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys(projectName);
+        confirmButton.click();
+        BaseClass.waitForVisibility(exitButton, 30, AIStudioPage.driver);
+        BaseClass.staticWaitForVisibility(3000);
+        exitButton.click();
+        BaseClass.waitForVisibility(saveAndExitHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("validate save and exit header", "Save and Exit", saveAndExitHeader.getText().trim());
+        Assert.assertTrue("validate Save and exit button present", BaseClass.isElementPresent(AIStudioPage.driver, saveAndExitButton));
+        Assert.assertTrue("validate Discard Changes button present", BaseClass.isElementPresent(AIStudioPage.driver, discardChangesButton));
+        closeButtonInExitModel.click();
+        BaseClass.waitForVisibility(projectDuration, 30, AIStudioPage.driver);
+        draftTab.click();
+        BaseClass.staticWaitForVisibility(5000);
+        boolean projectStatus;
+        try {
+            WebElement projectNameElement = AIStudioPage.driver.findElement(By.xpath("//a[text()='" + projectName + "']"));
+            projectStatus = true;
+        } catch (Exception e) {
+            projectStatus = false;
+        }
+
+        Assert.assertFalse("validate Project Not Saves", projectStatus);
+    }
+
+    public void verifyExitModalShowsIfClickExitButtonForNotSavedJobVoicesLogo() {
+        String projectName = "Test Job" + RandomStringUtils.randomAlphanumeric(15);
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys(projectName);
+        confirmButton.click();
+        BaseClass.waitForVisibility(saveDraftButton, 30, AIStudioPage.driver);
+        BaseClass.staticWaitForVisibility(3000);
+        Assert.assertTrue("Validate save draft button is enabled", saveDraftButton.isEnabled());
+        voicesStudioLogo.click();
+        BaseClass.waitForVisibility(saveAndExitHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("validate save and exit header", "Save and Exit", saveAndExitHeader.getText().trim());
+        Assert.assertTrue("validate Save and exit button present", BaseClass.isElementPresent(AIStudioPage.driver, saveAndExitButton));
+        Assert.assertTrue("validate Discard Changes button present", BaseClass.isElementPresent(AIStudioPage.driver, discardChangesButton));
+
+    }
+
+    public void verifyAIStudioIsSavedIfClickExitButtonForNotSavedJobVoicesLogo() {
+        String projectName = "Test Job" + RandomStringUtils.randomAlphanumeric(15);
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys(projectName);
+        confirmButton.click();
+        BaseClass.waitForVisibility(saveDraftButton, 30, AIStudioPage.driver);
+        BaseClass.staticWaitForVisibility(3000);
+        Assert.assertTrue("Validate save draft button is enabled", saveDraftButton.isEnabled());
+        voicesStudioLogo.click();
+        BaseClass.waitForVisibility(saveAndExitHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("validate save and exit header", "Save and Exit", saveAndExitHeader.getText().trim());
+        Assert.assertTrue("validate Save and exit button present", BaseClass.isElementPresent(AIStudioPage.driver, saveAndExitButton));
+        Assert.assertTrue("validate Discard Changes button present", BaseClass.isElementPresent(AIStudioPage.driver, discardChangesButton));
+        saveAndExitButton.click();
+        BaseClass.waitForVisibility(welcomeBackHeader, 30, AIStudioPage.driver);
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        goToDraftButton.click();
+        BaseClass.staticWaitForVisibility(5000);
+        WebElement projectNameElement = AIStudioPage.driver.findElement(By.xpath("//a[text()='" + projectName + "']"));
+        BaseClass.waitForVisibility(projectNameElement, 30, AIStudioPage.driver);
+        Assert.assertTrue("validate Project is saved", BaseClass.isElementPresent(AIStudioPage.driver, projectNameElement));
+    }
+
+    public void verifyAIStudioIsNotSavedIfClickExitButtonForNotSavedJobVoicesLogo() {
+        String projectName = "Test Job" + RandomStringUtils.randomAlphanumeric(15);
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys(projectName);
+        confirmButton.click();
+        BaseClass.waitForVisibility(exitButton, 30, AIStudioPage.driver);
+        voicesStudioLogo.click();
+        BaseClass.waitForVisibility(saveAndExitHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("validate save and exit header", "Save and Exit", saveAndExitHeader.getText().trim());
+        Assert.assertTrue("validate Save and exit button present", BaseClass.isElementPresent(AIStudioPage.driver, saveAndExitButton));
+        Assert.assertTrue("validate Discard Changes button present", BaseClass.isElementPresent(AIStudioPage.driver, discardChangesButton));
+        discardChangesButton.click();
+        BaseClass.waitForVisibility(welcomeBackHeader, 30, AIStudioPage.driver);
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        goToDraftButton.click();
+        BaseClass.staticWaitForVisibility(5000);
+        boolean projectStatus;
+        try {
+            WebElement projectNameElement = AIStudioPage.driver.findElement(By.xpath("//a[text()='" + projectName + "']"));
+            projectStatus = true;
+        } catch (Exception e) {
+            projectStatus = false;
+        }
+
+        Assert.assertFalse("validate Project Not Saves", projectStatus);
+    }
+
+    public void verifyAIStudioIsNotSavedIfClickCloseButtonForNotSavedJobVoicesLogo() {
+        String projectName = "Test Job" + RandomStringUtils.randomAlphanumeric(15);
+        AIStudioPage.driver.get("https://www.voices.systems/studio?talent=182");
+        BaseClass.waitForVisibility(welcomeToAIStudioHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Welcome to AI Studio Header", "Welcome to AI Studio", welcomeToAIStudioHeader.getText().trim());
+        onlineAdCategoryRadioButton.click();
+        projectNameTextFiled.sendKeys(projectName);
+        confirmButton.click();
+        BaseClass.waitForVisibility(exitButton, 30, AIStudioPage.driver);
+        BaseClass.staticWaitForVisibility(3000);
+        voicesStudioLogo.click();
+        BaseClass.waitForVisibility(saveAndExitHeader, 30, AIStudioPage.driver);
+        Assert.assertEquals("validate save and exit header", "Save and Exit", saveAndExitHeader.getText().trim());
+        Assert.assertTrue("validate Save and exit button present", BaseClass.isElementPresent(AIStudioPage.driver, saveAndExitButton));
+        Assert.assertTrue("validate Discard Changes button present", BaseClass.isElementPresent(AIStudioPage.driver, discardChangesButton));
+        closeButtonInExitModel.click();
+        BaseClass.waitForVisibility(projectDuration, 30, AIStudioPage.driver);
+        draftTab.click();
+        BaseClass.staticWaitForVisibility(5000);
+        boolean projectStatus;
+        try {
+            WebElement projectNameElement = AIStudioPage.driver.findElement(By.xpath("//a[text()='" + projectName + "']"));
+            projectStatus = true;
+        } catch (Exception e) {
+            projectStatus = false;
+        }
+
+        Assert.assertFalse("validate Project Not Saves", projectStatus);
+    }
+
+    @FindBy(xpath = "(//a[text()='Post a Job'])[1]")
+    private WebElement postAJobButton;
+    @FindBy(xpath = "//label[@for='job_form_path-edit_draft_job']")
+    private WebElement editExistingDraftJobLink;
+    @FindBy(xpath = "//div[@role='combobox']")
+    private WebElement jobIdDropdown;
+
+    public void verifyAIDraftsJobShouldNotDisplayedInJobFormPublicJob() {
+        AIStudioPage.driver.get("https://www.voices.systems/client/account");
+        BaseClass.waitForVisibility(postAJobButton, 30, AIStudioPage.driver);
+        postAJobButton.click();
+        BaseClass.waitForVisibility(editExistingDraftJobLink, 30, AIStudioPage.driver);
+        editExistingDraftJobLink.click();
+        BaseClass.waitForVisibility(jobIdDropdown, 30, AIStudioPage.driver);
+        Assert.assertEquals("Validate Job Id dropdown is disabled", "false", jobIdDropdown.getAttribute("aria-expanded"));
     }
 
 }
