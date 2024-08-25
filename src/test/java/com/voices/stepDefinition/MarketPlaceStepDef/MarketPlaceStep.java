@@ -38,23 +38,11 @@ public class MarketPlaceStep {
         marketPlacePage.userAbleToAbandonPackageCreation();
     }
 
-//    @Then("Verify Talent user is able to create a Package Overview step {string}")
-//    public void Verify_Talent_user_is_able_to_create_a_Package_Overview_step(String packageTitle, DataTable dataTable) {
-//        List<Map<String, String>> packageDetails = dataTable.asMaps(String.class, String.class);
-//        String category = packageDetails.get(0).get("Category");
-////        String packageTitle = packageDetails.get(0).get("Package Title");
-//        String language = packageDetails.get(0).get("Language");
-//        String accent = packageDetails.get(0).get("Accent");
-//        String voiceGender = packageDetails.get(0).get("Voice Gender");
-//        String voiceAge = packageDetails.get(0).get("Voice Age");
-//        marketPlacePage.userAbleToCreatePackageOverView(category, packageTitle, language, accent, voiceGender, voiceAge);
-//    }
 
     @Then("Verify Talent user is able to create Package Overview step {string}")
     public void verify_talent_user_is_able_to_create_a_package_overview_step(String packageTitle, DataTable dataTable) {
         List<Map<String, String>> packageDetails = dataTable.asMaps(String.class, String.class);
         String category = packageDetails.get(0).get("Category");
-//        String packageTitle = packageDetails.get(0).get("Package Title");
         String language = packageDetails.get(0).get("Language");
         String accent = packageDetails.get(0).get("Accent");
         String voiceGender = packageDetails.get(0).get("Voice Gender");

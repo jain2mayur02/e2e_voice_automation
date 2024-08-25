@@ -4,7 +4,6 @@ import com.voices.controlManager.TestContext;
 import com.voices.managers.ReaderManager;
 import com.voices.pageObjects.AIStudioPageObj.AIStudioPage;
 import com.voices.pageObjects.HyperLinkPageObj.HyperLinkPage;
-import com.voices.pageObjects.TalentProfilePageObj.TalentProfilePage;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -92,10 +91,6 @@ public class AIStudioPageStep {
         aiStudioPage.verifyTheFunctionalityOfConfirmButtonBySelectingCategoryAndEnteringValidProjectNameInWelcomeToAIStudioModalCategoryInitialSelectionUpdates();
     }
 
-    @Then("Verify the Category and Project name is displayed correctly in studio page via AI Talent profile page")
-    public void verify_the_category_and_project_name_is_displayed_correctly_in_studio_page_via_ai_talent_profile_page() {
-
-    }
 
     @Then("Verify Go to Drafts button is not displayed in welcome modal if client account does not have at least {int} or more AI job in draft or done status")
     public void verify_go_to_drafts_button_is_not_displayed_in_welcome_modal_if_client_account_does_not_have_at_least_or_more_ai_job_in_draft_or_done_status(Integer int1) {
@@ -338,15 +333,7 @@ public class AIStudioPageStep {
         aiStudioPage.verifyPricePerWordForDavidToRachaelNonBroadcastWithinAIStudio();
     }
 
-    @Then("Verify Select Another talent Banner is displayed if user edits voice clone and Category where broadcast price is removed on talent AI profile")
-    public void verify_select_another_talent_banner_is_displayed_if_user_edits_voice_clone_and_category_where_broadcast_price_is_removed_on_talent_ai_profile() {
 
-    }
-
-    @Then("Verify Select Another talent Banner is displayed if user edits voice clone and Category where non broadcast price is removed on talent AI profile")
-    public void verify_select_another_talent_banner_is_displayed_if_user_edits_voice_clone_and_category_where_non_broadcast_price_is_removed_on_talent_ai_profile() {
-
-    }
 
     @Then("Verify Save Draft button is disabled if AI studio has zero words")
     public void verify_save_draft_button_is_disabled_if_ai_studio_has_zero_words() {
@@ -413,11 +400,6 @@ public class AIStudioPageStep {
         aiStudioPage.verifySavedAsDraftNavigatesToCheckOutPageAndBackAIStudioPage();
     }
 
-    @Then("Verify the Job status gets changed from Draft to Done if user purchases the AI Draft job")
-    public void verify_the_job_status_gets_changed_from_draft_to_done_if_user_purchases_the_ai_draft_job() {
-
-    }
-
     @Then("Verify user lands on Home page if user clicks on Exit button if AI studio is already saved")
     public void verify_user_lands_on_home_page_if_user_clicks_on_exit_button_if_ai_studio_is_already_saved() {
         aiStudioPage.verifyUserLandsOnHomePageIfUserClicksExitButtonForAlreadySaved();
@@ -468,10 +450,169 @@ public class AIStudioPageStep {
         aiStudioPage.verifyAIDraftsJobShouldNotDisplayedInJobFormPublicJob();
     }
 
-    @Then("Verify AI Drafts job should not be displayed in Job form private job")
-    public void verify_ai_drafts_job_should_not_be_displayed_in_job_form_private_job() {
-
+    @Then("Verify the Price should be {int} if word count is {int}")
+    public void verify_the_price_should_be_if_word_count_is(Integer int1, Integer int2) {
+        aiStudioPage.verifyPriceShouldBeZeroIfWordCountIsZero();
     }
 
+    @Then("Verify the Price for the default script for Broadcast category")
+    public void verify_the_price_for_the_default_script_for_broadcast_category() {
+        aiStudioPage.verifyPriceForDefaultScriptForBroadcastCategory();
+    }
+
+    @Then("Verify Price gets increased if user add the words to the default script within text block for Broadcast category")
+    public void verify_price_gets_increased_if_user_add_the_words_to_the_default_script_within_text_block_for_broadcast_category() {
+        aiStudioPage.verifyPriceGetsIncreasedForAddingWordsToDefaultScriptForBroadcastCategory();
+    }
+
+    @Then("Verify Price gets increased if user add the words to the text block2 for Broadcast category")
+    public void verify_price_gets_increased_if_user_add_the_words_to_the_text_block2_for_broadcast_category() {
+        aiStudioPage.verifyPriceGetsIncreasedIfAddWordsToTextBlock2ForBroadCastCategory();
+    }
+
+    @Then("Verify Price gets decreased if user removes words from the default script within text block for Broadcast category")
+    public void verify_price_gets_decreased_if_user_removes_words_from_the_default_script_within_text_block_for_broadcast_category() {
+        aiStudioPage.verifyPriceIfRemovesWordsFromDefaultScriptWithinTextBlockForBroadcastCategory();
+    }
+
+    @Then("Verify Price gets decreased if user add the words and remove the words and delete the text block for Broadcast category")
+    public void verify_price_gets_decreased_if_user_add_the_words_and_remove_the_words_and_delete_the_text_block_for_broadcast_category() {
+        aiStudioPage.verifyPriceIfAddRemoveWordsAndDeleteTextBlockForBroadcastCategory();
+    }
+
+    @Then("Verify the Price for the default script for Non Broadcast category")
+    public void verify_the_price_for_the_default_script_for_non_broadcast_category() {
+        aiStudioPage.verifyPriceForDefaultScriptForNonBroadcastCategory();
+    }
+
+    @Then("Verify Price gets increased if user add the words to the default script within text block for Non Broadcast category")
+    public void verify_price_gets_increased_if_user_add_the_words_to_the_default_script_within_text_block_for_non_broadcast_category() {
+        aiStudioPage.verifyPriceGetsIncreasedForAddingWordsToDefaultScriptForNonBroadcastCategory();
+    }
+
+    @Then("Verify Price gets increased if user add the words to the text block2 for Non Broadcast category")
+    public void verify_price_gets_increased_if_user_add_the_words_to_the_text_block2_for_non_broadcast_category() {
+        aiStudioPage.verifyPriceGetsIncreasedIfAddWordsToTextBlock2ForNonBroadCastCategory();
+    }
+
+    @Then("Verify Price gets decreased if user removes words from the default script within text block for Non Broadcast category")
+    public void verify_price_gets_decreased_if_user_removes_words_from_the_default_script_within_text_block_for_non_broadcast_category() {
+        aiStudioPage.verifyPriceIfRemovesWordsFromDefaultScriptWithinTextBlockForNonBroadcastCategory();
+    }
+
+    @Then("Verify Price gets decreased if user add the words and remove the words and delete the text block for Non Broadcast category")
+    public void verify_price_gets_decreased_if_user_add_the_words_and_remove_the_words_and_delete_the_text_block_for_non_broadcast_category() {
+        aiStudioPage.verifyPriceIfAddRemoveWordsAndDeleteTextBlockForNonBroadcastCategory();
+    }
+
+    @Then("Verify the price of AI studio when user selects different voice clone Non Broadcast")
+    public void verify_the_price_of_ai_studio_when_user_selects_different_voice_clone_non_broadcast() {
+        aiStudioPage.verifyPriceWhenUserSelectsDifferentVoiceCloneNonBroadcast();
+    }
+
+    @Then("Verify the price of AI studio when user selects different voice clone Broadcast")
+    public void verify_the_price_of_ai_studio_when_user_selects_different_voice_clone_broadcast() {
+        aiStudioPage.verifyPriceWhenUserSelectsDifferentVoiceCloneBroadcast();
+    }
+
+    @Then("Verify the price of AI studio if user edits the category from broadcast to non broadcast")
+    public void verify_the_price_of_ai_studio_if_user_edits_the_category_from_broadcast_to_non_broadcast() {
+        aiStudioPage.verifyPriceIfUserEditsCategoryFromBroadcastToNonBroadcast();
+    }
+
+    @Then("Verify the price of AI studio if user edits the category from broadcast to broadcast")
+    public void verify_the_price_of_ai_studio_if_user_edits_the_category_from_broadcast_to_broadcast() {
+        aiStudioPage.verifyPriceIfUserEditsCategoryFromBroadcastToBroadcast();
+    }
+
+    @Then("Verify the price of AI studio if user edits the category from non broadcast to broadcast")
+    public void verify_the_price_of_ai_studio_if_user_edits_the_category_from_non_broadcast_to_broadcast() {
+        aiStudioPage.verifyPriceIfUserEditsCategoryFromNonBroadcastToBroadcast();
+    }
+
+    @Then("Verify the price of AI studio if user edits the category from non broadcast to non broadcast")
+    public void verify_the_price_of_ai_studio_if_user_edits_the_category_from_non_broadcast_to_non_broadcast() {
+        aiStudioPage.verifyPriceIfUserEditsCategoryFromNonBroadcastToNonBroadcast();
+    }
+
+    @Then("Verify the price calculation is working as expected based on broadcast price per word total word count")
+    public void verify_the_price_calculation_is_working_as_expected_based_on_broadcast_price_per_word_total_word_count() {
+        aiStudioPage.verifyPriceCalculationForBroadcastPricePerWordTotalWordCount();
+    }
+
+    @Then("Verify the price calculation is working as expected based on non broadcast price per word total word count")
+    public void verify_the_price_calculation_is_working_as_expected_based_on_non_broadcast_price_per_word_total_word_count() {
+        aiStudioPage.verifyPriceCalculationForNonBroadcastPricePerWordTotalWordCount();
+    }
+
+    @Then("Verify Top nav word count matches with the default text block script")
+    public void verify_top_nav_word_count_matches_with_the_default_text_block_script() {
+        aiStudioPage.verifyTopNavWordCountMatchesWithDefaultTextBlockScript();
+    }
+
+    @Then("Verify Top Nav words count matches if user adds words to default script")
+    public void verify_top_nav_words_count_matches_if_user_adds_words_to_default_script() {
+        aiStudioPage.verifyTopNavWordsCountMatchesIfUserAddsWordsToDefaultScript();
+    }
+
+    @Then("Verify Top Nav words count matches if user remove few words from default script")
+    public void verify_top_nav_words_count_matches_if_user_remove_few_words_from_default_script() {
+        aiStudioPage.verifyTopNavWordsCountMatchesIfUserRemoveFewWordsFromDefaultScript();
+    }
+
+    @Then("Verify Top Nav word count by removing entire default script")
+    public void verify_top_nav_word_count_by_removing_entire_default_script() {
+        aiStudioPage.verifyTopNavWordCountByRemovingEntireDefaultScript();
+    }
+
+    @Then("Verify Top Nav word count by removing entire default script and adding entire new script")
+    public void verify_top_nav_word_count_by_removing_entire_default_script_and_adding_entire_new_script() {
+        aiStudioPage.verifyTopNavWordCountByRemovingEntireDefaultScriptAndAddingEntireNewScript();
+    }
+
+    @Then("Verify Top Nav word count by removing entire default script and by removing few words for newly added script")
+    public void verify_top_nav_word_count_by_removing_entire_default_script_and_by_removing_few_words_for_newly_added_script() {
+        aiStudioPage.verifyRemovingEntireDefaultScriptAndRemovingFewWordsForNewlyAddedScript();
+    }
+
+    @Then("Verify Word count within text block with default script")
+    public void verify_word_count_within_text_block_with_default_script() {
+        aiStudioPage.verifyTopNavWordCountMatchesWithDefaultTextBlockScript();
+    }
+
+    @Then("Verify Word count within text block by adding additional words to default script")
+    public void verify_word_count_within_text_block_by_adding_additional_words_to_default_script() {
+        aiStudioPage.verifyTopNavWordsCountMatchesIfUserAddsWordsToDefaultScript();
+    }
+
+    @Then("Verify Word count within text block by removing few words from default script")
+    public void verify_word_count_within_text_block_by_removing_few_words_from_default_script() {
+        aiStudioPage.verifyTopNavWordsCountMatchesIfUserRemoveFewWordsFromDefaultScript();
+    }
+
+    @Then("Verify word count within text block by removing entire default script")
+    public void verify_word_count_within_text_block_by_removing_entire_default_script() {
+        aiStudioPage.verifyTopNavWordCountByRemovingEntireDefaultScript();
+    }
+
+    @Then("Verify word count within text block by removing entire default script and adding entire new script")
+    public void verify_word_count_within_text_block_by_removing_entire_default_script_and_adding_entire_new_script() {
+        aiStudioPage.verifyTopNavWordCountByRemovingEntireDefaultScriptAndAddingEntireNewScript();
+    }
+
+    @Then("Verify word count within text block by removing entire default script and by removing few words for newly added script")
+    public void verify_word_count_within_text_block_by_removing_entire_default_script_and_by_removing_few_words_for_newly_added_script() {
+        aiStudioPage.verifyRemovingEntireDefaultScriptAndRemovingFewWordsForNewlyAddedScript();
+    }
+
+    @Then("Verify user should able to enter {int} words within text block")
+    public void verify_user_should_able_to_enter_words_within_text_block(Integer expectedCount) {
+        aiStudioPage.verifyUserShouldAbleToEnterWordsWithinTextBlock(expectedCount);
+    }
+
+    @Then("Verify text block should not contain more than {int} words")
+    public void verify_text_block_should_not_contain_more_than_words(Integer expectedCount) {
+        aiStudioPage.verifyTextBlockShouldNotContainMoreThanWords(expectedCount);
+    }
 
 }

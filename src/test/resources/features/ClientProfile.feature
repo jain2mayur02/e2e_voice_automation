@@ -11,8 +11,6 @@ Feature: Validate Client Profile Functionality
     Then Verify Top Talent Home Banner
     Then Verify Manual closing of Top Talent Home Banner
     Then Verify My Jobs Section
-#    Then Verify My Jobs Draft tab
-#####    Then Verify My Jobs Hiring tab
     Then Verify My Jobs Working tab
     Then Verify My Jobs Done tab
     Then Verify Previously Hired Talent Section

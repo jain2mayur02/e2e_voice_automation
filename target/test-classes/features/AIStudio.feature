@@ -1,4 +1,5 @@
-Feature: Validate Talent Profile Functionality
+
+Feature: Validate AI Studio Functionality
 
   Background: Open Main URL
     Given User Open Home Page
@@ -40,7 +41,6 @@ Feature: Validate Talent Profile Functionality
   Scenario: Validate UI Page
     When User login with AI user credentials
     Then Verify the UI in studio page via AI Talent profile page
-
 
   Scenario: Validate Top Navigation functionality
     When User login with AI user credentials
@@ -104,35 +104,81 @@ Feature: Validate Talent Profile Functionality
 #    Then Verify Select Another talent Banner is displayed if user edits voice clone and Category where non broadcast price is removed on talent AI profile
 
 
-  @AIStudio
+
   Scenario: Validate Save draft functionality
     When User login with AI user credentials
-#    Then Verify Save Draft button is disabled if AI studio has zero words
-#    Then Verify Save Draft button is disabled if text block contains error message dirty word
-#    Then Verify Save Draft button is disabled if text block contains error message restriction word
-#    Then Verify Functionality of Save Draft button
-#    Then Verify Functionality of Save Draft button by editing the AI Studio
-#    Then Verify 404 Error if user tries to access deleted draft AI studio
-#    Then Verify Functionality of Edit Draft button
-#    Then Verify AI Studio is saved as Draft My Home Jobs All Jobs Draft Draft tab within AI Studio
-#    Then Verify by deleting the Draft AI studio via Drafts tab within AI Studio
-#    Then Verify by deleting the Draft AI studio via Drafts tab within Jobs page Draft tab
-#    Then Verify Search functionality within AI Studio Draft Tab
-#    Then Verify Sort functionality within AI Studio Draft Tab
-#    Then Verify Ai studio is saved as Draft if user navigates to check out page and land back on AI Studio page
-##    Then Verify the Job status gets changed from Draft to Done if user purchases the AI Draft job
-#    Then Verify user lands on Home page if user clicks on Exit button if AI studio is already saved
-#    Then Verify Exit modal shows up if user clicks on Exit button if AI Studio is not saved
-#    Then Verify AI Studio is saved as Draft and if user clicks on Save and Exit button within AI studio Exit modal
-#    Then Verify AI Studio is not saved as Draft and if user clicks on Discard changes button within AI studio Exit modal
-#    Then Verify AI Studio is not saved as Draft and if user clicks on close icon within AI studio Exit modal
-#    Then Verify Exit modal shows up if user clicks on Voices logo if AI Studio is not saved Voices logo
-#    Then Verify AI Studio is saved as Draft and if user clicks on Save and Exit button within AI studio Exit modal Voices logo
-#    Then Verify AI Studio is not saved as Draft and if user clicks on Discard changes button within AI studio Exit modal Voices logo
-#    Then Verify AI Studio is not saved as Draft and if user clicks on close icon within AI studio Exit modal Voices logo
+    Then Verify Save Draft button is disabled if AI studio has zero words
+    Then Verify Save Draft button is disabled if text block contains error message dirty word
+    Then Verify Save Draft button is disabled if text block contains error message restriction word
+    Then Verify Functionality of Save Draft button
+    Then Verify Functionality of Save Draft button by editing the AI Studio
+    Then Verify 404 Error if user tries to access deleted draft AI studio
+    Then Verify Functionality of Edit Draft button
+    Then Verify AI Studio is saved as Draft My Home Jobs All Jobs Draft Draft tab within AI Studio
+    Then Verify by deleting the Draft AI studio via Drafts tab within AI Studio
+    Then Verify by deleting the Draft AI studio via Drafts tab within Jobs page Draft tab
+    Then Verify Search functionality within AI Studio Draft Tab
+    Then Verify Sort functionality within AI Studio Draft Tab
+    Then Verify Ai studio is saved as Draft if user navigates to check out page and land back on AI Studio page
+    #Then Verify the Job status gets changed from Draft to Done if user purchases the AI Draft job
+    Then Verify user lands on Home page if user clicks on Exit button if AI studio is already saved
+    Then Verify Exit modal shows up if user clicks on Exit button if AI Studio is not saved
+    Then Verify AI Studio is saved as Draft and if user clicks on Save and Exit button within AI studio Exit modal
+    Then Verify AI Studio is not saved as Draft and if user clicks on Discard changes button within AI studio Exit modal
+    Then Verify AI Studio is not saved as Draft and if user clicks on close icon within AI studio Exit modal
+    Then Verify Exit modal shows up if user clicks on Voices logo if AI Studio is not saved Voices logo
+    Then Verify AI Studio is saved as Draft and if user clicks on Save and Exit button within AI studio Exit modal Voices logo
+    Then Verify AI Studio is not saved as Draft and if user clicks on Discard changes button within AI studio Exit modal Voices logo
+    Then Verify AI Studio is not saved as Draft and if user clicks on close icon within AI studio Exit modal Voices logo
     Then Verify AI Drafts job should not be displayed in Job form public job
 #    Then Verify AI Drafts job should not be displayed in Job form private job
 
+
+  Scenario: Validate Price functionality
+    When User login with AI user credentials
+    Then Verify the Price should be 0 if word count is 0
+    Then Verify the Price for the default script for Broadcast category
+    Then Verify Price gets increased if user add the words to the default script within text block for Broadcast category
+    Then Verify Price gets increased if user add the words to the text block2 for Broadcast category
+    Then Verify Price gets decreased if user removes words from the default script within text block for Broadcast category
+    Then Verify Price gets decreased if user add the words and remove the words and delete the text block for Broadcast category
+    Then Verify the Price for the default script for Non Broadcast category
+    Then Verify Price gets increased if user add the words to the default script within text block for Non Broadcast category
+    Then Verify Price gets increased if user add the words to the text block2 for Non Broadcast category
+    Then Verify Price gets decreased if user removes words from the default script within text block for Non Broadcast category
+    Then Verify Price gets decreased if user add the words and remove the words and delete the text block for Non Broadcast category
+    Then Verify the price of AI studio when user selects different voice clone Non Broadcast
+    Then Verify the price of AI studio when user selects different voice clone Broadcast
+    Then Verify the price of AI studio if user edits the category from broadcast to non broadcast
+    Then Verify the price of AI studio if user edits the category from broadcast to broadcast
+    Then Verify the price of AI studio if user edits the category from non broadcast to broadcast
+    Then Verify the price of AI studio if user edits the category from non broadcast to non broadcast
+    Then Verify the price calculation is working as expected based on broadcast price per word total word count
+    Then Verify the price calculation is working as expected based on non broadcast price per word total word count
+
+
+  @AIStudio
+  Scenario: Validate Word count functionality
+    When User login with AI user credentials
+#    Then Verify Top nav word count matches with the default text block script
+#    Then Verify Top Nav words count matches if user adds words to default script
+#    Then Verify Top Nav words count matches if user remove few words from default script
+#    Then Verify Top Nav word count by removing entire default script
+#    Then Verify Top Nav word count by removing entire default script and adding entire new script
+#    Then Verify Top Nav word count by removing entire default script and by removing few words for newly added script
+#    Then Verify Word count within text block with default script
+#    Then Verify Word count within text block by adding additional words to default script
+#    Then Verify Word count within text block by removing few words from default script
+#    Then Verify word count within text block by removing entire default script
+#    Then Verify word count within text block by removing entire default script and adding entire new script
+#    Then Verify word count within text block by removing entire default script and by removing few words for newly added script
+#    Then Verify user should able to enter 150 words within text block
+    Then Verify text block should not contain more than 150 words
+    Then Verify Top Nav word count by adding additional text block multiple text blocks
+    Then Verify Top Nav word count by deleting text block
+    Then Verify Top Nav word count by deleting multiple text block
+    Then Verify error message if AI Studio has 0 word count
+    Then Verify Continue download button should be disabled if Ai studio has 0 word count
 
 
 

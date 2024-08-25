@@ -37,11 +37,6 @@ public class HyperLinkPageSteps {
 
     }
 
-   /* @And("User click on How it works link and validate url")
-    public void user_click_on_how_it_works_link_and_validate_url() {
-        hyperLinkPage.clickOnHowItWorkAndValidateUrl();
-    }
-*/
     @And("User click on log in link and validate url")
     public void user_click_on_log_in_link_and_validate_url() {
         hyperLinkPage.clickOnLogInAndValidateUrl();

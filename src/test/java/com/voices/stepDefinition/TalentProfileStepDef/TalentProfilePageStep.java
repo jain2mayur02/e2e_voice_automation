@@ -246,19 +246,10 @@ public class TalentProfilePageStep {
         talentProfilePage.verifyTalentMemberSection();
     }
 
-    @Then("Verify File Upload section")
-    public void verify_file_upload_section() {
-
-    }
 
     @Then("Verify Member Container section")
     public void verify_member_container_section() {
         talentProfilePage.verifyMemberContainerSection();
-    }
-
-    @Then("Verify View Profile")
-    public void verify_view_profile() {
-
     }
 
     @Then("Verify Personal Info tab")

@@ -495,8 +495,7 @@ public class TalentProfilePage {
         BaseClass.javaScriptClick(TalentProfilePage.driver, viewAllExpansionLink);
         List<String> actualEmptyFieldList = BaseClass.getColumnDataInList(TalentProfilePage.driver, "//div[@id='empty-fields-list']/p/a");
         List<String> expectedEmptyFieldList = BaseClass.addStringValueInList("Client List", "Talent Description", "Gender", "Accents", "Turnaround Time", "Microphone", "Software", "Special Equipment", "Live Directed Session Softwares");
-//        Assert.assertEquals("Validate Empty Fields List", expectedEmptyFieldList, actualEmptyFieldList);
-    }
+ }
 
     public void verifyCareerSection() {
         BaseClass.mouseOverOnElement(TalentProfilePage.driver, meIconLink);
@@ -647,9 +646,7 @@ public class TalentProfilePage {
         List<String> expectedAuditionHistoryTableHeader = BaseClass.addStringValueInList("Job", "Audition Date", "Listened", "Shortlisted");
         Assert.assertEquals("Validate Audition History table header", expectedAuditionHistoryTableHeader, actualAuditionHistoryTableHeader);
         int actualAuditionHistoryRowCount = TalentProfilePage.driver.findElements(By.xpath("//div[@aria-label='Audition History']//div[@class='table-body']/div")).size();
-//        int expectedAuditionHistoryRowCount = 2;
-//        Assert.assertEquals("Validate Audition History Table Count", expectedAuditionHistoryRowCount, actualAuditionHistoryRowCount);
-        Assert.assertTrue("Validate Audition History Table Count", actualAuditionHistoryRowCount >= 1);
+    Assert.assertTrue("Validate Audition History Table Count", actualAuditionHistoryRowCount >= 1);
     }
 
     public void verifyComponentsInDemoHistorySection() {
@@ -658,9 +655,7 @@ public class TalentProfilePage {
         List<String> expectedDemoHistoryTableHeader = BaseClass.addStringValueInList("Demo", "Upload Date", "Listened", "Favorited");
         Assert.assertEquals("Validate Demo History table header", expectedDemoHistoryTableHeader, actualDemoHistoryTableHeader);
         int actualDemoHistoryRowCount = TalentProfilePage.driver.findElements(By.xpath("//div[@aria-label='Demo History']//div[@class='table-body']/div")).size();
-//        int expectedDemoHistoryRowCount = 8;
-//        Assert.assertEquals("Validate Demo History Table Count", expectedDemoHistoryRowCount, actualDemoHistoryRowCount);
-        Assert.assertTrue("Validate Demo History Table Count", actualDemoHistoryRowCount >= 1);
+    Assert.assertTrue("Validate Demo History Table Count", actualDemoHistoryRowCount >= 1);
 
     }
 
@@ -704,17 +699,13 @@ public class TalentProfilePage {
         Assert.assertEquals("Validate navigate to Pending Reviews Header", "Pending Reviews", pendingReviewHeader.getText().trim());
         Assert.assertEquals("Validate navigate to Leave a Review Link", "Leave a Review", leaveReviewLink.getText().trim());
         int expectedPendingReviewCount = 1;
-//        int actualPendingReviewCount = TalentProfilePage.driver.findElements(By.xpath("//div[@id='pending-reviews']/div")).size();
-//        Assert.assertEquals("Validate Pending Review Count", expectedPendingReviewCount, actualPendingReviewCount);
-        Assert.assertTrue("Validate Pending Review Count", expectedPendingReviewCount >= 1);
+    Assert.assertTrue("Validate Pending Review Count", expectedPendingReviewCount >= 1);
     }
 
     public void verifyReceivedComplimentsSection() {
         Assert.assertEquals("Validate navigate to Received Compliments Header", "Received Compliments", receivedComplimentsHeader.getText().trim());
-//        int expectedReceivedComplimentsCount = 1;
-        int actualReceivedComplimentsCount = TalentProfilePage.driver.findElements(By.xpath("//div[@class='col-12 padding-bottom-large']/div/div")).size();
-//        Assert.assertEquals("Validate Received Compliments Count", expectedReceivedComplimentsCount, actualReceivedComplimentsCount);
-        Assert.assertTrue("Validate Received Compliments Count", actualReceivedComplimentsCount >= 1);
+     int actualReceivedComplimentsCount = TalentProfilePage.driver.findElements(By.xpath("//div[@class='col-12 padding-bottom-large']/div/div")).size();
+     Assert.assertTrue("Validate Received Compliments Count", actualReceivedComplimentsCount >= 1);
     }
 
     public void verifyMyReviewsSection() {
@@ -1026,8 +1017,7 @@ public class TalentProfilePage {
         BaseClass.staticWaitForVisibility(2000);
         List<String> expectedEmptySkillList = BaseClass.addStringValueInList("Client List", "Talent Description", "Native Language", "Gender", "Accents", "Turnaround Time", "Microphone", "Software", "Special Equipment", "Live Directed Session Softwares");
         List<String> actualEmptySkillList = BaseClass.getColumnDataInList(TalentProfilePage.driver, "//div[@id='empty-fields-list']//a");
-        //Assert.assertEquals("Validate Empty Skill list", expectedEmptySkillList, actualEmptySkillList);
-        Assert.assertEquals("validate about me header", "About Me", aboutMeHeader.getText().trim());
+     Assert.assertEquals("validate about me header", "About Me", aboutMeHeader.getText().trim());
         Assert.assertEquals("validate Categories header", "Categories", categoryHeader.getText().trim());
         List<String> expectedCategoryList = BaseClass.addStringValueInList("Animation", "Audiobooks", "Documentaries", "Elearning", "Movie Trailers", "Online Ad", "Podcasting", "Radio Ad", "Telephone", "Television Ad", "Video Narration", "Videogames", "Voice Assistant", "Datasets");
         List<String> actualCategoryList = BaseClass.getColumnDataInList(TalentProfilePage.driver, "//div[@id='voiceover-categories-accordion']//input/following-sibling::label");
@@ -1361,11 +1351,9 @@ public class TalentProfilePage {
     public void verifyInviteToJobAndMessageTalentButtons() {
         String actualInviteToJobText = inviteAJobButton.getAttribute("title data-original-title");
         String expectedInviteToJobText = "Sorry, you cannot Invite to Job with a Talent account.";
-//        Assert.assertEquals("Validate Invite to a job button is disabled", expectedInviteToJobText, actualInviteToJobText);
-        String actualMessageTalentText = messageTalentButton.getAttribute("title data-original-title");
+    String actualMessageTalentText = messageTalentButton.getAttribute("title data-original-title");
         String expectedMessageTalentText = "Sorry, you cannot Message Talent with a Talent account.";
-//        Assert.assertEquals("Validate Message Talent button is disabled", expectedMessageTalentText, actualMessageTalentText);
-    }
+  }
 
     public void verifyPastClientsSectionAndProfileMetadataSection() {
         List<String> actualMetadataHeaderList = BaseClass.getColumnDataInList(TalentProfilePage.driver, "//div[@id='profile-metadata-section']//h3");

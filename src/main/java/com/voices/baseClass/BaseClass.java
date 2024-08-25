@@ -591,9 +591,7 @@ public class BaseClass {
             connection.connect();
             int responseCode = connection.getResponseCode();
             if (responseCode >= 200 && responseCode < 300) {
-//                    System.out.println(url + " - Valid link");
-//                    System.out.println(url + " - Valid link (Response Code: " + responseCode + ")");
-                Assert.assertTrue(true);
+               Assert.assertTrue(true);
             } else {
                 System.out.println(url + " - Invalid link (Response Code: " + responseCode + ")");
                 Assert.assertTrue(false);
@@ -681,6 +679,52 @@ public class BaseClass {
         action.clickAndHold(slider).moveByOffset(xOffset - sliderWidth / 2, 0).release().perform();
         BaseClass.staticWaitForVisibility(3000);
 
+    }
+
+    private static final String[] WORDS = {"lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "sed", "do", "eiusmod", "tempor", "incididunt", "ut", "labore", "et", "dolore", "magna", "aliqua"
+    };
+    private static final Random RANDOM = new Random();
+
+    public static String generateRandomSentence(int wordCount) {
+        StringBuilder sentence = new StringBuilder();
+        for (int i = 0; i < wordCount; i++) {
+            String word = WORDS[RANDOM.nextInt(WORDS.length)];
+            sentence.append(word);
+
+            if (i < wordCount - 1) {
+                sentence.append(" ");
+            }
+        }
+
+        sentence.append(".");  // End the sentence with a period
+        sentence.replace(0, 1, sentence.substring(0, 1).toUpperCase());  // Capitalize the first letter
+
+        return sentence.toString();
+    }
+
+    public static String generateRandomParagraph(int totalWordCount) {
+        StringBuilder paragraph = new StringBuilder();
+        int wordCount = 0;
+
+        while (wordCount < totalWordCount) {
+            int wordsInSentence = RANDOM.nextInt(10) + 3;  // Sentence length between 3 and 12 words
+
+            if (wordCount + wordsInSentence > totalWordCount) {
+                wordsInSentence = totalWordCount - wordCount;
+            }
+
+            String sentence = generateRandomSentence(wordsInSentence);
+            paragraph.append(sentence).append(" ");
+
+            wordCount += wordsInSentence;
+        }
+
+        return paragraph.toString().trim();
+    }
+
+    public static int getTotalWordCount(WebElement element){
+       String[] array =  element.getText().trim().split(" ");
+       return array.length;
     }
 
 

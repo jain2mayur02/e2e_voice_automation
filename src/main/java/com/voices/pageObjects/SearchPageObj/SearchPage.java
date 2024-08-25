@@ -1013,19 +1013,6 @@ public class SearchPage {
         countrySearchField.sendKeys(country);
         BaseClass.staticWaitForVisibility(2000);
         SearchPage.driver.findElement(By.xpath("//div[text()='" + country + "']")).click();
-
-        /**
-         * Future used code
-         BaseClass.staticWaitForVisibility(3000);
-         BaseClass.waitForVisibility(stateDropdown, 30, SearchPage.driver);
-         stateDropdown.click();
-         WebElement stateElement = SearchPage.driver.findElement(By.xpath("//div[text()='" + state + "']"));
-         BaseClass.waitForVisibility(stateElement, 30, SearchPage.driver);
-         BaseClass.javaScriptClick(SearchPage.driver, stateElement);
-         BaseClass.staticWaitForVisibility(3000);
-         cityTextField.sendKeys(city);
-         **/
-
         BaseClass.waitForVisibility(locationApplyFilterButton, 30, SearchPage.driver);
         locationApplyFilterButton.click();
         BaseClass.staticWaitForVisibility(3000);
@@ -1476,18 +1463,6 @@ public class SearchPage {
         BaseClass.staticWaitForVisibility(2000);
         SearchPage.driver.findElement(By.xpath("//div[text()='" + country + "']")).click();
 
-        /***
-         * Future used code
-         BaseClass.staticWaitForVisibility(3000);
-         BaseClass.waitForVisibility(stateDropdown, 30, SearchPage.driver);
-         stateDropdown.click();
-         WebElement stateElement = SearchPage.driver.findElement(By.xpath("//div[text()='" + state + "']"));
-         BaseClass.waitForVisibility(stateElement, 30, SearchPage.driver);
-         BaseClass.javaScriptClick(SearchPage.driver, stateElement);
-         BaseClass.staticWaitForVisibility(3000);
-         cityTextField.sendKeys(city);
-         **/
-
         BaseClass.waitForVisibility(locationApplyFilterButton, 30, SearchPage.driver);
         locationApplyFilterButton.click();
         BaseClass.staticWaitForVisibility(3000);
@@ -1906,18 +1881,6 @@ public class SearchPage {
         countrySearchField.sendKeys(country);
         BaseClass.staticWaitForVisibility(2000);
         SearchPage.driver.findElement(By.xpath("//div[text()='" + country + "']")).click();
-
-        /***
-         * Future used code
-         BaseClass.staticWaitForVisibility(3000);
-         BaseClass.waitForVisibility(stateDropdown, 30, SearchPage.driver);
-         stateDropdown.click();
-         WebElement stateElement = SearchPage.driver.findElement(By.xpath("//div[text()='" + state + "']"));
-         BaseClass.waitForVisibility(stateElement, 30, SearchPage.driver);
-         BaseClass.javaScriptClick(SearchPage.driver, stateElement);
-         BaseClass.staticWaitForVisibility(3000);
-         cityTextField.sendKeys(city);
-         ***/
 
         BaseClass.waitForVisibility(locationApplyFilterButton, 30, SearchPage.driver);
         locationApplyFilterButton.click();
@@ -2421,17 +2384,6 @@ public class SearchPage {
         findTalent.click();
         BaseClass.staticWaitForVisibility(5000);
     }
-
-/*    public void clickOnHowItWorkAndValidateUrl() {
-        BaseClass.waitForVisibility(howItWorkLink, 60, SearchPage.driver);
-        howItWorkLink.click();
-        BaseClass.waitForVisibility(howItWorksText, 60, SearchPage.driver);
-        Assert.assertEquals("Validate How It Work Text", "How It Works", howItWorksText.getText().trim());
-        Assert.assertEquals("Validate Url", ReaderManager.getInstance().getConfigReader().getUrlEndPoint("HowItWorks"), SearchPage.driver.getCurrentUrl());
-        BaseClass.validateURLresponse(SearchPage.driver.getCurrentUrl());
-        SearchPage.driver.navigate().refresh();
-
-    }*/
 
     public void userSelectAdvanceSearchOptionsForPackagesTabForNonSignUser(String minPrice, String maxPrice, String deliveryTime, String category, String language, String accent, String gender, String age, String keyword) {
         clickOnFindTalentUrl();

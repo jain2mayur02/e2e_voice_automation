@@ -54,7 +54,7 @@ public class HyperLinkPage {
     private WebElement userIcon;
     @FindBy(xpath = "//a[normalize-space()='My Home']")
     private WebElement myHomeLink;
-//    @FindBy(xpath = "//h1[normalize-space()='Get Started']")
+
     @FindBy(xpath = "//h1[normalize-space()='Welcome back, KIPL']")
     private WebElement getStartedText;
     @FindBy(xpath = "//a[normalize-space()='Favorites']")
@@ -75,7 +75,7 @@ public class HyperLinkPage {
     private WebElement manageLicensesText;
     @FindBy(xpath = "//a[normalize-space()='Manage Team']")
     private WebElement manageTeamLink;
-    //@FindBy(xpath = "//h1[normalize-space()='Team Members']")
+
     @FindBy(xpath = "//div[@class='page-header']/h1")
     private WebElement manageTeamText;
     @FindBy(xpath = "//a[normalize-space()='Billing History']")
@@ -146,7 +146,7 @@ public class HyperLinkPage {
         passwordTextBox.sendKeys(password);
         BaseClass.waitForElementClickable(logInButton, 60, HyperLinkPage.driver);
         logInButton.click();
-        BaseClass.staticWaitForVisibility(5000);
+        BaseClass.staticWaitForVisibility(15000);
         BaseClass.waitForVisibility(searchIcon, 60, HyperLinkPage.driver);
         Assert.assertEquals("Validate Login Url", ReaderManager.getInstance().getConfigReader().getUrlEndPoint(urlKey), HyperLinkPage.driver.getCurrentUrl());
         searchIcon.click();
@@ -454,8 +454,7 @@ public class HyperLinkPage {
 
 
     public void clickOnHowItWorkAndValidateUrl() {
-       // BaseClass.waitForVisibility(howItWorkLink, 60, HyperLinkPage.driver);
-        howItWorkLink.click();
+         howItWorkLink.click();
         BaseClass.waitForVisibility(howItWorksText, 60, HyperLinkPage.driver);
         Assert.assertEquals("Validate How It Work Text", "How It Works", howItWorksText.getText().trim());
         Assert.assertEquals("Validate Url", ReaderManager.getInstance().getConfigReader().getUrlEndPoint("HowItWorks"), HyperLinkPage.driver.getCurrentUrl());
@@ -540,8 +539,7 @@ public class HyperLinkPage {
     public void validateSubFooterLinkForByLanguage() {
         HyperLinkPage.driver.get("https://www.voices.systems/");
         BaseClass.staticWaitForVisibility(2000);
-      //  BaseClass.scrollUpToBottomOfPage(HyperLinkPage.driver);
-        List<WebElement> allByLanguageLinks = HyperLinkPage.driver.findElements(By.xpath("//a[normalize-space()='By Language']/../ul/li/a"));
+            List<WebElement> allByLanguageLinks = HyperLinkPage.driver.findElements(By.xpath("//a[normalize-space()='By Language']/../ul/li/a"));
         for (int link = 0; link < allByLanguageLinks.size(); link++) {
             HyperLinkPage.driver.get("https://www.voices.systems/");
             BaseClass.staticWaitForVisibility(2000);

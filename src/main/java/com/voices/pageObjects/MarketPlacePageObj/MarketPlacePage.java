@@ -279,7 +279,6 @@ public class MarketPlacePage {
         Assert.assertEquals("Validate Project Title Is Required text", "Project Title is required", projectTitleIsRequiredText.getText().trim());
         Assert.assertEquals("Validate Language Is Required text", "Language is required", languageIsRequiredText.getText().trim());
         Assert.assertEquals("Validate Accent Is Required text", "Accent is required", accentIsRequiredText.getText().trim());
-       // Assert.assertEquals("Validate Voice Gender Is Required text", "Voice Gender is required", genderIsRequiredText.getText().trim());
 
     }
 
@@ -314,13 +313,6 @@ public class MarketPlacePage {
         accentSearchBox.sendKeys(accent);
         MarketPlacePage.driver.findElement(By.xpath("//div[text()='" + accent + "']")).click();
 
-      /*  WebElement genderElement = MarketPlacePage.driver.findElement(By.xpath("//label[normalize-space()='" + gender + "']/parent::div"));
-        if (BaseClass.isElementPresent(MarketPlacePage.driver, genderElement)) {
-            BaseClass.scrollToElement(MarketPlacePage.driver, genderElement);
-            BaseClass.waitForVisibility(genderElement, 30, MarketPlacePage.driver);
-            genderElement.click();
-        }
-*/
         WebElement ageElement = MarketPlacePage.driver.findElement(By.xpath("//label[normalize-space()='" + age + "']/parent::div"));
         BaseClass.scrollToElement(MarketPlacePage.driver, ageElement);
         BaseClass.waitForVisibility(ageElement, 30, MarketPlacePage.driver);
@@ -576,7 +568,6 @@ public class MarketPlacePage {
         BaseClass.waitForVisibility(meIcon, 30, MarketPlacePage.driver);
         BaseClass.mouseOverOnElement(MarketPlacePage.driver, meIcon);
         BaseClass.waitForVisibility(logoutLink, 30, MarketPlacePage.driver);
-//        logoutLink.click();
         BaseClass.javaScriptClick(MarketPlacePage.driver, logoutLink);
         MarketPlacePage.driver.get("https://www.voices.systems/");
     }

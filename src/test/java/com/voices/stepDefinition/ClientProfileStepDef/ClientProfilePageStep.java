@@ -39,10 +39,6 @@ public class ClientProfilePageStep {
         clientProfilePage.verifyMyJobsDraftTab();
     }
 
-    @Then("Verify My Jobs Hiring tab")
-    public void verify_my_jobs_hiring_tab() {
-
-    }
 
     @Then("Verify My Jobs Working tab")
     public void verify_my_jobs_working_tab() {
